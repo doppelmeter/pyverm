@@ -4,7 +4,7 @@ from pyverm.core import points
 
 class TestPoint(unittest.TestCase):
     def setUp(self):
-        self.point_1 = points.Point(0, 1, 2, "Point1")
+        self.point_1 = points.Point(0, 1, 2, point_id="Point1")
 
     def test_access_point_data(self):
         self.assertEqual(
