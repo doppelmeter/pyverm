@@ -3,11 +3,11 @@ import setuptools
 
 setup(
     name='pyverm',
-    version='0.0.1',
+    version='0.0.2',
     author='Marius Huerzeler',
     author_email='huerzeler.marius@gmail.com',
     packages=setuptools.find_packages(exclude=['tests*']),
-    url='',
+    url='https://doppelmeter.github.io/pyverm/index.html',
     license='MIT',
     description='Modul for geodetic and surveying calculations',
     python_requires='>=3',
