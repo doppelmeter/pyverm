@@ -23,42 +23,42 @@ class TestDistance(unittest.TestCase):
 class TestAzimut(unittest.TestCase):
     def test_calculation(self):
         self.assertEqual(
-            basics.azimut((0, 0), (0, 1)),
+            basics.azimuth((0, 0), (0, 1)),
             0,
             'incorrect calculation of azimut from point 0,0 to point 0,1')
 
         self.assertEqual(
-            basics.azimut((0, 0), (1, 1)),
+            basics.azimuth((0, 0), (1, 1)),
             50,
             'incorrect calculation of azimut from point 0,0 to point 1,1')
 
         self.assertEqual(
-            basics.azimut((0, 0), (1, 0)),
+            basics.azimuth((0, 0), (1, 0)),
             100,
             'incorrect calculation of azimut from point 0,0 to point 1,0')
 
         self.assertEqual(
-            basics.azimut((0, 0), (1, -1)),
+            basics.azimuth((0, 0), (1, -1)),
             150,
             'incorrect calculation of azimut from point 0,0 to point 1,-1')
 
         self.assertEqual(
-            basics.azimut((0, 0), (0, -1)),
+            basics.azimuth((0, 0), (0, -1)),
             200,
             'incorrect calculation of azimut from point 0,0 to point 0,-1')
 
         self.assertEqual(
-            basics.azimut((0, 0), (-1, -1)),
+            basics.azimuth((0, 0), (-1, -1)),
             250,
             'incorrect calculation of azimut from point 0,0 to point -1,-1')
 
         self.assertEqual(
-            basics.azimut((0, 0), (-1, 0)),
+            basics.azimuth((0, 0), (-1, 0)),
             300,
             'incorrect calculation of azimut from point 0,0 to point -1,0')
 
         self.assertEqual(
-            basics.azimut((0, 0), (-1, 1)),
+            basics.azimuth((0, 0), (-1, 1)),
             350,
             'incorrect calculation of azimut from point 0,0 to point -1,1')
 

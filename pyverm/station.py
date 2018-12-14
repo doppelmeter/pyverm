@@ -1,5 +1,5 @@
 from pyverm.core.observation import Polar
-from pyverm.core.basics import azimut
+from pyverm.core.basics import azimuth
 
 class Station:
     """stellt eine station dar
@@ -34,7 +34,7 @@ class Station:
         """
         temp = 0
         for target in self.targetlist:
-            temp += azimut(self.standpoint, target.target_point) - target.horizontal_angle
+            temp += azimuth(self.standpoint, target.target_point) - target.horizontal_angle
         self.orientation = temp / (len(self.targetlist) + 1)
 
 

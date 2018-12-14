@@ -12,7 +12,7 @@ def distance(point_1,point_2):
     distance = ((point_1[0]-point_2[0])**2+(point_1[1]-point_2[1])**2)**decimal.Decimal('0.5')
     return distance
 
-def azimut(point_1,point_2):
+def azimuth(point_1, point_2):
     """
     Calculates the azimut from point 1 to point 2.
 
