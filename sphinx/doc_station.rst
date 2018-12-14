@@ -3,5 +3,6 @@ Station
 
 
 .. automodule:: pyverm.station
-	:members: 
+	:members:
+    :special-members:
 	
