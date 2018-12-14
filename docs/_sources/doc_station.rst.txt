@@ -2,6 +2,7 @@ Station
 ==================
 
 
-.. automodule:: pyverm.station
-	:members: 
-	
+.. automodule:: pyverm.station 
+    :members:
+    :special-members: 
+

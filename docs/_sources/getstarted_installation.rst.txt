@@ -2,4 +2,6 @@ Installation
 ==================
 
 
-Here you will soon find some examples.
+You can install the package with pip.
+
+``pip install pyverm``

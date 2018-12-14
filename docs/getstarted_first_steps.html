@@ -90,7 +90,10 @@
 <p class="caption"><span class="caption-text">Get Started</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getstarted_installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Fist Steps</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Fist Steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#azimuth-and-distance-calculation">Azimuth and distance calculation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="getstarted_advanced_usage.html">Advanced Usage</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Documentation</span></p>
@@ -163,7 +166,15 @@
             
   <div class="section" id="fist-steps">
 <h1>Fist Steps<a class="headerlink" href="#fist-steps" title="Permalink to this headline">¶</a></h1>
-<p>Here you will soon find some examples.</p>
+<div class="section" id="azimuth-and-distance-calculation">
+<h2>Azimuth and distance calculation<a class="headerlink" href="#azimuth-and-distance-calculation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyverm</span>
+
+<span class="n">azimuth</span> <span class="o">=</span> <span class="n">pyverm</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">basics</span><span class="o">.</span><span class="n">azimuth</span><span class="p">(</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> <span class="p">,</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="n">pyverm</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">basics</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> <span class="p">,</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

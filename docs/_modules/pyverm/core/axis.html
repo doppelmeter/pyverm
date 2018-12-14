@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyverm.core.basics &mdash; PyVerm 0.0.0 documentation</title>
+  <title>pyverm.core.axis &mdash; PyVerm 0.0.0 documentation</title>
   
 
   
@@ -142,7 +142,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>pyverm.core.basics</li>
+      <li>pyverm.core.axis</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -157,44 +157,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for pyverm.core.basics</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">decimal</span>
+  <h1>Source code for pyverm.core.axis</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">decimal</span>
+<span class="kn">from</span> <span class="nn">.points</span> <span class="k">import</span> <span class="n">Point</span>
 
-<div class="viewcode-block" id="distance"><a class="viewcode-back" href="../../../doc_core.html#pyverm.core.basics.distance">[docs]</a><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">point_1</span><span class="p">,</span><span class="n">point_2</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Axis"><a class="viewcode-back" href="../../../doc_core.html#pyverm.core.axis.Axis">[docs]</a><span class="k">class</span> <span class="nc">Axis</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculates the distance between two points.</span>
-
-<span class="sd">    :param point_1: ``Point``-object or ``(y,x)``-tuple</span>
-<span class="sd">    :param point_2: ``Point``-object or ``(y,x)``-tuple</span>
-<span class="sd">    :return: distance as decimal</span>
+<span class="sd">    Represents an axis.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">distance</span> <span class="o">=</span> <span class="p">((</span><span class="n">point_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">point_2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">point_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">point_2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.5&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">distance</span></div>
 
-<div class="viewcode-block" id="azimuth"><a class="viewcode-back" href="../../../doc_core.html#pyverm.core.basics.azimuth">[docs]</a><span class="k">def</span> <span class="nf">azimuth</span><span class="p">(</span><span class="n">point_1</span><span class="p">,</span> <span class="n">point_2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculates the azimut from point 1 to point 2.</span>
+<div class="viewcode-block" id="Axis.__init__"><a class="viewcode-back" href="../../../doc_core.html#pyverm.core.axis.Axis.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="p">,</span> <span class="n">point_1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">point_2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">azimuth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">left_right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">left_right_through_point</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plumb</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">plumb_through_point</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plumb_trough_middle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">in_out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">    :param point_1: ``Point``-object or ``(y,x)``-tuple</span>
-<span class="sd">    :param point_2: ``Point``-object or ``(y,x)``-tuple</span>
-<span class="sd">    :return: azimuth in gon as decimal</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">delta_y</span> <span class="o">=</span> <span class="n">point_2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">point_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">delta_x</span> <span class="o">=</span> <span class="n">point_2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">point_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">delta_x</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">azimut</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">delta_y</span><span class="o">/</span><span class="n">delta_x</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">200</span>
-    <span class="k">elif</span> <span class="n">delta_y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">azimut</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">azimut</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="sd">        Initialice an instance of an axis</span>
 
-    <span class="k">if</span> <span class="n">delta_x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">azimut</span> <span class="o">=</span> <span class="n">azimut</span><span class="o">+</span><span class="mi">200</span>
-    <span class="k">elif</span> <span class="n">delta_y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">azimut</span> <span class="o">=</span> <span class="n">azimut</span><span class="o">+</span><span class="mi">400</span>
-    <span class="k">return</span> <span class="n">azimut</span></div>
-
+<span class="sd">        :param point_1: ``Point``-object or ``(y,x)``-tuple</span>
+<span class="sd">        :param point_2: ``Point``-object or ``(y,x)``-tuple</span>
+<span class="sd">        :param azimuth: azimuth in gon if only one point is given</span>
+<span class="sd">        :param orientation: angle in gon</span>
+<span class="sd">        :param left_right: distance in meter to displace the axis to the left or right</span>
+<span class="sd">        :param left_right_through_point: ``Point``-object or ``(y,x)``-tuple</span>
+<span class="sd">        :param plumb: turn the axis with 100gon</span>
+<span class="sd">        :param plumb_through_point: ``Point``-object or ``(y,x)``-tuple</span>
+<span class="sd">        :param plumb_trough_middle: boolean -&gt; builds perpendicular bisector</span>
+<span class="sd">        :param in_out: distance in meter do displace axis in line</span>
+<span class="sd">        &quot;&quot;&quot;</span></div></div>
 </pre></div>
 
            </div>

@@ -159,7 +159,7 @@
             
   <h1>Source code for pyverm.station</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">pyverm.core.observation</span> <span class="k">import</span> <span class="n">Polar</span>
-<span class="kn">from</span> <span class="nn">pyverm.core.basics</span> <span class="k">import</span> <span class="n">azimut</span>
+<span class="kn">from</span> <span class="nn">pyverm.core.basics</span> <span class="k">import</span> <span class="n">azimuth</span>
 
 <div class="viewcode-block" id="Station"><a class="viewcode-back" href="../../doc_station.html#pyverm.station.Station">[docs]</a><span class="k">class</span> <span class="nc">Station</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;stellt eine station dar</span>
@@ -172,9 +172,9 @@
 <span class="sd">    #station_123.abriss()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="p">,</span> <span class="n">station_point</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Station.__init__"><a class="viewcode-back" href="../../doc_station.html#pyverm.station.Station.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="p">,</span> <span class="n">station_point</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">station_point</span> <span class="o">=</span> <span class="n">station_point</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span> <span class="o">=</span> <span class="n">orientation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span> <span class="o">=</span> <span class="n">orientation</span></div>
 
 <div class="viewcode-block" id="Station.add_observation"><a class="viewcode-back" href="../../doc_station.html#pyverm.station.Station.add_observation">[docs]</a>    <span class="k">def</span> <span class="nf">add_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_point</span><span class="p">,</span> <span class="n">horizontal_angle</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -194,7 +194,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">targetlist</span><span class="p">:</span>
-            <span class="n">temp</span> <span class="o">+=</span> <span class="n">azimut</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">standpoint</span><span class="p">,</span> <span class="n">target</span><span class="o">.</span><span class="n">target_point</span><span class="p">)</span> <span class="o">-</span> <span class="n">target</span><span class="o">.</span><span class="n">horizontal_angle</span>
+            <span class="n">temp</span> <span class="o">+=</span> <span class="n">azimuth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">standpoint</span><span class="p">,</span> <span class="n">target</span><span class="o">.</span><span class="n">target_point</span><span class="p">)</span> <span class="o">-</span> <span class="n">target</span><span class="o">.</span><span class="n">horizontal_angle</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targetlist</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
 
 

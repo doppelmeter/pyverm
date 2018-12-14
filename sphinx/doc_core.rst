@@ -6,43 +6,42 @@ Basics
 ^^^^^^^^^^^^
 
 .. automodule:: pyverm.core.basics 
-	:members:
+    :members:
     :special-members:
 
 Points
 ^^^^^^^^^^^^
 
 .. automodule:: pyverm.core.points 
-	:members: 
+    :members:
     :special-members:
-	
+
 Observation
 ^^^^^^^^^^^^^^^^^^
-	
-.. automodule:: pyverm.core.observation 
-	:members: 
+
+.. automodule:: pyverm.core.observation
+    :members:
     :special-members:
 
 Axis
 ^^^^^^^^^^^^^^^^^^
 
 .. automodule:: pyverm.core.axis 
-	:members:
+    :members:
     :special-members:
 
 Circle
 ^^^^^^^^^^^^^^^^^^
 
 .. automodule:: pyverm.core.circle 
-	:members:
+    :members:
     :special-members:
 
 Report
 ^^^^^^^^^^^^^^^^^^
-	
-.. automodule:: pyverm.core.report 
-	:members:
-    :special-members:
-	
 
-	    
+.. automodule:: pyverm.core.report 
+    :members:
+    :special-members:
+
+
