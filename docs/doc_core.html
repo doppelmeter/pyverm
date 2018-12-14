@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Core &mdash; PyVerm 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Station" href="doc_station.html" />
+    <link rel="prev" title="Advanced Usage" href="getstarted_advanced_usage.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyVerm
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Intro</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="translations.html">Translations for Surveying-Words</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getstarted_installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getstarted_first_steps.html">Fist Steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getstarted_advanced_usage.html">Advanced Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pyverm.core.basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pyverm.core.points">Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pyverm.core.observation">Observation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pyverm.core.report">Report</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_station.html">Station</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyVerm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Core</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/doc_core.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="core">
+<h1>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-pyverm.core.basics">
+<span id="basics"></span><h2>Basics<a class="headerlink" href="#module-pyverm.core.basics" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyverm.core.basics.azimut">
+<code class="descclassname">pyverm.core.basics.</code><code class="descname">azimut</code><span class="sig-paren">(</span><em>point_1</em>, <em>point_2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/basics.html#azimut"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.basics.azimut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the azimut from point 1 to point 2.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>point_1</strong> – <code class="docutils literal notranslate"><span class="pre">Point</span></code>-object or <code class="docutils literal notranslate"><span class="pre">(y,x)</span></code>-tuple</li>
+<li><strong>point_2</strong> – <code class="docutils literal notranslate"><span class="pre">Point</span></code>-object or <code class="docutils literal notranslate"><span class="pre">(y,x)</span></code>-tuple</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">azimuth in gon as decimal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyverm.core.basics.distance">
+<code class="descclassname">pyverm.core.basics.</code><code class="descname">distance</code><span class="sig-paren">(</span><em>point_1</em>, <em>point_2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/basics.html#distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.basics.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the distance between two points.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>point_1</strong> – <code class="docutils literal notranslate"><span class="pre">Point</span></code>-object or <code class="docutils literal notranslate"><span class="pre">(y,x)</span></code>-tuple</li>
+<li><strong>point_2</strong> – <code class="docutils literal notranslate"><span class="pre">Point</span></code>-object or <code class="docutils literal notranslate"><span class="pre">(y,x)</span></code>-tuple</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">distance as decimal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyverm.core.points">
+<span id="points"></span><h2>Points<a class="headerlink" href="#module-pyverm.core.points" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyverm.core.points.Database">
+<em class="property">class </em><code class="descclassname">pyverm.core.points.</code><code class="descname">Database</code><a class="reference internal" href="_modules/pyverm/core/points.html#Database"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.points.Database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a collection of points, which have either an string or integer point_id, points can be added, edited
+or deleted. Further all points in a Database can be imported or exported from different common point file formats.
+A point in the database is accessible with it’s key <code class="docutils literal notranslate"><span class="pre">point_db[10]</span></code> or <code class="docutils literal notranslate"><span class="pre">point_db[&quot;test&quot;]</span></code>.</p>
+<p><strong>Example</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyverm.core.point</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Database</span>
+
+<span class="n">point_1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="n">point_id</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">point_2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="n">point_id</span><span class="o">=</span><span class="s2">&quot;1000&quot;</span><span class="p">)</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">()</span>
+<span class="n">db</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">point_1</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">point_2</span><span class="p">)</span>
+
+<span class="n">point_1000</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="mi">1000</span><span class="p">]</span>
+<span class="n">point_Test</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;Test&quot;</span><span class="p">]</span>
+
+<span class="n">dt</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;points.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pyverm.core.points.Database.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>point</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/points.html#Database.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.points.Database.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a <code class="docutils literal notranslate"><span class="pre">Point</span></code>-object to the database, and indexes it under it’s point_id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>point</strong> – Point object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyverm.core.points.Database.from_csv">
+<code class="descname">from_csv</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/points.html#Database.from_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.points.Database.from_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>To-Do</strong></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyverm.core.points.Database.to_csv">
+<code class="descname">to_csv</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/points.html#Database.to_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.points.Database.to_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>To-Do</strong></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyverm.core.points.Point">
+<em class="property">class </em><code class="descclassname">pyverm.core.points.</code><code class="descname">Point</code><span class="sig-paren">(</span><em>y</em>, <em>x</em>, <em>z=0</em>, <em>*</em>, <em>point_id=None</em>, <em>description=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/points.html#Point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.points.Point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a point with a y, x and z-coordinate and further optional informations like a point_id etc. The
+coordinates of a point will always be possible to access like the coordinates in a <code class="docutils literal notranslate"><span class="pre">(y,</span> <span class="pre">x,</span> <span class="pre">z)</span></code> tuple or a
+<code class="docutils literal notranslate"><span class="pre">[y,</span> <span class="pre">x,</span> <span class="pre">z]</span></code> list. So you can access for example the points y coordinate as <code class="docutils literal notranslate"><span class="pre">point[0]</span></code>.</p>
+<p><strong>Example</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyverm.core.point</span> <span class="kn">import</span> <span class="n">Point</span>
+
+<span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="n">point_id</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">sum_yxc</span> <span class="o">=</span> <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyverm.core.observation">
+<span id="observation"></span><h2>Observation<a class="headerlink" href="#module-pyverm.core.observation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyverm.core.observation.Polar">
+<em class="property">class </em><code class="descclassname">pyverm.core.observation.</code><code class="descname">Polar</code><span class="sig-paren">(</span><em>*</em>, <em>station_id=None</em>, <em>target_id=None</em>, <em>station_point=None</em>, <em>target_point=None</em>, <em>station_height=None</em>, <em>target_height=None</em>, <em>horizontal_angle=None</em>, <em>vertical_angle=None</em>, <em>zenith_angle=None</em>, <em>horizontal_angle_2=None</em>, <em>vertical_angle_2=None</em>, <em>zenith_angle_2=None</em>, <em>azimuth=None</em>, <em>slope_distance=None</em>, <em>slope_distance_2=None</em>, <em>horizontal_distance=None</em>, <em>vertical_distance=None</em>, <em>offset_in_out=None</em>, <em>offset_left_right=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/observation.html#Polar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.observation.Polar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a Polar Observation</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyverm.core.report">
+<span id="report"></span><h2>Report<a class="headerlink" href="#module-pyverm.core.report" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="doc_station.html" class="btn btn-neutral float-right" title="Station" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getstarted_advanced_usage.html" class="btn btn-neutral" title="Advanced Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Marius Hürzeler
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
