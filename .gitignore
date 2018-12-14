@@ -117,3 +117,5 @@ dmypy.json
 .idea/
 not_for_git/
 sphinx/_build/
+build.py
+example.py
