@@ -57,4 +57,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 decimal_precision = 20
+report_always_on = False
+
 
