@@ -1,5 +1,17 @@
+#imports from standard library
 import math
 import decimal
+import logging
+
+#imports from pyverm
+from . import settings
+
+# Module "configuration"
+#=======================
+# logger
+logger = logging.getLogger(__name__)
+# decimal.set_precision
+decimal.getcontext().prec = settings.decimal_precision
 
 def distance(point_1,point_2):
     """

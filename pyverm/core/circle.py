@@ -1,6 +1,17 @@
+#imports from standard library
 import decimal
-from .points import Point
+import logging
 
+#imports from pyverm
+from .points import Point
+from . import settings
+
+# Module "configuration"
+#=======================
+# logger
+logger = logging.getLogger(__name__)
+# decimal.set_precision
+decimal.getcontext().prec = settings.decimal_precision
 
 class Circle:
     """

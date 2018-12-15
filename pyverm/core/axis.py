@@ -1,5 +1,17 @@
+#imports from standard library
 import decimal
+import logging
+
+#imports from pyverm
+from . import settings
 from .points import Point
+
+# Module "configuration"
+#=======================
+# logger
+logger = logging.getLogger(__name__)
+# decimal.set_precision
+decimal.getcontext().prec = settings.decimal_precision
 
 
 class Axis:

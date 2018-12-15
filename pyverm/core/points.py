@@ -1,5 +1,17 @@
-from decimal import Decimal
+#imports from standard library
+import decimal
+import logging
 
+#imports from pyverm
+from . import settings
+
+
+# Module "configuration"
+#=======================
+# logger
+logger = logging.getLogger(__name__)
+# decimal.set_precision
+decimal.getcontext().prec = settings.decimal_precision
 
 class Point:
     """
@@ -28,9 +40,9 @@ class Point:
         :param x:
         :param z:
         """
-        self.y = Decimal(y)
-        self.x = Decimal(x)
-        self.z = Decimal(z)
+        self.y = decimal.Decimal(y)
+        self.x = decimal.Decimal(x)
+        self.z = decimal.Decimal(z)
         self.point_id = str(point_id)
         self.description = description
 

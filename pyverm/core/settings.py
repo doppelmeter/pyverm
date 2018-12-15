@@ -47,5 +47,14 @@
 # decimal_precision = 10
 ###################################################
 
-decimal_precision = 10
+
+#imports from standard library
+import logging
+
+
+
+# logger
+logger = logging.getLogger(__name__)
+
+decimal_precision = 20
 

@@ -1,4 +1,16 @@
-from decimal import Decimal
+#imports from standard library
+import decimal
+import logging
+
+#imports from pyverm
+from . import settings
+
+# Module "configuration"
+#=======================
+# logger
+logger = logging.getLogger(__name__)
+# decimal.set_precision
+decimal.getcontext().prec = settings.decimal_precision
 
 class Polar:
     """
@@ -53,18 +65,18 @@ class Polar:
         self.target_id = target_id
         self.station_point = station_point
         self.target_point = target_point
-        self.station_height = Decimal(station_height)
-        self.target_height = Decimal(target_height)
-        self.horizontal_angle = Decimal(horizontal_angle)
-        self.vertical_angle = Decimal(vertical_angle)
-        self.zenith_angle = Decimal(zenith_angle)
-        self.horizontal_angle_2 = Decimal(horizontal_angle_2)
-        self.vertical_angle_2 = Decimal(vertical_angle_2)
-        self.zenith_angle_2 = Decimal(zenith_angle_2)
-        self.azimuth = Decimal(azimuth)
-        self.slope_distance = Decimal(slope_distance)
-        self.slope_distance_2 = Decimal(slope_distance_2)
-        self.horizontal_distance = Decimal(horizontal_distance)
-        self.vertical_distance = Decimal(vertical_distance)
-        self.offset_in_out = Decimal(offset_in_out)
-        self.offset_left_right = Decimal(offset_left_right)
+        self.station_height = decimal.Decimal(station_height)
+        self.target_height = decimal.Decimal(target_height)
+        self.horizontal_angle = decimal.Decimal(horizontal_angle)
+        self.vertical_angle = decimal.Decimal(vertical_angle)
+        self.zenith_angle = decimal.Decimal(zenith_angle)
+        self.horizontal_angle_2 = decimal.Decimal(horizontal_angle_2)
+        self.vertical_angle_2 = decimal.Decimal(vertical_angle_2)
+        self.zenith_angle_2 = decimal.Decimal(zenith_angle_2)
+        self.azimuth = decimal.Decimal(azimuth)
+        self.slope_distance = decimal.Decimal(slope_distance)
+        self.slope_distance_2 = decimal.Decimal(slope_distance_2)
+        self.horizontal_distance = decimal.Decimal(horizontal_distance)
+        self.vertical_distance = decimal.Decimal(vertical_distance)
+        self.offset_in_out = decimal.Decimal(offset_in_out)
+        self.offset_left_right = decimal.Decimal(offset_left_right)
