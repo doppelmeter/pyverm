@@ -19,20 +19,27 @@
 #                                                                      #
 ########################################################################
 
-#imports from standard library
+"""
+Points Module
+
+
+"""
+
+__all__ = ["Point", "Database"]
+
+__author__ = "Marius Hürzler"
+__copyright__ = "Copyright (C) 2018, Marius Hürzeler"
+__license__ = "GNU GPLv3"
+
+
 import decimal
 import logging
 
-#imports from pyverm
 from . import settings
 
 
-# Module "configuration"
-#=======================
-# logger
 logger = logging.getLogger(__name__)
-# decimal.set_precision
-decimal.getcontext().prec = settings.decimal_precision
+decimal.getcontext().prec = settings.decimal_precision  # decimal.set_precision
 
 class Point:
     """

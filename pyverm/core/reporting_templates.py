@@ -19,6 +19,19 @@
 #                                                                      #
 ########################################################################
 
+"""
+Reporting Templates
+
+
+"""
+
+__all__ = []
+
+__author__ = "Marius Hürzler"
+__copyright__ = "Copyright (C) 2018, Marius Hürzeler"
+__license__ = "GNU GPLv3"
+
+
 def point(point):
     point_id = point["point_id"]
     y = point[0]

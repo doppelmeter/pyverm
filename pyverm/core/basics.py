@@ -19,25 +19,33 @@
 #                                                                      #
 ########################################################################
 
-#imports from standard library
+"""
+Basics Module
+
+
+"""
+
+__all__ = ["distance", "azimuth"]
+
+__author__ = "Marius Hürzler"
+__copyright__ = "Copyright (C) 2018, Marius Hürzeler"
+__license__ = "GNU GPLv3"
+
+
 import math
 import decimal
 import logging
 
-#imports from pyverm
 from . import settings
 from . import reporting
 from . import reporting_templates
 from . import points
 
-# Module "configuration"
-#=======================
-# logger
+
 logger = logging.getLogger(__name__)
-# report
 report = reporting.getReport()
-# decimal.set_precision
-decimal.getcontext().prec = settings.decimal_precision
+decimal.getcontext().prec = settings.decimal_precision  # decimal.set_precision
+
 
 def distance(point_1, point_2, *, report_on=False):
     """

@@ -19,6 +19,19 @@
 #                                                                      #
 ########################################################################
 
+"""
+module transformations
+
+
+"""
+
+__all__ = []
+
+__author__ = "Marius Hürzler"
+__copyright__ = "Copyright (C) 2018, Marius Hürzeler"
+__license__ = "GNU GPLv3"
+
+
 class _Transformation():
     pass
 

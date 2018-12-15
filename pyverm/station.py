@@ -19,6 +19,19 @@
 #                                                                      #
 ########################################################################
 
+"""
+module stations
+
+
+"""
+
+__all__ = ["Station"]
+
+__author__ = "Marius Hürzler"
+__copyright__ = "Copyright (C) 2018, Marius Hürzeler"
+__license__ = "GNU GPLv3"
+
+
 from pyverm.core.observation import Polar
 from pyverm.core.basics import azimuth
 
