@@ -61,9 +61,21 @@ class Point:
             return self.x
         if key == 2:
             return self.z
+        if key == "point_id":
+            return self.point_id
 
     def __str__(self):
         return f"({self.y}, {self.x}, {self.z}, {self.point_id})"
+
+
+def make_point(point):
+    if type(point) is Point:
+        return point
+    else:
+        try:
+            return Point(point[0],point[1],point[2])
+        except:
+            return Point(point[0], point[1])
 
 
 class Database:

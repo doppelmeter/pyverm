@@ -6,6 +6,8 @@ import logging
 #imports from pyverm
 from . import settings
 from . import reporting
+from . import reporting_templates
+from . import points
 
 # Module "configuration"
 #=======================
@@ -41,6 +43,8 @@ def azimuth(point_1, point_2,*,report_on=False):
     :param report_on: boolean
     :return: azimuth in gon as decimal
     """
+    point_1 = points.make_point(point_1)
+    point_2 = points.make_point(point_2)
     delta_y = point_2[0]-point_1[0]
     delta_x = point_2[1] - point_1[1]
     if delta_x != 0:
@@ -55,8 +59,9 @@ def azimuth(point_1, point_2,*,report_on=False):
     elif delta_y < 0:
         azimut = azimut+400
     if report_on:
-        template = "Point           E               N             \n                {point_1[0]:<15} {point_1[1]:<15} \n                {point_2[0]:<15} {point_2[1]:<15} \nResults: \nAzimuth: {azimuth:<15}"
-        message = template.format(point_1=point_1,point_2=point_2,azimuth=azimuth)
+        message = reporting_templates.point_title()+"\n"
+        message += reporting_templates.point(point_1)+"   "
+        message += reporting_templates.point(point_2)+"\n"
         report.add(message)
     return azimut
 
