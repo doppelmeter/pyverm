@@ -35,10 +35,9 @@ __license__ = "GNU GPLv3"
 import logging
 
 
-
-# logger
 logger = logging.getLogger(__name__)
 
+# Settings
 decimal_precision = 20
 report_always_on = False
 

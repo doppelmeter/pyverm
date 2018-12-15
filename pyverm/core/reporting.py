@@ -73,11 +73,12 @@ class _Report:
         return self._report
 
 
-#Initialize Report if it doesn't exist
+# Initialize Report if it doesn't exist
 try:
     s = str(_report)
 except:
     _report = _Report()
+
 
 def getReport():
     """

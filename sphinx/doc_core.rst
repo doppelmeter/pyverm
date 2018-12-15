@@ -2,46 +2,12 @@ Core
 ==================
 
 
-Basics
-^^^^^^^^^^^^
+.. toctree::
+   :maxdepth: 2
 
-.. automodule:: pyverm.core.basics 
-    :members:
-    :special-members:
-
-Points
-^^^^^^^^^^^^
-
-.. automodule:: pyverm.core.points 
-    :members:
-    :special-members:
-
-Observation
-^^^^^^^^^^^^^^^^^^
-
-.. automodule:: pyverm.core.observation
-    :members:
-    :special-members:
-
-Axis
-^^^^^^^^^^^^^^^^^^
-
-.. automodule:: pyverm.core.axis 
-    :members:
-    :special-members:
-
-Circle
-^^^^^^^^^^^^^^^^^^
-
-.. automodule:: pyverm.core.circle 
-    :members:
-    :special-members:
-
-Report
-^^^^^^^^^^^^^^^^^^
-
-.. automodule:: pyverm.core.report 
-    :members:
-    :special-members:
-
-
+   doc_core_axis
+   doc_core_basics
+   doc_core_circle
+   doc_core_observation
+   doc_core_points
+   doc_core_reporting

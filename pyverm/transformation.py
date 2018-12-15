@@ -32,6 +32,7 @@ __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
 __license__ = "GNU GPLv3"
 
 
+
 class _Transformation():
     pass
 
