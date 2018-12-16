@@ -25,7 +25,7 @@ Points Module
 
 """
 
-__all__ = ["Point", "Database"]
+__all__ = ["Point", "Database", "make_point"]
 
 __author__ = "Marius Hürzler"
 __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
@@ -103,7 +103,10 @@ def make_point(point):
         try:
             return Point(point[0],point[1],point[2])
         except:
-            return Point(point[0], point[1])
+            if point is not None:
+                return Point(point[0], point[1])
+            else:
+                return None
 
 
 class Database:
