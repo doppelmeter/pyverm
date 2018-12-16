@@ -38,7 +38,13 @@ from core import points
 
 
 class _Transformation():
-    pass
+    def calculate(self):
+        pass
+
+    def to_source(self, point):
+        pass
+
+    def to_destination(self, point):
 
 
 
