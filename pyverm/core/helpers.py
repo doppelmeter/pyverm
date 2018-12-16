@@ -24,6 +24,7 @@ helpers Module
 
 
 """
+from pyverm.core.points import Point
 
 __all__ = []
 
@@ -48,3 +49,16 @@ def make_decimal(value):
         return None
     else:
         return decimal.Decimal(value)
+
+
+def make_point(point):
+    if type(point) is points.Point:
+        return point
+    else:
+        try:
+            return points.Point(point[0],point[1],point[2])
+        except:
+            if point is not None:
+                return points.Point(point[0], point[1])
+            else:
+                return None

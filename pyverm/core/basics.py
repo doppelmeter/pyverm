@@ -25,6 +25,7 @@ Basics Module
 
 """
 
+
 __all__ = ["distance", "azimuth"]
 
 __author__ = "Marius Hürzler"
@@ -39,6 +40,7 @@ import logging
 from . import settings
 from . import reporting
 from . import reporting_templates
+from . import helpers
 from . import points
 
 
@@ -72,8 +74,8 @@ def azimuth(point_1, point_2,*,report_on=False):
     :param report_on: boolean
     :return: azimuth in gon as decimal
     """
-    point_1 = points.make_point(point_1)
-    point_2 = points.make_point(point_2)
+    point_1 = helpers.make_point(point_1)
+    point_2 = helpers.make_point(point_2)
     delta_y = point_2[0]-point_1[0]
     delta_x = point_2[1] - point_1[1]
     if delta_x != 0:

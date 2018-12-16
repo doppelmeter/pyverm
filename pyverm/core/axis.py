@@ -24,6 +24,7 @@ Axis Module
 
 
 """
+import pyverm.core.helpers
 
 __all__ = ["Axis"]
 
@@ -70,14 +71,14 @@ class Axis:
         self._a = 0  # linear equation
         self._b = 0  # linear equation
 
-        self._point_1 = points.make_point(point_1)
-        self._point_2 = points.make_point(point_2)
+        self._point_1 = pyverm.core.helpers.make_point(point_1)
+        self._point_2 = pyverm.core.helpers.make_point(point_2)
         self._azimuth = (azimuth)
         self._orientation = (orientation)
         self._left_right = (left_right)
-        self._left_right_trough_point = points.make_point(left_right_through_point)
+        self._left_right_trough_point = pyverm.core.helpers.make_point(left_right_through_point)
         self._plumb = plumb
-        self._plumb_trough_point = points.make_point(plumb_through_point)
+        self._plumb_trough_point = pyverm.core.helpers.make_point(plumb_through_point)
         self._plumb_trough_middle = plumb_trough_middle
         self._in_out = (in_out)
 

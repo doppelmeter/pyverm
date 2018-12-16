@@ -25,7 +25,7 @@ Points Module
 
 """
 
-__all__ = ["Point", "Database", "make_point"]
+__all__ = ["Point", "Database"]
 
 __author__ = "Marius Hürzler"
 __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
@@ -36,6 +36,7 @@ import decimal
 import logging
 
 from . import settings
+from . import helpers
 
 
 logger = logging.getLogger(__name__)
@@ -107,18 +108,9 @@ class Point:
         return f"({self.y}, {self.x}, {self.z}, {self.point_id})"
 
 
+# for campatability
 def make_point(point):
-    if type(point) is Point:
-        return point
-    else:
-        try:
-            return Point(point[0],point[1],point[2])
-        except:
-            if point is not None:
-                return Point(point[0], point[1])
-            else:
-                return None
-
+    return helpers.make_point(point)
 
 class Database:
     """
