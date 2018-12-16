@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>core.points &mdash; PyVerm 0.0.0 documentation</title>
+  <title>core.points &mdash; PyVerm 0.0.3 documentation</title>
   
 
   
@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="core.reporting" href="doc_core_reporting.html" />
-    <link rel="prev" title="core.observation" href="doc_core_observation.html" /> 
+    <link rel="prev" title="core.observation" href="doc_core_observations.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,6 +86,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="translations.html">Translations for Surveying-Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toto.html">To-Do</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Get Started</span></p>
 <ul>
@@ -98,13 +99,16 @@
 <li class="toctree-l1 current"><a class="reference internal" href="doc_core.html">Core</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="doc_core_axis.html">core.axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="doc_core_basics.html">core.basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_core_helpers.html">core.helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_core_settings.html">core.settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="doc_core_circle.html">core.circle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_core_observation.html">core.observation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_core_observations.html">core.observation</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">core.points</a></li>
 <li class="toctree-l2"><a class="reference internal" href="doc_core_reporting.html">core.reporting</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="doc_station.html">Station</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_transformation.html">Transformation</a></li>
 </ul>
 
             
@@ -174,6 +178,13 @@
   <div class="section" id="module-pyverm.core.points">
 <span id="core-points"></span><h1>core.points<a class="headerlink" href="#module-pyverm.core.points" title="Permalink to this headline">¶</a></h1>
 <p>Points Module</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<ul class="last simple">
+<li>write documentation</li>
+<li>finsih with code</li>
+</ul>
+</div>
 <dl class="class">
 <dt id="pyverm.core.points.Point">
 <em class="property">class </em><code class="descclassname">pyverm.core.points.</code><code class="descname">Point</code><span class="sig-paren">(</span><em>y</em>, <em>x</em>, <em>z=0</em>, <em>*</em>, <em>point_id=None</em>, <em>description=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/points.html#Point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.points.Point" title="Permalink to this definition">¶</a></dt>
@@ -187,22 +198,6 @@ coordinates of a point will always be possible to access like the coordinates in
 <span class="n">sum_yxc</span> <span class="o">=</span> <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
-<dl class="method">
-<dt id="pyverm.core.points.Point.__getitem__">
-<code class="descname">__getitem__</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/points.html#Point.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.points.Point.__getitem__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds the possibility to interact with the point class like a tuple (y,x,z)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key</strong> – </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="method">
 <dt id="pyverm.core.points.Point.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>y</em>, <em>x</em>, <em>z=0</em>, <em>*</em>, <em>point_id=None</em>, <em>description=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/points.html#Point.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.points.Point.__init__" title="Permalink to this definition">¶</a></dt>
@@ -226,12 +221,6 @@ coordinates of a point will always be possible to access like the coordinates in
 <dt id="pyverm.core.points.Point.__str__">
 <code class="descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/points.html#Point.__str__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.points.Point.__str__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return str(self).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyverm.core.points.Point.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#pyverm.core.points.Point.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 </dd></dl>
@@ -259,31 +248,9 @@ A point in the database is accessible with it’s key <code class="docutils lite
 </pre></div>
 </div>
 <dl class="method">
-<dt id="pyverm.core.points.Database.__getitem__">
-<code class="descname">__getitem__</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/points.html#Database.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.points.Database.__getitem__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the Point with the given ID</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key</strong> – point id</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Point Instance</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="pyverm.core.points.Database.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/points.html#Database.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.points.Database.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyverm.core.points.Database.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#pyverm.core.points.Database.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 <dl class="method">
@@ -327,7 +294,7 @@ A point in the database is accessible with it’s key <code class="docutils lite
         <a href="doc_core_reporting.html" class="btn btn-neutral float-right" title="core.reporting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="doc_core_observation.html" class="btn btn-neutral" title="core.observation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="doc_core_observations.html" class="btn btn-neutral" title="core.observation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyverm.core.points &mdash; PyVerm 0.0.0 documentation</title>
+  <title>pyverm.core.points &mdash; PyVerm 0.0.3 documentation</title>
   
 
   
@@ -84,6 +84,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Intro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../translations.html">Translations for Surveying-Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../toto.html">To-Do</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Get Started</span></p>
 <ul>
@@ -95,6 +96,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../doc_core.html">Core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../doc_station.html">Station</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc_transformation.html">Transformation</a></li>
 </ul>
 
             
@@ -182,6 +184,12 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Points Module</span>
 
+<span class="sd">..  todo::</span>
+
+<span class="sd">    * write documentation</span>
+<span class="sd">    * finsih with code</span>
+
+
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -196,6 +204,7 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">helpers</span>
 
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -234,9 +243,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">point_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">point_id</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span></div>
 
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;x&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;z&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;point_id&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">point_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Point.__getitem__"><a class="viewcode-back" href="../../../doc_core_points.html#pyverm.core.points.Point.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds the possibility to interact with the point class like a tuple (y,x,z)</span>
 
@@ -250,21 +270,15 @@
         <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span>
         <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;point_id&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_id</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_id</span>
 
 <div class="viewcode-block" id="Point.__str__"><a class="viewcode-back" href="../../../doc_core_points.html#pyverm.core.points.Point.__str__">[docs]</a>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;(</span><span class="si">{self.y}</span><span class="s2">, </span><span class="si">{self.x}</span><span class="s2">, </span><span class="si">{self.z}</span><span class="s2">, </span><span class="si">{self.point_id}</span><span class="s2">)&quot;</span></div></div>
 
 
+<span class="c1"># for campatability</span>
 <span class="k">def</span> <span class="nf">make_point</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">point</span><span class="p">)</span> <span class="ow">is</span> <span class="n">Point</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">point</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
+    <span class="k">return</span> <span class="n">helpers</span><span class="o">.</span><span class="n">make_point</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Database"><a class="viewcode-back" href="../../../doc_core_points.html#pyverm.core.points.Database">[docs]</a><span class="k">class</span> <span class="nc">Database</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -305,14 +319,14 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;to add a point, the point_id of the point must be set.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">point_dict</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">point_id</span><span class="p">)]</span> <span class="o">=</span> <span class="n">point</span></div>
 
-<div class="viewcode-block" id="Database.__getitem__"><a class="viewcode-back" href="../../../doc_core_points.html#pyverm.core.points.Database.__getitem__">[docs]</a>    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the Point with the given ID</span>
 
 <span class="sd">        :param key: point id</span>
 <span class="sd">        :return: Point Instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_dict</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_dict</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span>
 
 <div class="viewcode-block" id="Database.to_csv"><a class="viewcode-back" href="../../../doc_core_points.html#pyverm.core.points.Database.to_csv">[docs]</a>    <span class="k">def</span> <span class="nf">to_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -323,7 +337,8 @@
 <div class="viewcode-block" id="Database.from_csv"><a class="viewcode-back" href="../../../doc_core_points.html#pyverm.core.points.Database.from_csv">[docs]</a>    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        **To-Do**</span>
-<span class="sd">        &quot;&quot;&quot;</span></div></div>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
 </pre></div>
 
            </div>

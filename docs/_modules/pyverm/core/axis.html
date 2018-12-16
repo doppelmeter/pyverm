@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyverm.core.axis &mdash; PyVerm 0.0.0 documentation</title>
+  <title>pyverm.core.axis &mdash; PyVerm 0.0.3 documentation</title>
   
 
   
@@ -84,6 +84,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Intro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../translations.html">Translations for Surveying-Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../toto.html">To-Do</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Get Started</span></p>
 <ul>
@@ -95,6 +96,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../doc_core.html">Core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../doc_station.html">Station</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc_transformation.html">Transformation</a></li>
 </ul>
 
             
@@ -182,8 +184,15 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Axis Module</span>
 
+<span class="sd">..  todo::</span>
+
+<span class="sd">    * write unittest</span>
+<span class="sd">    * write documentation</span>
+<span class="sd">    * finsih with code</span>
+
 
 <span class="sd">&quot;&quot;&quot;</span>
+
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Axis&quot;</span><span class="p">]</span>
 
@@ -194,9 +203,10 @@
 
 <span class="kn">import</span> <span class="nn">decimal</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">math</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">settings</span>
-<span class="kn">from</span> <span class="nn">.points</span> <span class="k">import</span> <span class="n">Point</span>
+<span class="kn">from</span> <span class="nn">pyverm.core</span> <span class="k">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">pyverm.core</span> <span class="k">import</span> <span class="n">helpers</span>
 
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -225,7 +235,26 @@
 <span class="sd">        :param plumb_through_point: ``Point``-object or ``(y,x)``-tuple</span>
 <span class="sd">        :param plumb_trough_middle: boolean -&gt; builds perpendicular bisector</span>
 <span class="sd">        :param in_out: distance in meter do displace axis in line</span>
-<span class="sd">        &quot;&quot;&quot;</span></div></div>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># linear equation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_b</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># linear equation</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_point_1</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">make_point</span><span class="p">(</span><span class="n">point_1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_point_2</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">make_point</span><span class="p">(</span><span class="n">point_2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_azimuth</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">make_decimal</span><span class="p">(</span><span class="n">azimuth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_orientation</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">make_decimal</span><span class="p">(</span><span class="n">orientation</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_left_right</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">make_decimal</span><span class="p">(</span><span class="n">left_right</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_left_right_trough_point</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">make_point</span><span class="p">(</span><span class="n">left_right_through_point</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plumb</span> <span class="o">=</span> <span class="n">plumb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plumb_trough_point</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">make_point</span><span class="p">(</span><span class="n">plumb_through_point</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plumb_trough_middle</span> <span class="o">=</span> <span class="n">plumb_trough_middle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_in_out</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">make_decimal</span><span class="p">(</span><span class="n">in_out</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_point_2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_point_1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_point_2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_point_1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_a</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_point_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_point_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a= &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_a</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;  b= &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_b</span><span class="p">))</span></div></div>
+
 </pre></div>
 
            </div>

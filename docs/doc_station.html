@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Station &mdash; PyVerm 0.0.0 documentation</title>
+  <title>Station &mdash; PyVerm 0.0.3 documentation</title>
   
 
   
@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Transformation" href="doc_transformation.html" />
     <link rel="prev" title="core.reporting" href="doc_core_reporting.html" /> 
 
   
@@ -85,6 +86,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="translations.html">Translations for Surveying-Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toto.html">To-Do</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Get Started</span></p>
 <ul>
@@ -96,6 +98,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="doc_core.html">Core</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Station</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_transformation.html">Transformation</a></li>
 </ul>
 
             
@@ -167,12 +170,14 @@
 <dt id="pyverm.station.Station">
 <em class="property">class </em><code class="descclassname">pyverm.station.</code><code class="descname">Station</code><span class="sig-paren">(</span><em>*</em>, <em>station_point=None</em>, <em>orientation=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/station.html#Station"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.station.Station" title="Permalink to this definition">¶</a></dt>
 <dd><p>stellt eine station dar</p>
-<p>idee get in diese richtung:
-station_123 = Station()
-#station_123.standpoint = Point(600,200)
-#station_123.addtarget(point=(700,300),direction=123.453,distance=550)
-#station_123.addtarget(point=(800,201),direction=100.453,distance=783)
-#station_123.abriss()</p>
+<p>idee get in diese richtung:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">station_123</span> <span class="o">=</span> <span class="n">Station</span><span class="p">()</span>
+<span class="n">station_123</span><span class="o">.</span><span class="n">standpoint</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">station_123</span><span class="o">.</span><span class="n">addtarget</span><span class="p">(</span><span class="n">point</span><span class="o">=</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span><span class="mi">300</span><span class="p">),</span><span class="n">direction</span><span class="o">=</span><span class="mf">123.453</span><span class="p">,</span><span class="n">distance</span><span class="o">=</span><span class="mi">550</span><span class="p">)</span>
+<span class="n">station_123</span><span class="o">.</span><span class="n">addtarget</span><span class="p">(</span><span class="n">point</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">201</span><span class="p">),</span><span class="n">direction</span><span class="o">=</span><span class="mf">100.453</span><span class="p">,</span><span class="n">distance</span><span class="o">=</span><span class="mi">783</span><span class="p">)</span>
+<span class="n">station_123</span><span class="o">.</span><span class="n">abriss</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="method">
 <dt id="pyverm.station.Station.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>*</em>, <em>station_point=None</em>, <em>orientation=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/station.html#Station.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.station.Station.__init__" title="Permalink to this definition">¶</a></dt>
@@ -202,7 +207,7 @@ station_123 = Station()
 
 <dl class="method">
 <dt id="pyverm.station.Station.add_observation">
-<code class="descname">add_observation</code><span class="sig-paren">(</span><em>target_point</em>, <em>horizontal_angle</em>, <em>distance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/station.html#Station.add_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.station.Station.add_observation" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_observation</code><span class="sig-paren">(</span><em>target_point</em>, <em>horizontal_angle</em>, <em>distance</em>, <em>purpose=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/station.html#Station.add_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.station.Station.add_observation" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -247,6 +252,8 @@ station_123 = Station()
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="doc_transformation.html" class="btn btn-neutral float-right" title="Transformation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="doc_core_reporting.html" class="btn btn-neutral" title="core.reporting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; PyVerm 0.0.0 documentation</title>
+  <title>Index &mdash; PyVerm 0.0.3 documentation</title>
   
 
   
@@ -85,6 +85,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="translations.html">Translations for Surveying-Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toto.html">To-Do</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Get Started</span></p>
 <ul>
@@ -96,6 +97,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="doc_core.html">Core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="doc_station.html">Station</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_transformation.html">Transformation</a></li>
 </ul>
 
             
@@ -164,10 +166,14 @@
 <div class="genindex-jumpbox">
  <a href="#_"><strong>_</strong></a>
  | <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#M"><strong>M</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  
@@ -175,36 +181,56 @@
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="doc_core_points.html#pyverm.core.points.Database.__getitem__">__getitem__() (pyverm.core.points.Database method)</a>
-
-      <ul>
-        <li><a href="doc_core_points.html#pyverm.core.points.Point.__getitem__">(pyverm.core.points.Point method)</a>
-</li>
-      </ul></li>
       <li><a href="doc_core_axis.html#pyverm.core.axis.Axis.__init__">__init__() (pyverm.core.axis.Axis method)</a>
 
       <ul>
+        <li><a href="doc_core_circle.html#pyverm.core.circle.Circle.__init__">(pyverm.core.circle.Circle method)</a>
+</li>
         <li><a href="doc_core_points.html#pyverm.core.points.Database.__init__">(pyverm.core.points.Database method)</a>
 </li>
         <li><a href="doc_core_points.html#pyverm.core.points.Point.__init__">(pyverm.core.points.Point method)</a>
 </li>
         <li><a href="doc_station.html#pyverm.station.Station.__init__">(pyverm.station.Station method)</a>
 </li>
+        <li><a href="doc_transformation.html#pyverm.transformation._Transformation.__init__">(pyverm.transformation._Transformation method)</a>
+</li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="doc_core_points.html#pyverm.core.points.Point.__str__">__str__() (pyverm.core.points.Point method)</a>
 </li>
       <li><a href="doc_core_axis.html#pyverm.core.axis.Axis.__weakref__">__weakref__ (pyverm.core.axis.Axis attribute)</a>
 
       <ul>
-        <li><a href="doc_core_points.html#pyverm.core.points.Database.__weakref__">(pyverm.core.points.Database attribute)</a>
-</li>
-        <li><a href="doc_core_points.html#pyverm.core.points.Point.__weakref__">(pyverm.core.points.Point attribute)</a>
+        <li><a href="doc_core_circle.html#pyverm.core.circle.Circle.__weakref__">(pyverm.core.circle.Circle attribute)</a>
 </li>
         <li><a href="doc_station.html#pyverm.station.Station.__weakref__">(pyverm.station.Station attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="doc_core_reporting.html#pyverm.core.reporting._Report">_Report (class in pyverm.core.reporting)</a>
+</li>
+      <li><a href="doc_transformation.html#pyverm.transformation._Transformation">_Transformation (class in pyverm.transformation)</a>
+</li>
+      <li><a href="doc_transformation.html#pyverm.transformation._Transformation._x_to_destination">_x_to_destination() (pyverm.transformation._Transformation method)</a>
+
+      <ul>
+        <li><a href="doc_transformation.html#pyverm.transformation.Helmert._x_to_destination">(pyverm.transformation.Helmert method)</a>
+</li>
+      </ul></li>
+      <li><a href="doc_transformation.html#pyverm.transformation._Transformation._x_to_source">_x_to_source() (pyverm.transformation._Transformation method)</a>
+</li>
+      <li><a href="doc_transformation.html#pyverm.transformation._Transformation._y_to_destination">_y_to_destination() (pyverm.transformation._Transformation method)</a>
+
+      <ul>
+        <li><a href="doc_transformation.html#pyverm.transformation.Helmert._y_to_destination">(pyverm.transformation.Helmert method)</a>
+</li>
+      </ul></li>
+      <li><a href="doc_transformation.html#pyverm.transformation._Transformation._y_to_source">_y_to_source() (pyverm.transformation._Transformation method)</a>
+</li>
+      <li><a href="doc_transformation.html#pyverm.transformation._Transformation._z_to_destination">_z_to_destination() (pyverm.transformation._Transformation method)</a>
+</li>
+      <li><a href="doc_transformation.html#pyverm.transformation._Transformation._z_to_source">_z_to_source() (pyverm.transformation._Transformation method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -214,7 +240,11 @@
       <li><a href="doc_station.html#pyverm.station.Station.abriss">abriss() (pyverm.station.Station method)</a>
 </li>
       <li><a href="doc_core_points.html#pyverm.core.points.Database.add">add() (pyverm.core.points.Database method)</a>
+
+      <ul>
+        <li><a href="doc_core_reporting.html#pyverm.core.reporting._Report.add">(pyverm.core.reporting._Report method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="doc_station.html#pyverm.station.Station.add_observation">add_observation() (pyverm.station.Station method)</a>
@@ -226,6 +256,24 @@
   </ul></td>
 </tr></table>
 
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="doc_transformation.html#pyverm.transformation._Transformation.calculate">calculate() (pyverm.transformation._Transformation method)</a>
+
+      <ul>
+        <li><a href="doc_transformation.html#pyverm.transformation.Helmert.calculate">(pyverm.transformation.Helmert method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="doc_core_circle.html#pyverm.core.circle.Circle">Circle (class in pyverm.core.circle)</a>
+</li>
+      <li><a href="doc_core_reporting.html#pyverm.core.reporting._Report.clear">clear() (pyverm.core.reporting._Report method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -233,6 +281,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="doc_core_settings.html#pyverm.core.settings.decimal_precision">decimal_precision (in module pyverm.core.settings)</a>
+</li>
       <li><a href="doc_core_basics.html#pyverm.core.basics.distance">distance() (in module pyverm.core.basics)</a>
 </li>
   </ul></td>
@@ -243,8 +293,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="doc_station.html#pyverm.station.Station.freestation">freestation() (pyverm.station.Station method)</a>
 </li>
+      <li><a href="doc_core_circle.html#pyverm.core.circle.Circle.from_2_points_radius">from_2_points_radius() (pyverm.core.circle.Circle method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="doc_core_circle.html#pyverm.core.circle.Circle.from_3_points">from_3_points() (pyverm.core.circle.Circle method)</a>
+</li>
       <li><a href="doc_core_points.html#pyverm.core.points.Database.from_csv">from_csv() (pyverm.core.points.Database method)</a>
 </li>
   </ul></td>
@@ -254,6 +308,26 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="doc_core_reporting.html#pyverm.core.reporting.getReport">getReport() (in module pyverm.core.reporting)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="doc_transformation.html#pyverm.transformation.Helmert">Helmert (class in pyverm.transformation)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="doc_core_helpers.html#pyverm.core.helpers.make_decimal">make_decimal() (in module pyverm.core.helpers)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="doc_core_helpers.html#pyverm.core.helpers.make_point">make_point() (in module pyverm.core.helpers)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -269,15 +343,29 @@
 </li>
       <li><a href="doc_core_circle.html#module-pyverm.core.circle">pyverm.core.circle (module)</a>
 </li>
+      <li><a href="doc_core_helpers.html#module-pyverm.core.helpers">pyverm.core.helpers (module)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="doc_core_observation.html#module-pyverm.core.observation">pyverm.core.observation (module)</a>
+      <li><a href="doc_core_observations.html#module-pyverm.core.observations">pyverm.core.observations (module)</a>
 </li>
       <li><a href="doc_core_points.html#module-pyverm.core.points">pyverm.core.points (module)</a>
 </li>
       <li><a href="doc_core_reporting.html#module-pyverm.core.reporting">pyverm.core.reporting (module)</a>
 </li>
+      <li><a href="doc_core_settings.html#module-pyverm.core.settings">pyverm.core.settings (module)</a>
+</li>
       <li><a href="doc_station.html#module-pyverm.station">pyverm.station (module)</a>
+</li>
+      <li><a href="doc_transformation.html#module-pyverm.transformation">pyverm.transformation (module)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="doc_core_settings.html#pyverm.core.settings.report_always_on">report_always_on (in module pyverm.core.settings)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -294,6 +382,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="doc_core_points.html#pyverm.core.points.Database.to_csv">to_csv() (pyverm.core.points.Database method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="doc_core_reporting.html#pyverm.core.reporting._Report.to_txt">to_txt() (pyverm.core.reporting._Report method)</a>
 </li>
   </ul></td>
 </tr></table>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>core.reporting &mdash; PyVerm 0.0.0 documentation</title>
+  <title>core.reporting &mdash; PyVerm 0.0.3 documentation</title>
   
 
   
@@ -86,6 +86,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="translations.html">Translations for Surveying-Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toto.html">To-Do</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Get Started</span></p>
 <ul>
@@ -98,13 +99,16 @@
 <li class="toctree-l1 current"><a class="reference internal" href="doc_core.html">Core</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="doc_core_axis.html">core.axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="doc_core_basics.html">core.basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_core_helpers.html">core.helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_core_settings.html">core.settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="doc_core_circle.html">core.circle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_core_observation.html">core.observation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_core_observations.html">core.observation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="doc_core_points.html">core.points</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">core.reporting</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="doc_station.html">Station</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_transformation.html">Transformation</a></li>
 </ul>
 
             
@@ -187,6 +191,45 @@
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyverm.core.reporting._Report">
+<em class="property">class </em><code class="descclassname">pyverm.core.reporting.</code><code class="descname">_Report</code><a class="reference internal" href="_modules/pyverm/core/reporting.html#_Report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.reporting._Report" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="pyverm.core.reporting._Report.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/reporting.html#_Report.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.reporting._Report.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the given message to the report</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> – </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyverm.core.reporting._Report.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/reporting.html#_Report.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.reporting._Report.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Emptyes the report, this function can’t be redone</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyverm.core.reporting._Report.to_txt">
+<code class="descname">to_txt</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyverm/core/reporting.html#_Report.to_txt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyverm.core.reporting._Report.to_txt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves current report to the given filename as txt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> – string (path with filename)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>

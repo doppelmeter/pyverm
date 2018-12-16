@@ -11,6 +11,7 @@ Welcome to PyVerm's documentation!
    
    intro
    translations
+   toto
    
 .. toctree::
    :maxdepth: 2
@@ -27,6 +28,7 @@ Welcome to PyVerm's documentation!
    
    doc_core
    doc_station
+   doc_transformation
    
 	
 
