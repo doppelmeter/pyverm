@@ -45,7 +45,7 @@ decimal.getcontext().prec = settings.decimal_precision  # decimal.set_precision
 
 
 def make_decimal(value):
-    if isinstance(value, [None]):
+    if value is None:
         return None
     else:
         return decimal.Decimal(value)
