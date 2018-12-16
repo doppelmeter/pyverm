@@ -45,6 +45,12 @@ decimal.getcontext().prec = settings.decimal_precision  # decimal.set_precision
 
 
 def make_decimal(value):
+    """
+    Fuction to make shure a value to a decimal value.
+
+    :param value: numeric value or ``None``
+    :return: value as ``Decimal`` or ``None``
+    """
     if value is None:
         return None
     else:
@@ -55,6 +61,12 @@ def make_decimal(value):
 
 
 def make_point(point):
+    """
+    Function to make shure it is a point object
+
+    :param point: `Point``-object or ``(y,x,(z))``-tuple ore ``None``
+    :return: ``Point``-object or ``None``
+    """
     if type(point) is points.Point:
         return point
     elif point is None:

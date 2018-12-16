@@ -25,7 +25,7 @@ module transformations
 
 """
 
-__all__ = []
+__all__ = ["Helmert"]
 
 __author__ = "Marius Hürzler"
 __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
@@ -34,7 +34,7 @@ __license__ = "GNU GPLv3"
 
 import math
 
-from core import points
+from pyverm.core import points
 
 
 class _Transformation():
@@ -255,22 +255,6 @@ class Helmert(_Transformation):
 
 
 
-if __name__ == "__main__":
-    trans = Helmert(((1,0), (0,0), (10,15)),((1,0), (0,0), (10,15)))
-    for point in trans._start_points:
-        print(point)
-    for point in trans._destination_points:
-        print(point)
 
-    trans = Helmert(((1, 0), (0, 0)), ((1, 20), (10, 15)), ((21, 20), (10, 30)))
-    trans.calculate()
-    print(trans)
-    point = points.Point(100, 200)
-    p = trans.to_destination(point, output="point")
-    print(p)
-    for point in trans._start_points:
-        print(point)
-    for point in trans._destination_points:
-        print(point)
 
 
