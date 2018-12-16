@@ -37,12 +37,19 @@ import logging
 
 if __name__ == "__main__":
     from pyverm.core import settings
+    from pyverm.core import helpers
 else:
     from . import settings
+    from . import helpers
 
 
 logger = logging.getLogger(__name__)
 decimal.getcontext().prec = settings.decimal_precision  # decimal.set_precision
+
+#Observation Purposes
+BACKSIGHT = 10
+FORESIGHT = 20
+NEWPOINT = 30
 
 class _Observation:
     pass
@@ -55,22 +62,29 @@ class Polar(_Observation):
 
     """
 
-    def __init__(self, *, **kwargs):
+    def __init__(self, **kwargs):
         """
         """
-        self._reduced_horizontal_angle = kwargs.get("reduced_hz", None)
+        self._reduced_horizontal_angle = helpers.make_decimal(kwargs.get("reduced_hz", None))
+        self._reduced_zenith_angle = helpers.make_decimal(kwargs.get("reduced_vz", None))
+        self._reduced_horizontal_distance = helpers.make_decimal(kwargs.get("reduced_distance", None))
+
+        self._raw_horizontal_angle_1 = helpers.make_decimal(kwargs.get("raw_hz_1", None))
+        self._raw_horizontal_angle_2 = helpers.make_decimal(kwargs.get("raw_hz_2", None))
+        self._raw_zenith_angle_1 = helpers.make_decimal(kwargs.get("raw_vz_1", None))
+        self._raw_zenith_angle_2 = helpers.make_decimal(kwargs.get("raw_vz_2", None))
 
     @property
     def reduced_horizontal_angle(self):
-        return "Test"
+        return self._reduced_horizontal_angle
 
     @property
     def reduced_zenith_angle(self):
-        pass
+        return self._reduced_zenith_angle
 
     @property
     def reduced_horizonal_distance(self):
-        pass
+        return self._reduced_horizontal_distance
 
     @property
     def observation_purpose(self):
