@@ -48,12 +48,17 @@ def make_decimal(value):
     if value is None:
         return None
     else:
-        return decimal.Decimal(value)
+        try:
+            return decimal.Decimal(value)
+        except:
+            raise ValueError
 
 
 def make_point(point):
     if type(point) is points.Point:
         return point
+    elif point is None:
+        return None
     else:
         try:
             return points.Point(point[0],point[1],point[2])

@@ -32,7 +32,7 @@ __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
 __license__ = "GNU GPLv3"
 
 
-from pyverm.core.observation import Polar
+from pyverm.core import observations
 from pyverm.core.basics import azimuth
 
 class Station:
@@ -49,8 +49,9 @@ class Station:
     def __init__(self,*, station_point=None,  orientation=None):
         self.station_point = station_point
         self.orientation = orientation
+        self._observations = []
 
-    def add_observation(self, target_point, horizontal_angle, distance):
+    def add_observation(self, target_point, horizontal_angle, distance, purpose=observations.BACKSIGHT):
         """
 
         :param point:
@@ -58,7 +59,7 @@ class Station:
         :param distance:
         :return:
         """
-        self.targetlist.append(Polar(target_point, horizontal_angle, 0, distance))
+        self._observations.append(observations.Polar(target_point=target_point, reduced_hz=horizontal_angle, reduced_distance=distance, purpose=purpose))
 
     def abriss(self, targetlist=None):
         """
@@ -67,9 +68,18 @@ class Station:
         :return:
         """
         temp = 0
-        for target in self.targetlist:
-            temp += azimuth(self.standpoint, target.target_point) - target.horizontal_angle
-        self.orientation = temp / (len(self.targetlist) + 1)
+        count = 0
+        for observation in self._observations:
+            if observation.purpose == 10:
+                temp = temp+ azimuth(self.station_point, observation.target_point) - observation.reduced_horizontal_angle
+                count += 1
+        orientation = temp/count
+        if orientation < 0:
+            orientation += 400
+        elif orientation > 400:
+            orientation -= 400
+        self.orientation = orientation
+        print(self.orientation)
 
 
     def freestation(self, targetlist=None):

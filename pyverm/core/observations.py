@@ -65,6 +65,10 @@ class Polar(_Observation):
     def __init__(self, **kwargs):
         """
         """
+        self._purpose = kwargs.get("purpose", None)
+        self._target_point = helpers.make_point(kwargs.get("target_point", None))
+        self._station_point = helpers.make_point(kwargs.get("station_point", None))
+
         self._reduced_horizontal_angle = helpers.make_decimal(kwargs.get("reduced_hz", None))
         self._reduced_zenith_angle = helpers.make_decimal(kwargs.get("reduced_vz", None))
         self._reduced_horizontal_distance = helpers.make_decimal(kwargs.get("reduced_distance", None))
@@ -73,6 +77,10 @@ class Polar(_Observation):
         self._raw_horizontal_angle_2 = helpers.make_decimal(kwargs.get("raw_hz_2", None))
         self._raw_zenith_angle_1 = helpers.make_decimal(kwargs.get("raw_vz_1", None))
         self._raw_zenith_angle_2 = helpers.make_decimal(kwargs.get("raw_vz_2", None))
+
+    @property
+    def target_point(self):
+        return self._target_point
 
     @property
     def reduced_horizontal_angle(self):
@@ -87,8 +95,8 @@ class Polar(_Observation):
         return self._reduced_horizontal_distance
 
     @property
-    def observation_purpose(self):
-        pass
+    def purpose(self):
+        return self._purpose
 
 if __name__ == "__main__":
     ob = Polar()

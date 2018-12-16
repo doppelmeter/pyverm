@@ -94,5 +94,5 @@ def azimuth(point_1, point_2,*,report_on=False):
         message += reporting_templates.point(point_1)+"   "
         message += reporting_templates.point(point_2)+"\n"
         report.add(message)
-    return azimut
+    return helpers.make_decimal(azimut)
 
