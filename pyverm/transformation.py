@@ -38,25 +38,94 @@ from core import points
 
 
 class _Transformation():
-    def calculate(self):
+    """
+    metaclass for all transformations
+
+    defines the general class variables, the following variables can be used from transformations
+
+        _start_points
+        _destination_points
+        _is_calculated
+        _transformation_typ
+
+
+    the transformation should set the folowwing variables
+
+        _is_calculated -> True, when calculate is run
+        _transformation_typ -> "Name of the transformation"
+
+
+    all transformation parameters should be stored in the following schema
+
+        _parameter_??? -> for example _parameter_a
+
+
+    defines the general functions of a transformation, the following function must be implemented in the child classes
+
+        calculate(self, report_on=False)  -> calculates the transformation parameter
+
+        _y_to_destination(self, source_point) -> returns destination_y
+        _x_to_destination(self, source_point) -> returns destination_x
+        _z_to_destination(self, source_point) -> returns destination_z
+
+        _y_to_source(self, destination_point) -> returns source_y
+        _x_to_source(self, destination_point) -> returns source_x
+        _z_to_source(self, destination_point) -> returns source_z
+    """
+    def calculate(self, *,report_on=False):
+        """
+        must be implementet in the transformation
+        """
         pass
 
-    def to_source(self, point):
+    def _y_to_destination(self, source_point):
+        """
+        must be implementet in the transformation
+        """
         pass
 
-    def to_destination(self, point):
+    def _x_to_destination(self, source_point):
+        """
+        must be implementet in the transformation
+        """
+        pass
 
+    def _z_to_destination(self, source_point):
+        """
+        must be implementet in the transformation
+        """
+        return 0
 
+    def _y_to_source(self, destination_point):
+        """
+        must be implementet in the transformation
+        """
+        pass
 
-class Helmert(_Transformation):
-    def __init__(self, *args, **kwargs):
+    def _x_to_source(self, destination_point):
+        """
+        must be implementet in the transformation
+        """
+        pass
+
+    def _z_to_source(self, destination_point):
+        """
+        must be implementet in the transformation
+        """
+        return 0
+
+    def __init__(self, *args, point_pairs=None):
         self._start_points = []
         self._destination_points = []
 
+        self._add_transformation_points(*args, point_pairs=point_pairs)
+
+    def _add_transformation_points(self, *args, point_pairs=None):
         # processing of the input arguments
         if len(args) == 2:  # then it will probably be two lists, one with the start and one with the destination points
-            if isinstance(args[0], (list, tuple)) and isinstance(args[1], (list, tuple)) and len(args[0]) == len(args[1]):
-                for arg in args[0]: # start points
+            if isinstance(args[0], (list, tuple)) and isinstance(args[1], (list, tuple)) and len(args[0]) == len(
+                    args[1]):
+                for arg in args[0]:  # start points
                     try:
                         self._start_points.append(points.make_point(arg))
                     except:
@@ -68,9 +137,9 @@ class Helmert(_Transformation):
                         raise ValueError
             else:
                 raise ValueError
-        elif len(args) > 2: # input will be a tuple per transformation point, with start and destination points
+        elif len(args) > 2:  # input will be a tuple per transformation point, with start and destination points
             for arg in args:
-                if isinstance(arg, (list, tuple)) and len(arg)==2:
+                if isinstance(arg, (list, tuple)) and len(arg) == 2:
                     try:
                         self._start_points.append(points.make_point(arg[0]))
                         self._destination_points.append(points.make_point(arg[1]))
@@ -81,6 +150,37 @@ class Helmert(_Transformation):
         else:
             raise NotImplementedError
 
+
+    def to_destination(self, point, output="point"):
+        point = points.make_point(point)
+        new_y = self._y_to_destination(point)
+        new_x = self._x_to_destination(point)
+        new_z = self._z_to_destination(point)
+        if output == "point":
+            return points.Point(new_y, new_x, new_z, point_id=point["point_id"])
+        elif output == "tuple":
+            return (new_y, new_x, new_z)
+        elif output == "update":
+            point.update(y=new_y, x=new_x)
+
+    def to_source(self, point, output="point"):
+        point = points.make_point(point)
+        new_y = self._y_to_source(point)
+        new_x = self._x_to_source(point)
+        new_z = self._z_to_source(point)
+        if output == "point":
+            return points.Point(new_y, new_x, new_z, point_id=point["point_id"])
+        elif output == "tuple":
+            return (new_y, new_x, new_z)
+        elif output == "update":
+            point.update(y=new_y, x=new_x)
+
+
+
+class Helmert(_Transformation):
+    """
+    Helmert 2D transformation
+    """
     def calculate(self):
         temp_y = 0
         temp_x = 0
@@ -127,6 +227,17 @@ class Helmert(_Transformation):
         self._m = m
         self._epsilon = epsilon
 
+    def _y_to_destination(self, source_point):
+        new_y = self._Y0 + self._a * source_point[0] + self._o * source_point[1]
+        return new_y
+
+    def _x_to_destination(self, source_point):
+        new_x = self._X0 + self._a * source_point[1] - self._o * source_point[0]
+        return new_x
+
+
+
+
     def __str__(self):
         str_ = ""
         str_ += "o = "+ str(self._o)+"\n"
@@ -154,6 +265,9 @@ if __name__ == "__main__":
     trans = Helmert(((1, 0), (0, 0)), ((1, 20), (10, 15)), ((21, 20), (10, 30)))
     trans.calculate()
     print(trans)
+    point = points.Point(100, 200)
+    p = trans.to_destination(point, output="point")
+    print(p)
     for point in trans._start_points:
         print(point)
     for point in trans._destination_points:

@@ -74,6 +74,17 @@ class Point:
         self.point_id = str(point_id)
         self.description = description
 
+    def update(self, **kwargs):
+        for key, value in kwargs.items():
+            if key == "y":
+                self.y = decimal.Decimal(value)
+            elif key == "x":
+                self.x = decimal.Decimal(value)
+            elif key == "z":
+                self.z = decimal.Decimal(value)
+            elif key == "point_id":
+                self.point_id = str(value)
+
 
 
     def __getitem__(self, key):
