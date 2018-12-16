@@ -39,11 +39,15 @@ class Station:
     """stellt eine station dar
 
     idee get in diese richtung:
-    station_123 = Station()
-    #station_123.standpoint = Point(600,200)
-    #station_123.addtarget(point=(700,300),direction=123.453,distance=550)
-    #station_123.addtarget(point=(800,201),direction=100.453,distance=783)
-    #station_123.abriss()
+
+    ..  code-block:: python
+
+        station_123 = Station()
+        station_123.standpoint = Point(600,200)
+        station_123.addtarget(point=(700,300),direction=123.453,distance=550)
+        station_123.addtarget(point=(800,201),direction=100.453,distance=783)
+        station_123.abriss()
+
     """
 
     def __init__(self,*, station_point=None,  orientation=None):

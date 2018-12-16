@@ -22,11 +22,14 @@
 """
 helpers Module
 
+..  todo::
+
+    * write function make boolean
 
 """
 from pyverm.core.points import Point
 
-__all__ = []
+__all__ = ["make_point", "make_decimal"]
 
 __author__ = "Marius Hürzler"
 __copyright__ = "Copyright (C) 2018, Marius Hürzeler"

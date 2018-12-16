@@ -22,10 +22,14 @@
 """
 Circle Module
 
+..  todo::
+
+    * code functionality
+    * write unittest
 
 """
 
-__all__ = []
+__all__ = ["Circle"]
 
 __author__ = "Marius Hürzler"
 __copyright__ = "Copyright (C) 2018, Marius Hürzeler"

@@ -22,9 +22,15 @@
 """
 Axis Module
 
+..  todo::
+
+    * write unittest
+    * write documentation
+    * finsih with code
+
 
 """
-import pyverm.core.helpers
+
 
 __all__ = ["Axis"]
 
@@ -37,8 +43,8 @@ import decimal
 import logging
 import math
 
-from . import settings
-from . import points
+from pyverm.core import settings
+from pyverm.core import helpers
 
 
 logger = logging.getLogger(__name__)
@@ -71,16 +77,16 @@ class Axis:
         self._a = 0  # linear equation
         self._b = 0  # linear equation
 
-        self._point_1 = pyverm.core.helpers.make_point(point_1)
-        self._point_2 = pyverm.core.helpers.make_point(point_2)
-        self._azimuth = (azimuth)
-        self._orientation = (orientation)
-        self._left_right = (left_right)
-        self._left_right_trough_point = pyverm.core.helpers.make_point(left_right_through_point)
+        self._point_1 = helpers.make_point(point_1)
+        self._point_2 = helpers.make_point(point_2)
+        self._azimuth = helpers.make_decimal(azimuth)
+        self._orientation = helpers.make_decimal(orientation)
+        self._left_right = helpers.make_decimal(left_right)
+        self._left_right_trough_point = helpers.make_point(left_right_through_point)
         self._plumb = plumb
-        self._plumb_trough_point = pyverm.core.helpers.make_point(plumb_through_point)
+        self._plumb_trough_point = helpers.make_point(plumb_through_point)
         self._plumb_trough_middle = plumb_trough_middle
-        self._in_out = (in_out)
+        self._in_out = helpers.make_decimal(in_out)
 
         self._a = (self._point_2[1]-self._point_1[1])/(self._point_2[0]-self._point_1[0])
         self._b = self._a*self._point_1[0]-self._point_1[1]
