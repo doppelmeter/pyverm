@@ -34,6 +34,7 @@ __license__ = "GNU GPLv3"
 import logging
 
 from . import settings
+from . import reporting_templates
 
 
 logger = logging.getLogger(__name__)
@@ -41,7 +42,7 @@ logger = logging.getLogger(__name__)
 
 class _Report:
     def __init__(self):
-        self._report = ""
+        self._report = reporting_templates.report_title()
 
     def add(self, message):
         """
@@ -57,7 +58,7 @@ class _Report:
 
 
         """
-        self._report = ""
+        self._report = reporting_templates.report_title()
 
     def to_txt(self, filename):
         """
@@ -65,7 +66,7 @@ class _Report:
 
         :param filename: string (path with filename)
         """
-        file = open(file, "w", encoding="UTF-8")
+        file = open(filename, "w", encoding="UTF-8")
         file.write(self._report)
         file.close()
 
