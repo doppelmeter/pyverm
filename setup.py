@@ -24,7 +24,7 @@ import setuptools
 
 setup(
     name='pyverm',
-    version='0.0.2',
+    version='0.0.3',
     author='Marius Huerzeler',
     author_email='huerzeler.marius@gmail.com',
     packages=setuptools.find_packages(exclude=['tests*']),
