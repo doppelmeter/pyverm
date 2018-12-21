@@ -26,9 +26,7 @@ Welcome to PyVerm's documentation!
    :caption: Documentation
    
    
-   doc_core
-   doc_station
-   doc_transformation
+   doc_api
    
 	
 

@@ -20,70 +20,61 @@
 ########################################################################
 
 """
-Circle Module
-
-..  todo::
-
-    * code functionality
-    * write unittest
+_classes module defines all the classes
 
 """
 
-__all__ = ["Circle"]
+
 
 __author__ = "Marius Hürzler"
 __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
 __license__ = "GNU GPLv3"
 
-
 import decimal
-import logging
-
-from .points import Point
-from . import settings
 
 
-logger = logging.getLogger(__name__)
-decimal.getcontext().prec = settings.decimal_precision  # decimal.set_precision
 
-class Circle:
-    """
-    Represents a Circle
-    """
-    def __init__(self,*, center_point=None, radius=None):
+class Point:
+    def __init__(self, y, x, z=None):
+        self._y = y
+        self._x = x
+        self._z = z
+
+    def __getitem__(self, key):
         """
-        initialise a circle object.
+        Adds the possibility to interact with the point class like a tuple (y,x,z)
 
-        :param center_point: ``Point``-object or ``(y,x)``-tuple
-        :param radius: distance in meter
+        :param key:
+        :return:
         """
-        if radius is not None:
-            self.radius = decimal.Decimal(radius)
+        if key == 0:
+            return self._y
+        if key == 1:
+            return self._x
+        if key == 2:
+            return self._z
 
-        if center_point is Point:
-            self.center_point = center_point
-        elif center_point is not None:
-            self.center_point = Point(center_point[0],center_point[1])
+class Station:
+    def __init__(self, standpoint, orientation):
+        self.standpoint = standpoint
+        self.orientation = orientation
 
-    def from_3_points(self, point_1, point_2, point_3):
-        """
-        Calculates Radius and center_point out of 3 points, and sets the circle to the calculated values.
-
-        **To-To**
-
-        :param point_1: ``Point``-object or ``(y,x)``-tuple
-        :param point_2: ``Point``-object or ``(y,x)``-tuple
-        :param point_3: ``Point``-object or ``(y,x)``-tuple
-        """
+    def survey(self, observation_polar):
         pass
 
-    def from_2_points_radius(self, point_1, point_2, radius):
-        """
-        Calculates Radius and center_point out of 2 points and the radius, and sets the circle to the calculated values.
+    def stakeout(self, point):
+        pass
 
-        **To-To**
 
-        :param point_1: ``Point``-object or ``(y,x)``-tuple
-        :param point_2: ``Point``-object or ``(y,x)``-tuple
-        :param radius: radius in meter
-        """
+class ObservationPolar:
+    def __init__(self, targetpoint, reduced_horizontal_angle, reduced_zenith_angle, reduced_distance):
+        self.targetpoint = targetpoint
+        self.reduced_horizontal_angle = reduced_horizontal_angle
+        self.reduced_zenith_angle = reduced_zenith_angle
+        self.reduced_distance = reduced_distance
+
+
+
+
+
+

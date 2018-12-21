@@ -20,26 +20,15 @@
 ########################################################################
 
 """
-module settings
+Basics Module
 
 
 """
 
-__all__ = ["decimal_precision", "report_always_on"]
+
+__all__ = ["distance", "azimuth"]
 
 __author__ = "Marius Hürzler"
 __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
 __license__ = "GNU GPLv3"
-
-
-import logging
-
-
-logger = logging.getLogger(__name__)
-
-# Settings
-decimal_precision = 20  #: defines with how many decimal places pyverm calculates
-report_always_on = False #: defines if report should always be true
-
-
 

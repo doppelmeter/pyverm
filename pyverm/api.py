@@ -20,65 +20,52 @@
 ########################################################################
 
 """
-helpers Module
-
-..  todo::
-
-    * write function make boolean
+API defines the interface you can use to interact with the PyVerm library.
 
 """
-from pyverm.core.points import Point
 
-__all__ = ["make_point", "make_decimal"]
+from . import _functions
+from . import _classes
+
 
 __author__ = "Marius Hürzler"
 __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
 __license__ = "GNU GPLv3"
 
 
-import decimal
-import logging
+def azimuth(point_a, point_b):
+    """ Return the azimuth form point A to point B.
 
-from . import points
-from . import settings
-
-
-logger = logging.getLogger(__name__)
-decimal.getcontext().prec = settings.decimal_precision  # decimal.set_precision
-
-
-def make_decimal(value):
+    :param point_a: ``Point``-object or ``(y,x)``-tuple
+    :param point_b: ``Point``-object or ``(y,x)``-tuple
+    :return: azimuth in gon as decimal
     """
-    Fuction to make shure a value to a decimal value.
+    return _functions.azimuth(point_a, point_b)
 
-    :param value: numeric value or ``None``
-    :return: value as ``Decimal`` or ``None``
+def distance(point_a, point_b):
+    """Return the 2D distance from point A to Point B.
+
+    :param point_a: ``Point``-object or ``(y,x)``-tuple
+    :param point_b: ``Point``-object or ``(y,x)``-tuple
+    :return: distance in meters as decimal
     """
-    if value is None:
-        return None
-    else:
-        try:
-            return decimal.Decimal(value)
-        except:
-            raise ValueError
+    return _functions.distance(point_a, point_b)
 
 
-def make_point(point):
+
+def station(standpoint, orientation):
+    """Return a station object.
+
+    :param standpoint:
+    :param orientation:
+    :return:
     """
-    Function to make shure it is a point object
+    return _classes.Station(standpoint, orientation)
 
-    :param point: `Point``-object or ``(y,x,(z))``-tuple ore ``None``
-    :return: ``Point``-object or ``None``
-    """
-    if type(point) is points.Point:
-        return point
-    elif point is None:
-        return None
-    else:
-        try:
-            return points.Point(point[0],point[1],point[2])
-        except:
-            if point is not None:
-                return points.Point(point[0], point[1])
-            else:
-                return None
+def station_abriss(standpoint, observations):
+    pass
+
+def station_helmert(observations):
+    pass
+
+
