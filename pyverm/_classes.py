@@ -37,6 +37,12 @@ from . import _functions
 
 class Point:
     def __init__(self, y, x, z=None):
+        """Point class
+
+        :param y: y-coordinate
+        :param x: x-coordinate
+        :param z: z-coordinate (optional)
+        """
         self._y = y
         self._x = x
         self._z = z
@@ -95,6 +101,13 @@ class Station:
 
 class ObservationPolar:
     def __init__(self, **kwargs):
+        """Polar-Observation class
+
+        :param kwargs: reduced_targetpoint
+        :param kwargs: reduced_horizontal_angle
+        :param kwargs: reduced_zenith_angle
+        :param kwargs: reduced_distance
+        """
         self.reduced_targetpoint = kwargs.setdefault("reduced_targetpoint", None)
         self.reduced_horizontal_angle = kwargs.setdefault("reduced_horizontal_angle", None)
         self.reduced_zenith_angle = kwargs.setdefault("reduced_zenith_angle", None)
