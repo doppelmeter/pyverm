@@ -20,22 +20,15 @@
 ########################################################################
 
 """
-PyVerm
+settings stores the package wide settings and constants
 
 
 """
 
-__all__ = ["azimuth", "distance", "station", "station_abriss", "station_helmert"]
+
 
 __author__ = "Marius Hürzler"
 __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
 __license__ = "GNU GPLv3"
 
-
-import warnings
-
-warnings.warn("This package is in early developement and therfore is not stable at all.")
-
-
-from .api import azimuth, distance, station, station_abriss, station_helmert
-from ._classes import ObservationPolar
+DECIMAL_PRECISION = 15

@@ -56,16 +56,31 @@ def distance(point_a, point_b):
 def station(standpoint, orientation):
     """Return a station object.
 
-    :param standpoint:
-    :param orientation:
-    :return:
+    :param standpoint: ``Point``-object or ``(y,x)``-tuple
+    :param orientation: orientation in gon
+    :return: station-object
     """
     return _classes.Station(standpoint, orientation)
 
 def station_abriss(standpoint, observations):
-    pass
+    """Calculate the orientation and return the station object.
+
+    :param standpoint: ``Point``-object or ``(y,x)``-tuple
+    :param observations: list or tuple of observation-objects
+    :return: station-object
+    """
+    orientation = _functions.abriss(standpoint, observations)
+    return _classes.Station(standpoint, orientation)
 
 def station_helmert(observations):
-    pass
+    """Calculate the standpoint and orientation and return the station object.
+
+    :param observations: list or tuple of observation-objects
+    :return: station-object
+    """
+    standpoint, orientation = _functions.free_station(observations)
+    return _classes.Station(standpoint, orientation)
+
+
 
 

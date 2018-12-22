@@ -32,6 +32,7 @@ __license__ = "GNU GPLv3"
 
 import decimal
 
+from . import _functions
 
 
 class Point:
@@ -54,25 +55,75 @@ class Point:
         if key == 2:
             return self._z
 
+    def __repr__(self):
+        if self._z == None:
+            return f"<Point ({self._y:.5f}, {self._x:.5f}, {self._z})>"
+        else:
+            return f"<Point ({self._y:.5f}, {self._x:.5f}, {self._z:.5f})>"
+
 class Station:
     def __init__(self, standpoint, orientation):
         self.standpoint = standpoint
         self.orientation = orientation
 
-    def survey(self, observation_polar):
-        pass
+    def survey(self, observation):
+        """Returns the Point which was surveyed.
+
+        :param observation:
+        :return:
+        """
+        y, x = _functions.cartesian(observation.reduced_distance, observation.reduced_horizontal_angle+self.orientation)
+        y += decimal.Decimal(self.standpoint[0])
+        x += decimal.Decimal(self.standpoint[1])
+        return Point(y,x)
 
     def stakeout(self, point):
-        pass
+        """ToDo
+
+        :param point:
+        :return:
+        """
+        dist, azi = _functions.polar(point, origin=self.standpoint)
+        hz = azi-self.orientation
+        observation = ObservationPolar(reduced_distance=dist, reduced_horizontal_angle=hz)
+        return observation
+
+
+    def __repr__(self):
+        return f"<Station at ({self.standpoint[0]:.5f}, {self.standpoint[1]:.5f}, {self.standpoint[2]:.5f}) with orientation {self.orientation:.5f}>"
 
 
 class ObservationPolar:
-    def __init__(self, targetpoint, reduced_horizontal_angle, reduced_zenith_angle, reduced_distance):
-        self.targetpoint = targetpoint
-        self.reduced_horizontal_angle = reduced_horizontal_angle
-        self.reduced_zenith_angle = reduced_zenith_angle
-        self.reduced_distance = reduced_distance
+    def __init__(self, **kwargs):
+        self.reduced_targetpoint = kwargs.setdefault("reduced_targetpoint", None)
+        self.reduced_horizontal_angle = kwargs.setdefault("reduced_horizontal_angle", None)
+        self.reduced_zenith_angle = kwargs.setdefault("reduced_zenith_angle", None)
+        self.reduced_distance = kwargs.setdefault("reduced_distance", None)
 
+    def __repr__(self):
+        return f"<Polar Observation with Hz {self.reduced_horizontal_angle:.5f} and Dist {self.reduced_distance:.5f}>"
+
+class Orthogonal:
+    def __init__(self, point_a, point_b, *, mesured_distande=None):
+        pass
+
+
+
+class Transformation:
+    def __init__(self):
+        pass
+
+    def info(self):
+        """Return the transformation parameters as dict?
+
+        :return:
+        """
+
+    def to_destination(self):
+        pass
+
+    def to_source(self):
+        pass
 
 
 
