@@ -1,13 +1,6 @@
 PyVerm
 ======
 
-Overview
-^^^^^^^^
-* **Documentation** `pyverm.readthedocs.io <https://pyverm.readthedocs.io/en/latest/index.html>`_
-* **Sourcecode** `github.com/doppelmeter/pyverm <https://github.com/doppelmeter/pyverm>`_
-* **PyPi** `pypi.org/project/pyverm <https://pypi.org/project/pyverm/>`_
-* **License** `GNU GPLv3 <https://www.gnu.org/licenses/gpl-3.0.en.html>`_
-
 What is PyVerm?
 ^^^^^^^^^^^^^^^
 
@@ -30,8 +23,10 @@ You can install PyVerm with pip.
 
 **Requirements** Python 3.6 or higher
 
-How can I use PyVerm?
-^^^^^^^^^^^^^^^^^^^^^
+How to use PyVerm?
+^^^^^^^^^^^^^^^^^^
+
+For more examples and information's you should visit the `documentation <https://pyverm.readthedocs.io/en/latest/index.html>`_.
 
 .. code-block:: python
 
@@ -50,8 +45,8 @@ How can I use PyVerm?
     azimuth = pyverm.azimuth(standpoint, new_point)
 
 
-How can I Contribute?
-^^^^^^^^^^^^^^^^^^^^^
+How to contribute?
+^^^^^^^^^^^^^^^^^^
 
 Bug Reports
 -----------
@@ -70,6 +65,13 @@ License
 ^^^^^^^
 
 PyVerm is licensed under the GNU General Public License version 3.
+
+Links
+^^^^^
+* **Documentation** `pyverm.readthedocs.io <https://pyverm.readthedocs.io/en/latest/index.html>`_
+* **Sourcecode** `github.com/doppelmeter/pyverm <https://github.com/doppelmeter/pyverm>`_
+* **PyPi** `pypi.org/project/pyverm <https://pypi.org/project/pyverm/>`_
+* **License** `GNU GPLv3 <https://www.gnu.org/licenses/gpl-3.0.en.html>`_
 
 
 
