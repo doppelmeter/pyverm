@@ -37,7 +37,7 @@ with open('README.rst', 'r', 'utf-8') as f:
 
 setup(
     name=about['__title__'],
-    version=about['__version__'],
+    version=about['__release__'],
     author=about['__author__'],
     author_email='huerzeler.marius@gmail.com',
     packages=setuptools.find_packages(exclude=['tests*']),
