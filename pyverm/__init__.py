@@ -20,7 +20,16 @@
 ########################################################################
 
 """
-PyVerm
+PyVerm is a Python-Package for geodetic and surveying calculations. The main focus is
+on calculations for surveying in switzerland, but PyVerm should be as versatile as
+possible. In addition to its use in education and research, it should also be possible
+to use it as a component for software development.
+
+PyVerm Classes
+^^^^^^^^^^^^^^
+
+..  autoclass:: Point, ObservationPolar, Station
+    :members:
 
 
 """
@@ -34,5 +43,5 @@ warnings.warn("This package is in early developement and therfore is not stable 
 
 
 from .api import azimuth, distance, station, station_abriss, station_helmert
-from ._classes import ObservationPolar, Point
+from ._classes import ObservationPolar, Point, Station
 from . import __version__
