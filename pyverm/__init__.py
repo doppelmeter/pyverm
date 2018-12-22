@@ -28,11 +28,24 @@ to use it as a component for software development.
 PyVerm Classes
 ^^^^^^^^^^^^^^
 
-.. py:module:: pyverm
+..  module:: pyverm
 
-..  autoclass:: Point, ObservationPolar, Station
+..  autoclass:: Point
     :members:
+    :inherited-members:
+    :special-members: __init__
 
+..  autoclass:: ObservationPolar
+    :members:
+    :inherited-members:
+    :special-members: __init__
+
+..  autoclass:: Station
+    :members:
+    :inherited-members:
+
+PyVerm Functions
+^^^^^^^^^^^^^^^^
 
 """
 
