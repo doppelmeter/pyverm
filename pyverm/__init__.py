@@ -25,7 +25,7 @@ PyVerm
 
 """
 
-__all__ = ["azimuth", "distance", "station", "station_abriss", "station_helmert"]
+__all__ = ["azimuth", "distance", "station", "station_abriss", "station_helmert", "ObservationPolar", "Point"]
 
 
 import warnings
