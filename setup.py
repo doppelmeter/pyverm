@@ -30,7 +30,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 about = {}
 with open(os.path.join(here, 'pyverm', '__version__.py'), 'r', encoding='utf-8') as f:
     exec (f.read(), about)
-with open('README.rst', 'r', 'utf-8') as f:
+with open('README.rst', 'r', encoding='utf-8') as f:
     readme = f.read()
 # with open('HISTORY.rst', 'r', 'utf-8') as f:
 #     history = f.read()
