@@ -116,6 +116,6 @@ dmypy.json
 # own files
 .idea/
 not_for_git/
-sphinx/_build/
+docs/_build/
 build.py
 example.py

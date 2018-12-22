@@ -1,40 +1,45 @@
 
 
-Welcome to PyVerm's documentation!
-==================================
+PyVerm
+========
 
-**The must-have Python-Module for each surveyor!**
+PyVerm is a tool, which each surveyor should have.
+
+
+Features
+--------
+
+- calculate of distanced, azimuth
+- calculate station
+
+Installation
+------------
+
+Install PyVerm with PIP by running:
+
+    pip install pyverm
+
+
+
+License
+-------
+
+The project is licensed under the GNU GPLv3 license.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Intro
    
-   intro
+   get_started
+   documentation
+   history
+
+   
+.. toctree::
+   :maxdepth: 2
+   :caption: Development
+
+   development
+   todo
    translations
-   toto
-   
-.. toctree::
-   :maxdepth: 2
-   :caption: Get Started
-   
-   getstarted_installation
-   getstarted_first_steps
-   getstarted_advanced_usage
-   
-.. toctree::
-   :maxdepth: 2
-   :caption: Documentation
-   
-   
-   doc_api
-   
-	
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   
