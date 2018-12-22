@@ -78,8 +78,8 @@ def cartesian(distance, azimuth):
     :param azimuth: azimuth as decimal
     :return: y, x as decimal
     """
-    y = decimal.Decimal(distance) * decimal.Decimal(math.sin(azimuth/decimal.Decimal(200)*decimal.Decimal(math.pi)))
-    x = decimal.Decimal(distance) * decimal.Decimal(math.cos(azimuth / decimal.Decimal(200) * decimal.Decimal(math.pi)))
+    y = decimal.Decimal(distance) * decimal.Decimal(math.sin(decimal.Decimal(azimuth)/decimal.Decimal(200)*decimal.Decimal(math.pi)))
+    x = decimal.Decimal(distance) * decimal.Decimal(math.cos(decimal.Decimal(azimuth) / decimal.Decimal(200) * decimal.Decimal(math.pi)))
     return decimal.Decimal(y), decimal.Decimal(x)
 
 def polar(point, origin=(0,0)):
