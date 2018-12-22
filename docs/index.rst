@@ -39,7 +39,7 @@ The project is licensed under the GNU GPLv3 license.
    :caption: Development
 
    development
-   todo
    translations
+   todo
 
    
