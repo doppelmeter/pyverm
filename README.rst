@@ -3,13 +3,13 @@ PyVerm
 
 Overview
 ^^^^^^^^
-**Documentation** `pyverm.readthedocs.io <https://pyverm.readthedocs.io/en/latest/index.html>`
-**Sourcecode** `github.com/doppelmeter/pyverm <https://github.com/doppelmeter/pyverm>`
-**PyPi** `pypi.org/project/pyverm <https://pypi.org/project/pyverm/>`
-**License** `GNU GPLv3 <https://www.gnu.org/licenses/gpl-3.0.en.html>`
+* **Documentation** `pyverm.readthedocs.io <https://pyverm.readthedocs.io/en/latest/index.html>`_
+* **Sourcecode** `github.com/doppelmeter/pyverm <https://github.com/doppelmeter/pyverm>`_
+* **PyPi** `pypi.org/project/pyverm <https://pypi.org/project/pyverm/>`_
+* **License** `GNU GPLv3 <https://www.gnu.org/licenses/gpl-3.0.en.html>`_
 
 What is PyVerm?
----------------
+^^^^^^^^^^^^^^^
 
 PyVerm is a Python-Package for geodetic and surveying calculations. The main focus
 is on calculations for surveying in switzerland, but PyVerm should be as versatile
@@ -20,7 +20,7 @@ PyVerm is currently in its first phase of development.
 
 
 How to install PyVerm?
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
 You can install PyVerm with pip.
 
@@ -31,7 +31,7 @@ You can install PyVerm with pip.
 **Requirements** Python 3.6 or higher
 
 How can I use PyVerm?
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -51,23 +51,23 @@ How can I use PyVerm?
 
 
 How can I Contribute?
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 Bug Reports
-^^^^^^^^^^^
-If you find a bug, please open an bug report on `GitHub <https://github.com/doppelmeter/pyverm/issues/new/choose>`.
+-----------
+If you find a bug, please open an bug report on `GitHub <https://github.com/doppelmeter/pyverm/issues/new/choose>`_.
 
 Ideas
-^^^^^
-If you have a brilliant idea for a new feature, please open an feature request `GitHub <https://github.com/doppelmeter/pyverm/issues/new/choose>`.
+-----
+If you have a brilliant idea for a new feature, please open an feature request `GitHub <https://github.com/doppelmeter/pyverm/issues/new/choose>`_.
 
 Code
-^^^^
+----
 In the current development phase, I prefer to write the code myself. But for special things
 you can contact me via GitHub.
 
 License
--------
+^^^^^^^
 
 PyVerm is licensed under the GNU General Public License version 3.
 
