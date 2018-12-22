@@ -28,6 +28,8 @@ to use it as a component for software development.
 PyVerm Classes
 ^^^^^^^^^^^^^^
 
+.. py:module:: pyverm
+
 ..  autoclass:: Point, ObservationPolar, Station
     :members:
 
