@@ -19,41 +19,17 @@
 #                                                                      #
 ########################################################################
 
-from distutils.core import setup
-import setuptools
-import os
-import sys
-
-here = os.path.abspath(os.path.dirname(__file__))
+"""
+Contains all the Package-Metadata
 
 
-about = {}
-with open(os.path.join(here, 'pyverm', '__version__.py'), 'r', encoding='utf-8') as f:
-    exec (f.read(), about)
-with open('README.rst', 'r', 'utf-8') as f:
-    readme = f.read()
-# with open('HISTORY.rst', 'r', 'utf-8') as f:
-#     history = f.read()
+"""
 
-setup(
-    name=about['__title__'],
-    version=about['__version__'],
-    author=about['__author__'],
-    author_email='huerzeler.marius@gmail.com',
-    packages=setuptools.find_packages(exclude=['tests*']),
-    url=about['__url__'],
-    license=about['__license__'],
-    description=about['__description__'],
-    long_description=readme,
-    python_requires='>=3',
-    classifiers=[
-          'Development Status :: 2 - Pre-Alpha',
-          'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
-          'Natural Language :: English',
-          'Topic :: Scientific/Engineering :: GIS',
-          'Programming Language :: Python :: 3',
-          'Programming Language :: Python :: 3.6',
-		  'Programming Language :: Python :: 3.7',
-          ],
-
-)
+__title__ = "pyverm"
+__description__ = 'Modul for geodetic and surveying calculations'
+__url__ = "https://pyverm.readthedocs.io/en/latest/"
+__version__ = "0.0.5"
+__author__ = 'Marius Huerzeler'
+__author_email__ = 'huerzeler.marius@gmail.com'
+__license__ = 'GNU GPLv3+'
+__copyright__ = 'Copyright 2018 Marius Huerzeler'
