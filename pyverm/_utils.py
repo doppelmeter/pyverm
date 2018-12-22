@@ -28,7 +28,47 @@ Basics Module
 
 __all__ = ["distance", "azimuth"]
 
-__author__ = "Marius Hürzler"
-__copyright__ = "Copyright (C) 2018, Marius Hürzeler"
-__license__ = "GNU GPLv3"
+from decimal import *
+import logging
 
+from . import settings
+from ._classes import Point
+
+logger = logging.getLogger(__name__)
+getcontext().prec = settings.DECIMAL_PRECISION  # decimal.set_precision
+
+
+def make_decimal(value):
+    """
+    Fuction to make shure a value to a decimal value.
+
+    :param value: numeric value or ``None``
+    :return: value as ``Decimal`` or ``None``
+    """
+    if value is None:
+        return None
+    else:
+        try:
+            return Decimal(value)
+        except:
+            raise ValueError
+
+def make_point(point):
+    """
+    Function to make shure it is a point object
+
+    :param point: `Point``-object or ``(y,x,(z))``-tuple ore ``None``
+    :return: ``Point``-object or ``None``
+    """
+    if type(point) is Point:
+        return point
+    elif point is None:
+        return None
+    else:
+        try:
+            return Point(point[0],point[1],point[2])
+        except:
+            if point is not None:
+                return Point(point[0], point[1])
+            else:
+                return None

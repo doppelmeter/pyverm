@@ -30,14 +30,14 @@ here = os.path.abspath(os.path.dirname(__file__))
 about = {}
 with open(os.path.join(here, 'pyverm', '__version__.py'), 'r', encoding='utf-8') as f:
     exec (f.read(), about)
-with open('README.rst', 'r', 'utf-8') as f:
+with open('README.rst', 'r', encoding='utf-8') as f:
     readme = f.read()
 # with open('HISTORY.rst', 'r', 'utf-8') as f:
 #     history = f.read()
 
 setup(
     name=about['__title__'],
-    version=about['__version__'],
+    version=about['__release__'],
     author=about['__author__'],
     author_email='huerzeler.marius@gmail.com',
     packages=setuptools.find_packages(exclude=['tests*']),
