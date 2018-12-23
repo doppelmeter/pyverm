@@ -38,6 +38,10 @@ def distance(point_1, point_2, *, report_on=False):
     """
     Calculates the distance between two points.
 
+    .. math::
+
+       distance = \\sqrt{\\Delta y^2 + \\Delta x^2}
+
     :param point_1: ``Point``-object or ``(y,x)``-tuple
     :param point_2: ``Point``-object or ``(y,x)``-tuple
     :param report_on: boolean
