@@ -33,13 +33,13 @@ import logging
 import math
 
 from . import settings
-from ._classes import Point
+from ._classes import Point, ObservationPolar
 
 logger = logging.getLogger(__name__)
 getcontext().prec = settings.DECIMAL_PRECISION  # decimal.set_precision
 
 
-def make_decimal(value):
+def input_decimal(value):
     """
     Fuction to make shure a value to a decimal value.
 
@@ -52,9 +52,9 @@ def make_decimal(value):
         try:
             return Decimal(value)
         except:
-            raise ValueError
+            raise TypeError("argument must be a number or None")
 
-def make_point(point):
+def input_point(point):
     """
     Function to make shure it is a point object
 
@@ -70,11 +70,17 @@ def make_point(point):
             return Point(point[0],point[1],point[2])
         except:
             if point is not None:
-                return Point(point[0], point[1])
+                return Point(point[0], point[1], None)
             else:
-                return None
+                raise TypeError("argument must be a point or None")
 
-def angle_input(angle, *, local_angle_unit=None):
+def input_observations_polar(observations):
+    if all(isinstance(x, ObservationPolar) for x in observations):
+        return observations
+    else:
+        raise TypeError("argument must be a list or tuple of ObservationPolar")
+
+def input_angle(angle, *, local_angle_unit=None):
     """
     Return the given angle in rad, the input unit can be set localli or it uses the default settings.
 
@@ -86,7 +92,7 @@ def angle_input(angle, *, local_angle_unit=None):
     def grad_to_rad(x): return x/Decimal(200)* Decimal(math.pi)
     def deg_to_rad(x): return x /Decimal(180) * Decimal(math.pi)
 
-    angle = make_decimal(angle)
+    angle = input_decimal(angle)
 
     if local_angle_unit is None:
         if settings.DEFAULT_ANGLE_UNIT == "grad":
@@ -109,12 +115,12 @@ def angle_input(angle, *, local_angle_unit=None):
     return Decimal(rad)
 
 
-def angle_output(angle,*,local_angle_unit=None):
+def output_angle(angle, *, local_angle_unit=None):
     def rad_to_grad(x): return (x / Decimal(math.pi)) * Decimal(200)
 
     def rad_to_deg(x): return (x / Decimal(math.pi)) * Decimal(180)
 
-    angle = make_decimal(angle)
+    angle = input_decimal(angle)
 
     if local_angle_unit is None:
         if settings.DEFAULT_ANGLE_UNIT == "grad":

@@ -31,9 +31,10 @@ __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
 __license__ = "GNU GPLv3"
 
 import math
-import decimal
+from decimal import *
 
 from . import _utils
+from . import _classes
 
 
 def distance(point_1, point_2):
@@ -45,8 +46,12 @@ def distance(point_1, point_2):
     :param report_on: boolean
     :return: distance as decimal
     """
-    distance = ((point_1[0]-point_2[0])**2+(point_1[1]-point_2[1])**2)**decimal.Decimal('0.5')
-    return decimal.Decimal(distance)
+    # input preprocessing
+    point_1 = _utils.input_point(point_1)
+    point_2 = _utils.input_point(point_2)
+    # calculation
+    distance = ((point_1[0]-point_2[0])**2+(point_1[1]-point_2[1])**2)**Decimal('0.5')
+    return Decimal(distance)
 
 
 def azimuth(point_1, point_2):
@@ -58,12 +63,16 @@ def azimuth(point_1, point_2):
     :param report_on: boolean
     :return: azimuth in gon as decimal
     """
+    # input preprocessing
+    point_1 = _utils.input_point(point_1)
+    point_2 = _utils.input_point(point_2)
+    # calculation
     delta_y = point_2[0]-point_1[0]
     delta_x = point_2[1] - point_1[1]
     azimuth = math.atan2(delta_y, delta_x)
     if azimuth < 0:
         azimuth += math.pi*2
-    return _utils.angle_output(azimuth)
+    return _utils.output_angle(azimuth)
 
 def cartesian(distance, azimuth):
     """Calculate the cartesian coordinates form polar coordinates
@@ -72,10 +81,13 @@ def cartesian(distance, azimuth):
     :param azimuth: azimuth as decimal
     :return: y, x as decimal
     """
-    azimuth = _utils.angle_input(azimuth)
-    y = decimal.Decimal(distance) * decimal.Decimal(math.sin(azimuth))
-    x = decimal.Decimal(distance) * decimal.Decimal(math.cos(azimuth))
-    return decimal.Decimal(y), decimal.Decimal(x)
+    # input preprocessing
+    distance = _utils.input_decimal(distance)
+    azimuth = _utils.input_angle(azimuth)
+    # calculation
+    y = distance * Decimal(math.sin(azimuth))
+    x = distance * Decimal(math.cos(azimuth))
+    return y, x
 
 def polar(point, origin=(0,0)):
     """
@@ -84,6 +96,10 @@ def polar(point, origin=(0,0)):
     :param origin:
     :return:
     """
+    # input preprocessing
+    point = _utils.input_point(point)
+    origin = _utils.input_point(origin)
+    # calculation
     dist = distance(origin, point)
     azi = azimuth(origin, point)
     return dist, azi
@@ -95,13 +111,17 @@ def abriss(standpoint, observations):
     :param observations: list or tuple of observation-objects
     :return: orientation in gon
     """
+    # input preprocessing
+    standpoint = _utils.input_point(standpoint)
+    observations = _utils.input_observations_polar(observations)
+    # calculation
     temp = 0
     for observation in observations:
         azi = azimuth(standpoint, observation.reduced_targetpoint)
         ori = azi - observation.reduced_horizontal_angle
         temp += ori
     orientation = temp/len(observations)
-    return decimal.Decimal(orientation)
+    return Decimal(orientation)
 
 def free_station(observations):
     """Calculate the standpoint and orientation
@@ -109,6 +129,9 @@ def free_station(observations):
     :param observations: list or tuple of observation-objects
     :return: standpoint and orientation
     """
+    # input preprocessing
+    observations = _utils.input_observations_polar(observations)
+    # calculation
     temp_ys = 0
     temp_xs = 0
     temp_Ys = 0
@@ -117,8 +140,8 @@ def free_station(observations):
         y, x = cartesian(observation.reduced_distance, observation.reduced_horizontal_angle)
         temp_ys += y
         temp_xs += x
-        temp_Ys += decimal.Decimal(observation.reduced_targetpoint[0])
-        temp_Xs += decimal.Decimal(observation.reduced_targetpoint[1])
+        temp_Ys += Decimal(observation.reduced_targetpoint[0])
+        temp_Xs += Decimal(observation.reduced_targetpoint[1])
     n = len(observations)
     ys = temp_ys / n
     xs = temp_xs / n
@@ -146,6 +169,6 @@ def free_station(observations):
     standpoint = ( (Ys - a*ys - o*xs), (Xs - a*xs + o*ys) , 0)
 
     orientation = abriss(standpoint, observations)
-    return standpoint, decimal.Decimal(orientation)
+    return standpoint, Decimal(orientation)
 
 
