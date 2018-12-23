@@ -28,10 +28,6 @@ from . import _functions
 from . import _classes
 
 
-__author__ = "Marius Hürzler"
-__copyright__ = "Copyright (C) 2018, Marius Hürzeler"
-__license__ = "GNU GPLv3"
-
 
 def azimuth(point_a, point_b):
     """ Return the azimuth form point A to point B.

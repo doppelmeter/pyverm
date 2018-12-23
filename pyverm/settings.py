@@ -26,13 +26,6 @@ settings stores the package wide settings and constants
 """
 
 
-
-__author__ = "Marius Hürzler"
-__copyright__ = "Copyright (C) 2018, Marius Hürzeler"
-__license__ = "GNU GPLv3"
-
-
-
 # Preferences
 DECIMAL_PRECISION = 15  #: decimal precision
 DEFAULT_ANGLE_UNIT = "grad"  #: grad, deg or rad

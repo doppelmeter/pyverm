@@ -25,11 +25,6 @@ _classes module defines all the classes
 """
 
 
-
-__author__ = "Marius Hürzler"
-__copyright__ = "Copyright (C) 2018, Marius Hürzeler"
-__license__ = "GNU GPLv3"
-
 from decimal import *
 import collections
 import math

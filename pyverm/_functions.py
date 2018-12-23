@@ -25,11 +25,6 @@ API defines the interface you can use to interact with the PyVerm library.
 """
 
 
-
-__author__ = "Marius Hürzler"
-__copyright__ = "Copyright (C) 2018, Marius Hürzeler"
-__license__ = "GNU GPLv3"
-
 import math
 from decimal import *
 
