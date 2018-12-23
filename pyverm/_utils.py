@@ -110,9 +110,9 @@ def angle_input(angle, *, local_angle_unit=None):
 
 
 def angle_output(angle,*,local_angle_unit=None):
-    def rad_to_grad(x): return x / Decimal(math.pi * 200)
+    def rad_to_grad(x): return (x / Decimal(math.pi)) * Decimal(200)
 
-    def rad_to_deg(x): return x / Decimal(math.pi * 180)
+    def rad_to_deg(x): return (x / Decimal(math.pi)) * Decimal(180)
 
     angle = make_decimal(angle)
 

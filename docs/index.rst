@@ -32,7 +32,7 @@ For more examples and information's you should visit the `documentation <https:/
 
     import pyverm
 
-    standpoint = pyverm.Point(2600000, 1200000)
+    standpoint = pyverm.Point(2600000, 1200000, 0)
     orientation = 123.4567
 
     station = pyverm.station(standpoint, orientation)

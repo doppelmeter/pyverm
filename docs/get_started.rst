@@ -21,8 +21,8 @@ Distance and Azimuth
 
     import pyverm
 
-    point_1 = pyverm.Point(2600123, 1200456)
-    point_2 = pyverm.Point(2600789, 1200123)
+    point_1 = pyverm.Point(2600123, 1200456, 0)
+    point_2 = pyverm.Point(2600789, 1200123, 0)
 
     distance = pyverm.distance(point_1, point_2)
 
@@ -37,11 +37,11 @@ Polar Stakeout
 
     import pyverm
 
-    standpoint = pyverm.Point(2600000, 1200000)
+    standpoint = pyverm.Point(2600000, 1200000, 0)
     orientation = 123.4567
 
     station = pyverm.station(standpoint, orientation)
-    observation = station.stakeout(pyverm.Point(2600010, 1200020))
+    observation = station.stakeout(pyverm.Point(2600010, 1200020, 0))
 
 
 Free Station
