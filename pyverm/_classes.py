@@ -31,41 +31,47 @@ __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
 __license__ = "GNU GPLv3"
 
 import decimal
+import collections
 
 from . import _functions
 
 
-class Point:
-    def __init__(self, y, x, z=None):
-        """Point class
 
-        :param y: y-coordinate
-        :param x: x-coordinate
-        :param z: z-coordinate (optional)
-        """
-        self._y = y
-        self._x = x
-        self._z = z
+Point = collections.namedtuple("Point",["y", "x", "z"])
 
-    def __getitem__(self, key):
-        """
-        Adds the possibility to interact with the point class like a tuple (y,x,z)
 
-        :param key:
-        :return:
-        """
-        if key == 0:
-            return self._y
-        if key == 1:
-            return self._x
-        if key == 2:
-            return self._z
 
-    def __repr__(self):
-        if self._z == None:
-            return f"<Point ({self._y:.5f}, {self._x:.5f}, {self._z})>"
-        else:
-            return f"<Point ({self._y:.5f}, {self._x:.5f}, {self._z:.5f})>"
+# class Point:
+#     def __init__(self, y, x, z=None):
+#         """Point class
+#
+#         :param y: y-coordinate
+#         :param x: x-coordinate
+#         :param z: z-coordinate (optional)
+#         """
+#         self._y = y
+#         self._x = x
+#         self._z = z
+#
+#     def __getitem__(self, key):
+#         """
+#         Adds the possibility to interact with the point class like a tuple (y,x,z)
+#
+#         :param key:
+#         :return:
+#         """
+#         if key == 0:
+#             return self._y
+#         if key == 1:
+#             return self._x
+#         if key == 2:
+#             return self._z
+#
+#     def __repr__(self):
+#         if self._z == None:
+#             return f"<Point ({self._y:.5f}, {self._x:.5f}, {self._z})>"
+#         else:
+#             return f"<Point ({self._y:.5f}, {self._x:.5f}, {self._z:.5f})>"
 
 class Station:
     def __init__(self, standpoint, orientation):

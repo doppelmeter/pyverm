@@ -32,3 +32,8 @@ __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
 __license__ = "GNU GPLv3"
 
 DECIMAL_PRECISION = 15
+
+
+
+# Constants
+EARTH_RADIUS = 6380000  #: in meters

@@ -34,13 +34,9 @@ import math
 import decimal
 
 
-def distance(point_1, point_2, *, report_on=False):
+def distance(point_1, point_2):
     """
-    Calculates the distance between two points.
-
-    .. math::
-
-       distance = \\sqrt{\\Delta y^2 + \\Delta x^2}
+    Calculates the 2D distance between two points.
 
     :param point_1: ``Point``-object or ``(y,x)``-tuple
     :param point_2: ``Point``-object or ``(y,x)``-tuple
@@ -51,7 +47,7 @@ def distance(point_1, point_2, *, report_on=False):
     return decimal.Decimal(distance)
 
 
-def azimuth(point_1, point_2,*,report_on=False):
+def azimuth(point_1, point_2):
     """
     Calculates the azimut from point 1 to point 2.
 

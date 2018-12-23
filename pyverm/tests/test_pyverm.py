@@ -31,7 +31,7 @@ decimal.getcontext().prec = settings.DECIMAL_PRECISION  # decimal.set_precision
 class TestDistance(unittest.TestCase):
     def test_calculation(self):
         self.assertEqual(
-            distance(Point(0, 0), (0, 0)),
+            distance(Point(0, 0, 0), (0, 0)),
             0,
             'incorrect calculation of distance from point 0,0 to point 0,0')
 
