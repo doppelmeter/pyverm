@@ -30,8 +30,9 @@ __author__ = "Marius Hürzler"
 __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
 __license__ = "GNU GPLv3"
 
-import decimal
+from decimal import *
 import collections
+import math
 
 from . import _functions
 from . import _utils
@@ -40,39 +41,6 @@ from . import _utils
 
 Point = collections.namedtuple("Point",["y", "x", "z"])
 
-
-
-# class Point:
-#     def __init__(self, y, x, z=None):
-#         """Point class
-#
-#         :param y: y-coordinate
-#         :param x: x-coordinate
-#         :param z: z-coordinate (optional)
-#         """
-#         self._y = y
-#         self._x = x
-#         self._z = z
-#
-#     def __getitem__(self, key):
-#         """
-#         Adds the possibility to interact with the point class like a tuple (y,x,z)
-#
-#         :param key:
-#         :return:
-#         """
-#         if key == 0:
-#             return self._y
-#         if key == 1:
-#             return self._x
-#         if key == 2:
-#             return self._z
-#
-#     def __repr__(self):
-#         if self._z == None:
-#             return f"<Point ({self._y:.5f}, {self._x:.5f}, {self._z})>"
-#         else:
-#             return f"<Point ({self._y:.5f}, {self._x:.5f}, {self._z:.5f})>"
 
 class Station:
     def __init__(self, standpoint, orientation):
@@ -88,8 +56,8 @@ class Station:
         :rtype: pyverm.Point
         """
         y, x = _functions.cartesian(observation.reduced_distance, observation.reduced_horizontal_angle+self.orientation)
-        y += decimal.Decimal(self.standpoint[0])
-        x += decimal.Decimal(self.standpoint[1])
+        y += Decimal(self.standpoint[0])
+        x += Decimal(self.standpoint[1])
         return Point(y,x,0)
 
     def stakeout(self, point):
@@ -124,15 +92,56 @@ class ObservationPolar:
         :type reduced_zenith_angle: float or decimal
         :param reduced_distance: (optional) distance in meters with all corrections
         :type reduced_distance: float or decimal
+
+        :param raw_horizontal_angle: (optional) horizontal angle in gon
+        :type raw_horizontal_angle: float or decimal
+        :param raw_horizontal_angle_2: (optional) horizontal angle in gon in second direction
+        :type raw_horizontal_angle_2: float or decimal
+        :param raw_zenith_angle: (optional) zenith angle in gon
+        :type raw_zenith_angle: float or decimal
+        :param raw_zenith_angle_2: (optional) zenith angle in gon in second direction
+        :type raw_zenith_angle_2: float or decimal
+        :param raw_distance: (optional) distance in meters
+        :type raw_distance: float or decimal
+        :param raw_distance_2: (optional) distance in meters in second direction
+        :type raw_distance_2: float or decimal
         """
+        # reduced values
         self.reduced_targetpoint = kwargs.setdefault("reduced_targetpoint", None)
         self._reduced_horizontal_angle = _utils.input_angle(kwargs.setdefault("reduced_horizontal_angle", None))
-        self._reduced_zenith_angle = _utils.input_decimal(kwargs.setdefault("reduced_zenith_angle", None))
+        self._reduced_zenith_angle = _utils.input_angle(kwargs.setdefault("reduced_zenith_angle", None))
         self._reduced_distance = _utils.input_decimal(kwargs.setdefault("reduced_distance", None))
+
+        # raw values
+        self._raw_horizontal_angle = _utils.input_angle(kwargs.setdefault("raw_horizontal_angle", None))
+        self._raw_horizontal_angle_2 = _utils.input_angle(kwargs.setdefault("raw_horizontal_angle_2", None))
+        self._raw_zenith_angle = _utils.input_angle(kwargs.setdefault("raw_zenith_angle", None))
+        self._raw_zenith_angle_2 = _utils.input_angle(kwargs.setdefault("raw_zenith_angle_2", None))
+        self._raw_distance = _utils.input_decimal(kwargs.setdefault("raw_distance", None))
+        self._raw_distance_2 = _utils.input_decimal(kwargs.setdefault("raw_distance_2", None))
 
     @property
     def reduced_horizontal_angle(self):
-        return _utils.output_angle(self._reduced_horizontal_angle)
+        """
+        Return reduced_horizontal_angle or if None and raw in two direction present, return calculated reduced angle
+        :return:
+        """
+        if self._reduced_horizontal_angle is None:
+            # average from to directions
+            if self._raw_horizontal_angle_2 is not None and self._raw_horizontal_angle is not None:
+                if self._raw_horizontal_angle_2 > self._raw_horizontal_angle:
+                    temp = -1
+                else:
+                    temp=+1
+                reduced = ((self._raw_horizontal_angle + (self._raw_horizontal_angle_2 + Decimal(math.pi*temp))))/Decimal(2)
+            elif self._raw_horizontal_angle is not None:
+                reduced = self._raw_horizontal_angle
+            else:
+                raise NotImplemented("there is no zenith angle")
+            output = reduced
+        else:
+            output = self._reduced_horizontal_angle
+        return _utils.output_angle(output)
 
     @reduced_horizontal_angle.setter
     def reduced_horizontal_angle(self, reduced_horizontal_angle):
@@ -140,19 +149,38 @@ class ObservationPolar:
 
     @property
     def reduced_zenith_angle(self):
-        return self._reduced_zenith_angle
+        """
+        Return reduced_zenith_angle or if None and raw in two direction present, return calculated reduced angle
+        :return:
+        """
+        if self._reduced_zenith_angle is None:
+            # average from to directions
+            if self._raw_zenith_angle_2 is not None and self._raw_zenith_angle is not None:
+                reduced = ((self._raw_zenith_angle - self._raw_zenith_angle_2) + Decimal(math.pi*2))/Decimal(2)
+            elif self._raw_zenith_angle is not None:
+                reduced = self._raw_zenith_angle
+            else:
+                raise NotImplemented("there is no zenith angle")
+            output = reduced
+        else:
+            output = self._reduced_zenith_angle
+        return _utils.output_angle(output)
 
     @reduced_zenith_angle.setter
     def reduced_zenith_angle(self, reduced_zenith_angle):
-        self.reduced_zenith_angle = decimal.Decimal(reduced_zenith_angle)
+        self._reduced_zenith_angle = _utils.input_angle(reduced_zenith_angle)
 
     @property
     def reduced_distance(self):
-        return self._reduced_distance
+        if self._reduced_distance is None:
+            raise NotImplemented("reduction of raw distance is not implemented")
+        else:
+            return self._reduced_distance
 
     @reduced_distance.setter
     def reduced_distance(self, reduced_distance):
-        self._reduced_distance = decimal.Decimal(reduced_distance)
+        self._reduced_distance = Decimal(reduced_distance)
+
 
     def __repr__(self):
         return f"<Polar Observation with Hz {self.reduced_horizontal_angle:.5f} and Dist {self.reduced_distance:.5f}>"

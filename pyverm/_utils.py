@@ -94,6 +94,9 @@ def input_angle(angle, *, local_angle_unit=None):
 
     angle = input_decimal(angle)
 
+    if angle is None:
+        return None
+
     if local_angle_unit is None:
         if settings.DEFAULT_ANGLE_UNIT == "grad":
             rad = grad_to_rad(angle)
@@ -121,6 +124,9 @@ def output_angle(angle, *, local_angle_unit=None):
     def rad_to_deg(x): return (x / Decimal(math.pi)) * Decimal(180)
 
     angle = input_decimal(angle)
+
+    if angle is None:
+        return None
 
     if local_angle_unit is None:
         if settings.DEFAULT_ANGLE_UNIT == "grad":
