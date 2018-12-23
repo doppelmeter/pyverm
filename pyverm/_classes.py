@@ -105,6 +105,11 @@ class ObservationPolar:
         :type raw_distance: float or decimal
         :param raw_distance_2: (optional) distance in meters in second direction
         :type raw_distance_2: float or decimal
+
+        ..  todo::
+
+            * Document the reduction of the raw values
+            * implement the reduction of the distance
         """
         # reduced values
         self.reduced_targetpoint = kwargs.setdefault("reduced_targetpoint", None)
