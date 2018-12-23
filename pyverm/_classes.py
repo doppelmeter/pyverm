@@ -84,6 +84,12 @@ class ObservationPolar:
 
         Despite all attributes are optional, depending on the function certain attributes must be present.
 
+        ..  todo::
+
+            * Document the reduction of the raw values
+            * implement the reduction of the distance
+            * add unittest for this class
+
         :param reduced_targetpoint: (optional) Point which was measured with this observation
         :type reduced_targetpoint: tuple or pyverm.Point
         :param reduced_horizontal_angle: (optional) horizontal angle in gon with all corrections
@@ -106,10 +112,7 @@ class ObservationPolar:
         :param raw_distance_2: (optional) distance in meters in second direction
         :type raw_distance_2: float or decimal
 
-        ..  todo::
 
-            * Document the reduction of the raw values
-            * implement the reduction of the distance
         """
         # reduced values
         self.reduced_targetpoint = kwargs.setdefault("reduced_targetpoint", None)
