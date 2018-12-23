@@ -36,9 +36,19 @@ __license__ = "GNU GPLv3"
 def azimuth(point_a, point_b):
     """ Return the azimuth form point A to point B.
 
-    :param point_a: ``Point``-object or ``(y,x)``-tuple
-    :param point_b: ``Point``-object or ``(y,x)``-tuple
-    :return: azimuth in gon as decimal
+    The azimuth is the clockwise angle from the north (x axis) and the connecting line from point a to point b.
+    It is calculated with the following formula:
+
+    .. math::
+
+       azimuth = \\arctan2 (\\Delta y / \\Delta x)
+
+    :param point_a: Point A
+    :type point_a: tuple or pyverm.Point
+    :param point_b: Point B
+    :type point_b: tuple or pyverm.Point
+    :return: azimuth in gon
+    :rtype: Decimal
     """
     return _functions.azimuth(point_a, point_b)
 
@@ -49,29 +59,42 @@ def distance(point_a, point_b):
 
        distance = \\sqrt{\\Delta y^2 + \\Delta x^2}
 
-    :param point_a: ``Point``-object or ``(y,x)``-tuple
-    :param point_b: ``Point``-object or ``(y,x)``-tuple
-    :return: distance in meters as decimal
+    :param point_a: Point A
+    :type point_a: tuple or pyverm.Point
+    :param point_b: Point B
+    :type point_b: tuple or pyverm.Point
+    :return: distance in meters
+    :rtype: Decimal
     """
     return _functions.distance(point_a, point_b)
 
 
 
 def station(standpoint, orientation):
-    """Return a station object.
+    """Return a station with standpoint and orientation.
 
-    :param standpoint: ``Point``-object or ``(y,x)``-tuple
-    :param orientation: orientation in gon
-    :return: station-object
+    :param standpoint: standpoint
+    :type standpoint: tuple or pyverm.Point
+    :param orientation: azimuth of null direction
+    :type orientation: int or decimal
+    :return: :class:`Station <Station>` object
+    :rtype: pyverm.Station
     """
     return _classes.Station(standpoint, orientation)
 
 def station_abriss(standpoint, observations):
-    """Calculate the orientation and return the station object.
+    """Calculate the orientation from the observations and return the station object.
 
-    :param standpoint: ``Point``-object or ``(y,x)``-tuple
-    :param observations: list or tuple of observation-objects
-    :return: station-object
+    .. math::
+
+       abriss = \\frac{\\sum_{i=1}^{n} (azimuth_{standpoint_{i}\\rightarrow targetpoint_{i}} - horizontal\\:angle_{i})}{n}
+
+    :param standpoint: standpoint
+    :type standpoint: tuple or pyverm.Point
+    :param observations: a list or a tuple containing the Observations
+    :type observations: list or tuple with pyverm.ObservationPolar
+    :return: :class:`Station <Station>` object
+    :rtype: pyverm.Station
     """
     orientation = _functions.abriss(standpoint, observations)
     return _classes.Station(standpoint, orientation)
@@ -79,8 +102,13 @@ def station_abriss(standpoint, observations):
 def station_helmert(observations):
     """Calculate the standpoint and orientation and return the station object.
 
-    :param observations: list or tuple of observation-objects
-    :return: station-object
+    The station is calculated locally an then transformed in the coordinate system truth a helmert transformation.
+    The orientation gets determined over an abriss.
+
+    :param observations: a list or a tuple containing the Observations
+    :type observations: list or tuple with pyverm.ObservationPolar
+    :return: :class:`Station <Station>` object
+    :rtype: pyverm.Station
     """
     standpoint, orientation = _functions.free_station(observations)
     return _classes.Station(standpoint, orientation)

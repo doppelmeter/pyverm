@@ -79,10 +79,12 @@ class Station:
         self.orientation = orientation
 
     def survey(self, observation):
-        """Returns the Point which was surveyed.
+        """Returns the Point, which was surveyed with the given observation.
 
         :param observation:
-        :return:
+        :type observation: pyverm.ObservationPolar
+        :return: :class:`Point <Point>` object
+        :rtype: pyverm.Point
         """
         y, x = _functions.cartesian(observation.reduced_distance, observation.reduced_horizontal_angle+self.orientation)
         y += decimal.Decimal(self.standpoint[0])
@@ -90,10 +92,12 @@ class Station:
         return Point(y,x)
 
     def stakeout(self, point):
-        """ToDo
+        """Return the observation values, which are needed to stakeout the given point.
 
-        :param point:
-        :return:
+        :param point: point to stakeout
+        :type point: tuple or pyverm.Point
+        :return: :class:`ObservationPolar <ObservationPolar>` object
+        :rtype: pyverm.ObservationPolar
         """
         dist, azi = _functions.polar(point, origin=self.standpoint)
         hz = azi-self.orientation
@@ -107,12 +111,18 @@ class Station:
 
 class ObservationPolar:
     def __init__(self, **kwargs):
-        """Polar-Observation class
+        """Represent a polar observation with all associated values as simple and usable as possible.
 
-        :param kwargs: reduced_targetpoint
-        :param kwargs: reduced_horizontal_angle
-        :param kwargs: reduced_zenith_angle
-        :param kwargs: reduced_distance
+        Despite all attributes are optional, depending on the function certain attributes must be present.
+
+        :param reduced_targetpoint: (optional) Point which was measured with this observation
+        :type reduced_targetpoint: tuple or pyverm.Point
+        :param reduced_horizontal_angle: (optional) horizontal angle in gon with all corrections
+        :type reduced_horizontal_angle: float or decimal
+        :param reduced_zenith_angle: (optional) zenith angle in gon with all corrections
+        :type reduced_zenith_angle: float or decimal
+        :param reduced_distance: (optional) distance in meters with all corrections
+        :type reduced_distance: float or decimal
         """
         self.reduced_targetpoint = kwargs.setdefault("reduced_targetpoint", None)
         self.reduced_horizontal_angle = kwargs.setdefault("reduced_horizontal_angle", None)
