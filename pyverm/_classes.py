@@ -34,6 +34,7 @@ import decimal
 import collections
 
 from . import _functions
+from . import _utils
 
 
 
@@ -76,7 +77,7 @@ Point = collections.namedtuple("Point",["y", "x", "z"])
 class Station:
     def __init__(self, standpoint, orientation):
         self.standpoint = standpoint
-        self.orientation = orientation
+        self.orientation = _utils.make_decimal(orientation)
 
     def survey(self, observation):
         """Returns the Point, which was surveyed with the given observation.
@@ -125,9 +126,33 @@ class ObservationPolar:
         :type reduced_distance: float or decimal
         """
         self.reduced_targetpoint = kwargs.setdefault("reduced_targetpoint", None)
-        self.reduced_horizontal_angle = kwargs.setdefault("reduced_horizontal_angle", None)
-        self.reduced_zenith_angle = kwargs.setdefault("reduced_zenith_angle", None)
-        self.reduced_distance = kwargs.setdefault("reduced_distance", None)
+        self._reduced_horizontal_angle = _utils.make_decimal(kwargs.setdefault("reduced_horizontal_angle", None))
+        self._reduced_zenith_angle = _utils.make_decimal(kwargs.setdefault("reduced_zenith_angle", None))
+        self._reduced_distance = _utils.make_decimal(kwargs.setdefault("reduced_distance", None))
+
+    @property
+    def reduced_horizontal_angle(self):
+        return self._reduced_horizontal_angle
+
+    @reduced_horizontal_angle.setter
+    def reduced_horizontal_angle(self, reduced_horizontal_angle):
+        self._reduced_horizontal_angle = decimal.Decimal(reduced_horizontal_angle)
+
+    @property
+    def reduced_zenith_angle(self):
+        return self._reduced_zenith_angle
+
+    @reduced_zenith_angle.setter
+    def reduced_zenith_angle(self, reduced_zenith_angle):
+        self.reduced_zenith_angle = decimal.Decimal(reduced_zenith_angle)
+
+    @property
+    def reduced_distance(self):
+        return self._reduced_distance
+
+    @reduced_distance.setter
+    def reduced_distance(self, reduced_distance):
+        self._reduced_distance = decimal.Decimal(reduced_distance)
 
     def __repr__(self):
         return f"<Polar Observation with Hz {self.reduced_horizontal_angle:.5f} and Dist {self.reduced_distance:.5f}>"
