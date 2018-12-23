@@ -73,9 +73,13 @@ Links
 * **PyPi** `pypi.org/project/pyverm <https://pypi.org/project/pyverm/>`_
 * **License** `GNU GPLv3 <https://www.gnu.org/licenses/gpl-3.0.en.html>`_
 
+Further
+^^^^^^^
+
 .. toctree::
    :maxdepth: 2
-   
+
+   index
    get_started
    documentation
    history
