@@ -79,7 +79,6 @@ Further
 .. toctree::
    :maxdepth: 2
 
-   index
    get_started
    documentation
    history
