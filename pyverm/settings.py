@@ -31,9 +31,11 @@ __author__ = "Marius Hürzler"
 __copyright__ = "Copyright (C) 2018, Marius Hürzeler"
 __license__ = "GNU GPLv3"
 
-DECIMAL_PRECISION = 15
 
 
+# Preferences
+DECIMAL_PRECISION = 15  #: decimal precision
+DEFAULT_ANGLE_UNIT = "grad"  #: grad, deg or rad
 
 # Constants
 EARTH_RADIUS = 6380000  #: in meters

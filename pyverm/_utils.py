@@ -30,6 +30,7 @@ __all__ = ["distance", "azimuth"]
 
 from decimal import *
 import logging
+import math
 
 from . import settings
 from ._classes import Point
@@ -72,3 +73,65 @@ def make_point(point):
                 return Point(point[0], point[1])
             else:
                 return None
+
+def angle_input(angle, *, local_angle_unit=None):
+    """
+    Return the given angle in rad, the input unit can be set localli or it uses the default settings.
+
+    :param angle: value
+    :param local_angle_unit: "deg", "rad", "grad"
+    :return: angle in rad as decimal
+    """
+
+    def grad_to_rad(x): return x/Decimal(200)* Decimal(math.pi)
+    def deg_to_rad(x): return x /Decimal(180) * Decimal(math.pi)
+
+    angle = make_decimal(angle)
+
+    if local_angle_unit is None:
+        if settings.DEFAULT_ANGLE_UNIT == "grad":
+            rad = grad_to_rad(angle)
+        elif settings.DEFAULT_ANGLE_UNIT == "deg":
+            rad = deg_to_rad(angle)
+        elif settings.DEFAULT_ANGLE_UNIT == "rad":
+            rad = angle
+        else:
+            raise NotImplemented
+    else:
+        if local_angle_unit == "grad":
+            rad = grad_to_rad(angle)
+        elif local_angle_unit == "deg":
+            rad = deg_to_rad(angle)
+        elif local_angle_unit == "rad":
+            rad = angle
+        else:
+            raise NotImplemented
+    return Decimal(rad)
+
+
+def angle_output(angle,*,local_angle_unit=None):
+    def rad_to_grad(x): return x / Decimal(math.pi * 200)
+
+    def rad_to_deg(x): return x / Decimal(math.pi * 180)
+
+    angle = make_decimal(angle)
+
+    if local_angle_unit is None:
+        if settings.DEFAULT_ANGLE_UNIT == "grad":
+            output = rad_to_grad(angle)
+        elif settings.DEFAULT_ANGLE_UNIT == "deg":
+            output = rad_to_deg(angle)
+        elif settings.DEFAULT_ANGLE_UNIT == "rad":
+            output = angle
+        else:
+            raise NotImplemented
+    else:
+        if local_angle_unit == "grad":
+            output = rad_to_grad(angle)
+        elif local_angle_unit == "deg":
+            output = rad_to_deg(angle)
+        elif local_angle_unit == "rad":
+            output = angle
+        else:
+            raise NotImplemented
+    return Decimal(output)

@@ -89,7 +89,7 @@ class Station:
         y, x = _functions.cartesian(observation.reduced_distance, observation.reduced_horizontal_angle+self.orientation)
         y += decimal.Decimal(self.standpoint[0])
         x += decimal.Decimal(self.standpoint[1])
-        return Point(y,x)
+        return Point(y,x,0)
 
     def stakeout(self, point):
         """Return the observation values, which are needed to stakeout the given point.

@@ -33,6 +33,8 @@ __license__ = "GNU GPLv3"
 import math
 import decimal
 
+from . import _utils
+
 
 def distance(point_1, point_2):
     """
@@ -58,18 +60,10 @@ def azimuth(point_1, point_2):
     """
     delta_y = point_2[0]-point_1[0]
     delta_x = point_2[1] - point_1[1]
-    if delta_x != 0:
-        azimut = math.atan(delta_y/delta_x)/math.pi*200
-    elif delta_y < 0:
-        azimut = -100
-    else:
-        azimut = 100
-
-    if delta_x < 0:
-        azimut = azimut+200
-    elif delta_y < 0:
-        azimut = azimut+400
-    return decimal.Decimal(azimut)
+    azimuth = math.atan2(delta_y, delta_x)
+    if azimuth < 0:
+        azimuth += math.pi*2
+    return _utils.angle_output(azimuth)
 
 def cartesian(distance, azimuth):
     """Calculate the cartesian coordinates form polar coordinates
@@ -78,8 +72,9 @@ def cartesian(distance, azimuth):
     :param azimuth: azimuth as decimal
     :return: y, x as decimal
     """
-    y = decimal.Decimal(distance) * decimal.Decimal(math.sin(decimal.Decimal(azimuth)/decimal.Decimal(200)*decimal.Decimal(math.pi)))
-    x = decimal.Decimal(distance) * decimal.Decimal(math.cos(decimal.Decimal(azimuth) / decimal.Decimal(200) * decimal.Decimal(math.pi)))
+    azimuth = _utils.angle_input(azimuth)
+    y = decimal.Decimal(distance) * decimal.Decimal(math.sin(azimuth))
+    x = decimal.Decimal(distance) * decimal.Decimal(math.cos(azimuth))
     return decimal.Decimal(y), decimal.Decimal(x)
 
 def polar(point, origin=(0,0)):
