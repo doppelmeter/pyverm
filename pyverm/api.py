@@ -45,6 +45,10 @@ def azimuth(point_a, point_b):
 def distance(point_a, point_b):
     """Return the 2D distance from point A to Point B.
 
+    .. math::
+
+       distance = \\sqrt{\\Delta y^2 + \\Delta x^2}
+
     :param point_a: ``Point``-object or ``(y,x)``-tuple
     :param point_b: ``Point``-object or ``(y,x)``-tuple
     :return: distance in meters as decimal
