@@ -43,10 +43,6 @@ to use it as a component for software development.
 __all__ = ["Point", "azimuth", "distance", "station", "station_abriss", "station_helmert", "ObservationPolar"]
 
 
-import warnings
-
-warnings.warn("This package is in early developement and therfore is not stable at all.")
-
 
 from .api import azimuth, distance, station, station_abriss, station_helmert
 from ._classes import ObservationPolar, Point, Station

@@ -25,7 +25,6 @@ Basics Module
 
 """
 
-
 __all__ = ["distance", "azimuth"]
 
 from decimal import *
@@ -36,27 +35,27 @@ from . import settings
 from ._classes import Point, ObservationPolar
 
 logger = logging.getLogger(__name__)
-getcontext().prec = settings.DECIMAL_PRECISION  # decimal.set_precision
+getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION  # decimal.set_precision
 
 
 def input_decimal(value):
     """
-    Fuction to make shure a value to a decimal value.
+    Function to make sure a value to a decimal value.
 
     :param value: numeric value or ``None``
     :return: value as ``Decimal`` or ``None``
     """
     if value is None:
         return None
+    elif isinstance(value, Decimal):
+        return value
     else:
-        try:
-            return Decimal(value)
-        except:
-            raise TypeError("argument must be a number or None")
+       return Decimal(value)
+
 
 def input_point(point):
     """
-    Function to make shure it is a point object
+    Function to make sure it is a point object
 
     :param point: `Point``-object or ``(y,x,(z))``-tuple ore ``None``
     :return: ``Point``-object or ``None``
@@ -67,18 +66,20 @@ def input_point(point):
         return None
     else:
         try:
-            return Point(point[0],point[1],point[2])
+            return Point(point[0], point[1], point[2])
         except:
             if point is not None:
                 return Point(point[0], point[1], None)
             else:
                 raise TypeError("argument must be a point or None")
 
+
 def input_observations_polar(observations):
     if all(isinstance(x, ObservationPolar) for x in observations):
         return observations
     else:
         raise TypeError("argument must be a list or tuple of ObservationPolar")
+
 
 def input_angle(angle, *, local_angle_unit=None):
     """
@@ -89,13 +90,16 @@ def input_angle(angle, *, local_angle_unit=None):
     :return: angle in rad as decimal
     """
 
-    def grad_to_rad(x): return x/Decimal(200)* Decimal(math.pi)
-    def deg_to_rad(x): return x /Decimal(180) * Decimal(math.pi)
+    def grad_to_rad(x):
+        return x / Decimal(200) * Decimal(math.pi)
 
-    angle = input_decimal(angle)
+    def deg_to_rad(x):
+        return x / Decimal(180) * Decimal(math.pi)
 
     if angle is None:
         return None
+    elif not isinstance(angle, Decimal):
+        angle = Decimal(angle)
 
     if local_angle_unit is None:
         if settings.DEFAULT_ANGLE_UNIT == "grad":
@@ -119,14 +123,16 @@ def input_angle(angle, *, local_angle_unit=None):
 
 
 def output_angle(angle, *, local_angle_unit=None):
-    def rad_to_grad(x): return (x / Decimal(math.pi)) * Decimal(200)
+    def rad_to_grad(x):
+        return (x / Decimal(math.pi)) * Decimal(200)
 
-    def rad_to_deg(x): return (x / Decimal(math.pi)) * Decimal(180)
-
-    angle = input_decimal(angle)
+    def rad_to_deg(x):
+        return (x / Decimal(math.pi)) * Decimal(180)
 
     if angle is None:
         return None
+    elif not isinstance(angle, Decimal):
+        angle = Decimal(angle)
 
     if local_angle_unit is None:
         if settings.DEFAULT_ANGLE_UNIT == "grad":

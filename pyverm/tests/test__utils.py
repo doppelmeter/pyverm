@@ -36,8 +36,10 @@ class TestMakeDecimal(unittest.TestCase):
         self.assertEqual(temp, input_decimal(temp), msg="test if value dosen't change")
 
     def test_make_decimal_from_float(self):
-        self.assertIsInstance(input_decimal(float(3.14196345)), decimal.Decimal, msg="test if it returns a decimal value")
-        self.assertAlmostEqual(decimal.Decimal("0.123456789"), input_decimal(float("0.123456789")), msg="test if value stays the same")
+        self.assertIsInstance(input_decimal(float(3.14196345)), decimal.Decimal,
+                              msg="test if it returns a decimal value")
+        self.assertAlmostEqual(decimal.Decimal("0.123456789"), input_decimal(float("0.123456789")),
+                               msg="test if value stays the same")
 
     def test_make_decimal_from_integer(self):
         self.assertIsInstance(input_decimal(int(3)), decimal.Decimal, msg="test if it returns a decimal value")
@@ -49,17 +51,18 @@ class TestMakeDecimal(unittest.TestCase):
         with self.assertRaises(TypeError, msg="Test if it raises an exception when called with text string"):
             input_decimal("Test")
 
+
 class TestMakePoint(unittest.TestCase):
     def test_make_point_from_none(self):
         self.assertIsNone(input_point(None), msg="test if None stays none")
 
     def test_make_point_from_point(self):
-        temp = Point(0,0,0)
+        temp = Point(0, 0, 0)
         self.assertIs(temp, input_point(temp), msg="test if point stays the same object")
         self.assertEqual(temp, input_point(temp), msg="test if value dosen't change")
 
     def test_make_point_from_list(self):
-        temp = Point(1,2,3)
+        temp = Point(1, 2, 3)
         self.assertIsInstance(input_point([1, 2, 3]), Point,
                               msg="test if it returns a point object")
         self.assertEqual(temp[0], input_point([1, 2, 3])[0],
@@ -70,7 +73,7 @@ class TestMakePoint(unittest.TestCase):
                          msg="test if z value stays the same")
 
     def test_make_point_from_tuple(self):
-        temp = Point(1,2,3)
+        temp = Point(1, 2, 3)
         self.assertIsInstance(input_point((1, 2, 3)), Point,
                               msg="test if it returns a point object")
         self.assertEqual(temp[0], input_point((1, 2, 3))[0],
@@ -79,4 +82,3 @@ class TestMakePoint(unittest.TestCase):
                          msg="test if x value stays the same")
         self.assertEqual(temp[2], input_point((1, 2, 3))[2],
                          msg="test if z value stays the same")
-

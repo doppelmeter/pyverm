@@ -28,7 +28,6 @@ from . import _functions
 from . import _classes
 
 
-
 def azimuth(point_a, point_b):
     """ Return the azimuth form point A to point B.
 
@@ -48,6 +47,7 @@ def azimuth(point_a, point_b):
     """
     return _functions.azimuth(point_a, point_b)
 
+
 def distance(point_a, point_b):
     """Return the 2D distance from point A to Point B.
 
@@ -65,7 +65,6 @@ def distance(point_a, point_b):
     return _functions.distance(point_a, point_b)
 
 
-
 def station(standpoint, orientation):
     """Return a station with standpoint and orientation.
 
@@ -77,6 +76,7 @@ def station(standpoint, orientation):
     :rtype: pyverm.Station
     """
     return _classes.Station(standpoint, orientation)
+
 
 def station_abriss(standpoint, observations):
     """Calculate the orientation from the observations and return the station object.
@@ -95,6 +95,7 @@ def station_abriss(standpoint, observations):
     orientation = _functions.abriss(standpoint, observations)
     return _classes.Station(standpoint, orientation)
 
+
 def station_helmert(observations):
     """Calculate the standpoint and orientation and return the station object.
 
@@ -108,7 +109,3 @@ def station_helmert(observations):
     """
     standpoint, orientation = _functions.free_station(observations)
     return _classes.Station(standpoint, orientation)
-
-
-
-

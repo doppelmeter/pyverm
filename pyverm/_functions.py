@@ -24,12 +24,13 @@ API defines the interface you can use to interact with the PyVerm library.
 
 """
 
-
 import math
 from decimal import *
 
 from . import _utils
-from . import _classes
+from . import settings
+
+getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION
 
 
 def distance(point_1, point_2):
@@ -45,7 +46,9 @@ def distance(point_1, point_2):
     point_1 = _utils.input_point(point_1)
     point_2 = _utils.input_point(point_2)
     # calculation
-    distance = ((point_1[0]-point_2[0])**2+(point_1[1]-point_2[1])**2)**Decimal('0.5')
+    delta_y = point_2[0] - point_1[0]
+    delta_x = point_2[1] - point_1[1]
+    distance = ((delta_y ** 2) + (delta_x ** 2)) ** Decimal('0.5')
     return Decimal(distance)
 
 
@@ -62,12 +65,14 @@ def azimuth(point_1, point_2):
     point_1 = _utils.input_point(point_1)
     point_2 = _utils.input_point(point_2)
     # calculation
-    delta_y = point_2[0]-point_1[0]
+    delta_y = point_2[0] - point_1[0]
     delta_x = point_2[1] - point_1[1]
     azimuth = math.atan2(delta_y, delta_x)
+    # considering that the azimuth is always positive
     if azimuth < 0:
-        azimuth += math.pi*2
+        azimuth += Decimal(math.pi * 2)
     return _utils.output_angle(azimuth)
+
 
 def cartesian(distance, azimuth):
     """Calculate the cartesian coordinates form polar coordinates
@@ -84,7 +89,8 @@ def cartesian(distance, azimuth):
     x = distance * Decimal(math.cos(azimuth))
     return y, x
 
-def polar(point, origin=(0,0)):
+
+def polar(point, origin=(0, 0)):
     """
 
     :param point:
@@ -98,6 +104,7 @@ def polar(point, origin=(0,0)):
     dist = distance(origin, point)
     azi = azimuth(origin, point)
     return dist, azi
+
 
 def abriss(standpoint, observations):
     """Calculate the orientation
@@ -115,8 +122,9 @@ def abriss(standpoint, observations):
         azi = azimuth(standpoint, observation.reduced_targetpoint)
         ori = azi - observation.reduced_horizontal_angle
         temp += ori
-    orientation = temp/len(observations)
+    orientation = temp / len(observations)
     return Decimal(orientation)
+
 
 def free_station(observations):
     """Calculate the standpoint and orientation
@@ -149,21 +157,18 @@ def free_station(observations):
     temp_a_unten = 0
     for observation in observations:
         y, x = cartesian(observation.reduced_distance, observation.reduced_horizontal_angle)
-        y_ = y-ys
-        x_ = x-xs
+        y_ = y - ys
+        x_ = x - xs
         Y_ = observation.reduced_targetpoint[0] - Ys
         X_ = observation.reduced_targetpoint[1] - Xs
-        temp_o_oben += x_*Y_ - y_*X_
-        temp_o_unten += x_**2 + y_**2
-        temp_a_oben += x_*X_ + y_*Y_
-        temp_a_unten += x_**2 + y_**2
-    o = temp_o_oben/temp_o_unten
+        temp_o_oben += x_ * Y_ - y_ * X_
+        temp_o_unten += x_ ** 2 + y_ ** 2
+        temp_a_oben += x_ * X_ + y_ * Y_
+        temp_a_unten += x_ ** 2 + y_ ** 2
+    o = temp_o_oben / temp_o_unten
     a = temp_a_oben / temp_a_unten
 
-
-    standpoint = ( (Ys - a*ys - o*xs), (Xs - a*xs + o*ys) , 0)
+    standpoint = ((Ys - a * ys - o * xs), (Xs - a * xs + o * ys), 0)
 
     orientation = abriss(standpoint, observations)
     return standpoint, Decimal(orientation)
-
-

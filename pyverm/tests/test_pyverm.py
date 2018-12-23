@@ -26,7 +26,7 @@ import decimal
 from pyverm import azimuth, distance, Point
 from pyverm import settings
 
-decimal.getcontext().prec = settings.DECIMAL_PRECISION  # decimal.set_precision
+decimal.getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION  # decimal.set_precision
 
 class TestDistance(unittest.TestCase):
     def test_calculation(self):

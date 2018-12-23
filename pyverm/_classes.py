@@ -24,23 +24,36 @@ _classes module defines all the classes
 
 """
 
-
 from decimal import *
 import collections
 import math
 
 from . import _functions
 from . import _utils
+from . import settings
+
+getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION
 
 
 
-Point = collections.namedtuple("Point",["y", "x", "z"])
+Point = collections.namedtuple("Point", ["y", "x", "z"])
 
 
 class Station:
     def __init__(self, standpoint, orientation):
+        standpoint = _utils.input_point(standpoint)
+        orientation = _utils.input_angle(orientation)
         self.standpoint = standpoint
-        self.orientation = _utils.input_decimal(orientation)
+        self._orientation = orientation
+
+    @property
+    def orientation(self):
+        return _utils.output_angle(self._orientation)
+
+    @orientation.setter
+    def orientation(self, orientation):
+        orientation = _utils.input_angle(orientation)
+        self._orientation = orientation
 
     def survey(self, observation):
         """Returns the Point, which was surveyed with the given observation.
@@ -50,10 +63,11 @@ class Station:
         :return: :class:`Point <Point>` object
         :rtype: pyverm.Point
         """
-        y, x = _functions.cartesian(observation.reduced_distance, observation.reduced_horizontal_angle+self.orientation)
+        y, x = _functions.cartesian(observation.reduced_distance,
+                                    observation.reduced_horizontal_angle + self.orientation)
         y += Decimal(self.standpoint[0])
         x += Decimal(self.standpoint[1])
-        return Point(y,x,0)
+        return Point(y, x, 0)
 
     def stakeout(self, point):
         """Return the observation values, which are needed to stakeout the given point.
@@ -63,11 +77,11 @@ class Station:
         :return: :class:`ObservationPolar <ObservationPolar>` object
         :rtype: pyverm.ObservationPolar
         """
+        point = _utils.input_point(point)
         dist, azi = _functions.polar(point, origin=self.standpoint)
-        hz = azi-self.orientation
+        hz = azi - self.orientation
         observation = ObservationPolar(reduced_distance=dist, reduced_horizontal_angle=hz)
         return observation
-
 
     def __repr__(self):
         return f"<Station at ({self.standpoint[0]:.5f}, {self.standpoint[1]:.5f}, {self.standpoint[2]:.5f}) with orientation {self.orientation:.5f}>"
@@ -135,8 +149,9 @@ class ObservationPolar:
                 if self._raw_horizontal_angle_2 > self._raw_horizontal_angle:
                     temp = -1
                 else:
-                    temp=+1
-                reduced = ((self._raw_horizontal_angle + (self._raw_horizontal_angle_2 + Decimal(math.pi*temp))))/Decimal(2)
+                    temp = +1
+                reduced = ((self._raw_horizontal_angle + (
+                            self._raw_horizontal_angle_2 + Decimal(math.pi * temp)))) / Decimal(2)
             elif self._raw_horizontal_angle is not None:
                 reduced = self._raw_horizontal_angle
             else:
@@ -159,7 +174,7 @@ class ObservationPolar:
         if self._reduced_zenith_angle is None:
             # average from to directions
             if self._raw_zenith_angle_2 is not None and self._raw_zenith_angle is not None:
-                reduced = ((self._raw_zenith_angle - self._raw_zenith_angle_2) + Decimal(math.pi*2))/Decimal(2)
+                reduced = ((self._raw_zenith_angle - self._raw_zenith_angle_2) + Decimal(math.pi * 2)) / Decimal(2)
             elif self._raw_zenith_angle is not None:
                 reduced = self._raw_zenith_angle
             else:
@@ -184,14 +199,13 @@ class ObservationPolar:
     def reduced_distance(self, reduced_distance):
         self._reduced_distance = Decimal(reduced_distance)
 
-
     def __repr__(self):
         return f"<Polar Observation with Hz {self.reduced_horizontal_angle:.5f} and Dist {self.reduced_distance:.5f}>"
+
 
 class Orthogonal:
     def __init__(self, point_a, point_b, *, mesured_distande=None):
         pass
-
 
 
 class Transformation:
@@ -209,8 +223,3 @@ class Transformation:
 
     def to_source(self):
         pass
-
-
-
-
-

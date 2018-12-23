@@ -25,9 +25,8 @@ settings stores the package wide settings and constants
 
 """
 
-
 # Preferences
-DECIMAL_PRECISION = 15  #: decimal precision
+DEFAULT_DECIMAL_PRECISION = 15  #: decimal precision
 DEFAULT_ANGLE_UNIT = "grad"  #: grad, deg or rad
 
 # Constants

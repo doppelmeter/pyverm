@@ -28,6 +28,7 @@ import decimal
 
 import pyverm
 
+
 class TestExample1(unittest.TestCase):
     # uses the setUp methode to test if the example raises an error.
     def setUp(self):
@@ -39,6 +40,7 @@ class TestExample1(unittest.TestCase):
     def test_example1(self):
         self.assertTrue(True, msg="problem in example 1")
 
+
 class TestExample2(unittest.TestCase):
     # uses the setUp methode to test if the example raises an error.
     def setUp(self):
@@ -49,6 +51,7 @@ class TestExample2(unittest.TestCase):
 
     def test_example2(self):
         self.assertTrue(True, msg="problem in example 2")
+
 
 class TestExample3(unittest.TestCase):
     # uses the setUp methode to test if the example raises an error.
@@ -97,6 +100,3 @@ class TestExample4(unittest.TestCase):
 
     def test_example4(self):
         self.assertTrue(True, msg="problem in example 4")
-
-
-
