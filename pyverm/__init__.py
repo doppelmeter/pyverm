@@ -47,3 +47,5 @@ __all__ = ["Point", "azimuth", "distance", "station", "station_abriss", "station
 from .api import azimuth, distance, station, station_abriss, station_helmert
 from ._classes import ObservationPolar, Point, Station
 from . import __version__
+from . import settings
+

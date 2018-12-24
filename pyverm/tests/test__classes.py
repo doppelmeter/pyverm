@@ -19,37 +19,33 @@
 #                                                                      #
 ########################################################################
 
+import pytest
 import unittest
 import decimal
 
 import pyverm
+from pyverm import azimuth, distance, Point
+from pyverm import settings
+
+decimal.getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION  # decimal.set_precision
 
 
+class TestPoint(unittest.TestCase):
+    def setUp(self):
+        self.point_1 = Point(0, 1, 2)
 
+    def test_access_point_data(self):
+        self.assertEqual(
+            self.point_1[0],
+            0,
+            'incorrect access of the y-value')
 
-class Test_pyverm_api:
-    def test_version(self):
-        pyverm.__version__
+        self.assertEqual(
+            self.point_1[1],
+            1,
+            'incorrect access of the x-value')
 
-    def test_entry_points(self):
-
-        # basics
-        pyverm.azimuth
-        pyverm.distance
-
-        # classes
-        pyverm.Point
-        pyverm.ObservationPolar
-
-        # polar stations
-        pyverm.station
-        pyverm.station_abriss
-        pyverm.station_helmert
-
-    def test_settings(self):
-        pyverm.settings.DEFAULT_ANGLE_UNIT
-        pyverm.settings.DEFAULT_DECIMAL_PRECISION
-
-
-
-
+        self.assertEqual(
+            self.point_1[2],
+            2,
+            'incorrect access of the z-value')

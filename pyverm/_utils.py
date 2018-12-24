@@ -84,7 +84,7 @@ def input_observations_polar(observations):
         raise TypeError("argument must be a list or tuple of ObservationPolar")
 
 
-def input_angle(angle, *, local_angle_unit=None):
+def input_angle(angle, *, unit=None, output_unit="rad"):
     """
     Return the given angle in rad, the input unit can be set localli or it uses the default settings.
 
@@ -104,7 +104,7 @@ def input_angle(angle, *, local_angle_unit=None):
     elif not isinstance(angle, Decimal):
         angle = Decimal(angle)
 
-    if local_angle_unit is None:
+    if unit is None:
         if settings.DEFAULT_ANGLE_UNIT == "grad":
             rad = grad_to_rad(angle)
         elif settings.DEFAULT_ANGLE_UNIT == "deg":
@@ -114,18 +114,23 @@ def input_angle(angle, *, local_angle_unit=None):
         else:
             raise NotImplemented
     else:
-        if local_angle_unit == "grad":
+        if unit == "grad":
             rad = grad_to_rad(angle)
-        elif local_angle_unit == "deg":
+        elif unit == "deg":
             rad = deg_to_rad(angle)
-        elif local_angle_unit == "rad":
+        elif unit == "rad":
             rad = angle
         else:
             raise NotImplemented
+
+    # if for any reason the output should not be in rad
+    if output_unit != "rad":
+        output = output_angle(output, unit=output_unit)
+
     return Decimal(rad)
 
 
-def output_angle(angle, *, local_angle_unit=None):
+def output_angle(angle, *, unit=None, input_unit="rad"):
     def rad_to_grad(x):
         return (x / Decimal(math.pi)) * Decimal(200)
 
@@ -137,7 +142,11 @@ def output_angle(angle, *, local_angle_unit=None):
     elif not isinstance(angle, Decimal):
         angle = Decimal(angle)
 
-    if local_angle_unit is None:
+    # if for any reason the input should not be in rad
+    if input_unit != "rad":
+        angle = input_angle(angle, unit=input_unit)
+
+    if unit is None:
         if settings.DEFAULT_ANGLE_UNIT == "grad":
             output = rad_to_grad(angle)
         elif settings.DEFAULT_ANGLE_UNIT == "deg":
@@ -147,11 +156,11 @@ def output_angle(angle, *, local_angle_unit=None):
         else:
             raise NotImplemented
     else:
-        if local_angle_unit == "grad":
+        if unit == "grad":
             output = rad_to_grad(angle)
-        elif local_angle_unit == "deg":
+        elif unit == "deg":
             output = rad_to_deg(angle)
-        elif local_angle_unit == "rad":
+        elif unit == "rad":
             output = angle
         else:
             raise NotImplemented

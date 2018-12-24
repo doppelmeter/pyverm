@@ -116,25 +116,25 @@ class ObservationPolar:
         :type raw_zenith_angle: float or decimal
         :param raw_zenith_angle_2: (optional) zenith angle in gon in second direction
         :type raw_zenith_angle_2: float or decimal
-        :param raw_distance: (optional) distance in meters
+        :param raw_distance: (optional) distance in meters **not yet implemented**
         :type raw_distance: float or decimal
-        :param raw_distance_2: (optional) distance in meters in second direction
+        :param raw_distance_2: (optional) distance in meters in second direction **not yet implemented**
         :type raw_distance_2: float or decimal
 
 
         """
         # reduced values
         self.reduced_targetpoint = kwargs.setdefault("reduced_targetpoint", None)
-        self._reduced_horizontal_angle = _utils.input_angle(kwargs.setdefault("reduced_horizontal_angle", None))
-        self._reduced_zenith_angle = _utils.input_angle(kwargs.setdefault("reduced_zenith_angle", None))
+        self._reduced_hz = _utils.input_angle(kwargs.setdefault("reduced_horizontal_angle", None))
+        self._reduced_v = _utils.input_angle(kwargs.setdefault("reduced_zenith_angle", None))
         self._reduced_distance = _utils.input_decimal(kwargs.setdefault("reduced_distance", None))
 
         # raw values
-        self._raw_horizontal_angle = _utils.input_angle(kwargs.setdefault("raw_horizontal_angle", None))
-        self._raw_horizontal_angle_2 = _utils.input_angle(kwargs.setdefault("raw_horizontal_angle_2", None))
-        self._raw_zenith_angle = _utils.input_angle(kwargs.setdefault("raw_zenith_angle", None))
-        self._raw_zenith_angle_2 = _utils.input_angle(kwargs.setdefault("raw_zenith_angle_2", None))
-        self._raw_distance = _utils.input_decimal(kwargs.setdefault("raw_distance", None))
+        self._raw_hz_1 = _utils.input_angle(kwargs.setdefault("raw_horizontal_angle", None))
+        self._raw_hz_2 = _utils.input_angle(kwargs.setdefault("raw_horizontal_angle_2", None))
+        self._raw_v_1 = _utils.input_angle(kwargs.setdefault("raw_zenith_angle", None))
+        self._raw_v_2 = _utils.input_angle(kwargs.setdefault("raw_zenith_angle_2", None))
+        self._raw_distance_1 = _utils.input_decimal(kwargs.setdefault("raw_distance", None))
         self._raw_distance_2 = _utils.input_decimal(kwargs.setdefault("raw_distance_2", None))
 
     @property
@@ -143,27 +143,27 @@ class ObservationPolar:
         Return reduced_horizontal_angle or if None and raw in two direction present, return calculated reduced angle
         :return:
         """
-        if self._reduced_horizontal_angle is None:
+        if self._reduced_hz is None:
             # average from to directions
-            if self._raw_horizontal_angle_2 is not None and self._raw_horizontal_angle is not None:
-                if self._raw_horizontal_angle_2 > self._raw_horizontal_angle:
+            if self._raw_hz_2 is not None and self._raw_hz_1 is not None:
+                if self._raw_hz_2 > self._raw_hz_1:
                     temp = -1
                 else:
                     temp = +1
-                reduced = ((self._raw_horizontal_angle + (
-                            self._raw_horizontal_angle_2 + Decimal(math.pi * temp)))) / Decimal(2)
-            elif self._raw_horizontal_angle is not None:
-                reduced = self._raw_horizontal_angle
+                reduced = ((self._raw_hz_1 + (
+                        self._raw_hz_2 + Decimal(math.pi * temp)))) / Decimal(2)
+            elif self._raw_hz_1 is not None:
+                reduced = self._raw_hz_1
             else:
                 raise NotImplemented("there is no zenith angle")
             output = reduced
         else:
-            output = self._reduced_horizontal_angle
+            output = self._reduced_hz
         return _utils.output_angle(output)
 
     @reduced_horizontal_angle.setter
     def reduced_horizontal_angle(self, reduced_horizontal_angle):
-        self._reduced_horizontal_angle = _utils.input_angle(reduced_horizontal_angle)
+        self._reduced_hz = _utils.input_angle(reduced_horizontal_angle)
 
     @property
     def reduced_zenith_angle(self):
@@ -171,22 +171,22 @@ class ObservationPolar:
         Return reduced_zenith_angle or if None and raw in two direction present, return calculated reduced angle
         :return:
         """
-        if self._reduced_zenith_angle is None:
+        if self._reduced_v is None:
             # average from to directions
-            if self._raw_zenith_angle_2 is not None and self._raw_zenith_angle is not None:
-                reduced = ((self._raw_zenith_angle - self._raw_zenith_angle_2) + Decimal(math.pi * 2)) / Decimal(2)
-            elif self._raw_zenith_angle is not None:
-                reduced = self._raw_zenith_angle
+            if self._raw_v_2 is not None and self._raw_v_1 is not None:
+                reduced = ((self._raw_v_1 - self._raw_v_2) + Decimal(math.pi * 2)) / Decimal(2)
+            elif self._raw_v_1 is not None:
+                reduced = self._raw_v_1
             else:
                 raise NotImplemented("there is no zenith angle")
             output = reduced
         else:
-            output = self._reduced_zenith_angle
+            output = self._reduced_v
         return _utils.output_angle(output)
 
     @reduced_zenith_angle.setter
     def reduced_zenith_angle(self, reduced_zenith_angle):
-        self._reduced_zenith_angle = _utils.input_angle(reduced_zenith_angle)
+        self._reduced_v = _utils.input_angle(reduced_zenith_angle)
 
     @property
     def reduced_distance(self):
