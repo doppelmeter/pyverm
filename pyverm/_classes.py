@@ -203,6 +203,7 @@ class ObservationPolar:
         return "<Polar Observation with Hz {:.5f} and Dist {:.5f}>".format(self.reduced_horizontal_angle, self.reduced_distance)
 
 
+
 class Orthogonal:
     def __init__(self, point_a, point_b, *, mesured_distande=None):
         pass

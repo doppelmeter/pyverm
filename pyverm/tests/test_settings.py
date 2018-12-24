@@ -19,37 +19,17 @@
 #                                                                      #
 ########################################################################
 
-import unittest
+import pytest
+
 import decimal
 
-import pyverm
 
 
+from .. import settings
 
+class Test_settings:
+    def test_default_decimal_precision(self):
+        assert settings.DEFAULT_DECIMAL_PRECISION == 15
 
-class Test_pyverm_api:
-    def test_version(self):
-        pyverm.__version__
-
-    def test_entry_points(self):
-
-        # basics
-        pyverm.azimuth
-        pyverm.distance
-
-        # classes
-        pyverm.Point
-        pyverm.ObservationPolar
-
-        # polar stations
-        pyverm.station
-        pyverm.station_abriss
-        pyverm.station_helmert
-
-    def test_settings(self):
-        pyverm.settings.DEFAULT_ANGLE_UNIT
-        pyverm.settings.DEFAULT_DECIMAL_PRECISION
-
-
-
-
+    def test_default_angle_unit(self):
+        assert settings.DEFAULT_ANGLE_UNIT == "grad"

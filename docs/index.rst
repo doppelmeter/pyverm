@@ -32,7 +32,7 @@ For more examples and information's you should visit the `documentation <https:/
 
     import pyverm
 
-    standpoint = pyverm.Point(2600000, 1200000)
+    standpoint = pyverm.Point(2600000, 1200000, 0)
     orientation = 123.4567
 
     station = pyverm.station(standpoint, orientation)
@@ -73,9 +73,12 @@ Links
 * **PyPi** `pypi.org/project/pyverm <https://pypi.org/project/pyverm/>`_
 * **License** `GNU GPLv3 <https://www.gnu.org/licenses/gpl-3.0.en.html>`_
 
+Further
+^^^^^^^
+
 .. toctree::
    :maxdepth: 2
-   
+
    get_started
    documentation
    history

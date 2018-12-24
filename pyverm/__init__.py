@@ -25,15 +25,8 @@ on calculations for surveying in switzerland, but PyVerm should be as versatile 
 possible. In addition to its use in education and research, it should also be possible
 to use it as a component for software development.
 
-PyVerm Classes
-^^^^^^^^^^^^^^
 
 ..  module:: pyverm
-
-..  autoclass:: Point
-    :members:
-    :inherited-members:
-    :special-members: __init__
 
 ..  autoclass:: ObservationPolar
     :members:
@@ -44,19 +37,15 @@ PyVerm Classes
     :members:
     :inherited-members:
 
-PyVerm Functions
-^^^^^^^^^^^^^^^^
 
 """
 
-__all__ = ["azimuth", "distance", "station", "station_abriss", "station_helmert", "ObservationPolar", "Point"]
+__all__ = ["Point", "azimuth", "distance", "station", "station_abriss", "station_helmert", "ObservationPolar"]
 
-
-import warnings
-
-warnings.warn("This package is in early developement and therfore is not stable at all.")
 
 
 from .api import azimuth, distance, station, station_abriss, station_helmert
 from ._classes import ObservationPolar, Point, Station
 from . import __version__
+from . import settings
+
