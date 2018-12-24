@@ -19,8 +19,7 @@
 #                                                                      #
 ########################################################################
 
-import unittest
-import decimal
+import pytest
 
 import pyverm
 
