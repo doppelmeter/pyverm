@@ -67,7 +67,7 @@ def azimuth(point_1, point_2):
     # calculation
     delta_y = point_2[0] - point_1[0]
     delta_x = point_2[1] - point_1[1]
-    azimuth = math.atan2(delta_y, delta_x)
+    azimuth = Decimal(math.atan2(delta_y, delta_x))
     # considering that the azimuth is always positive
     if azimuth < 0:
         azimuth += Decimal(math.pi * 2)

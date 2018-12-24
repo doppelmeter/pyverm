@@ -50,7 +50,10 @@ def input_decimal(value):
     elif isinstance(value, Decimal):
         return value
     else:
-       return Decimal(value)
+        try:
+            return Decimal(value)
+        except:
+            raise TypeError
 
 
 def input_point(point):
