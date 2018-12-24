@@ -84,7 +84,7 @@ class Station:
         return observation
 
     def __repr__(self):
-        return f"<Station at ({self.standpoint[0]:.5f}, {self.standpoint[1]:.5f}, {self.standpoint[2]:.5f}) with orientation {self.orientation:.5f}>"
+        return "<Station at ({:.5f}, {:.5f}, {:.5f}) with orientation {:.5f}>".format(self.standpoint[0], self.standpoint[1],self.standpoint[2], self.orientation)
 
 
 class ObservationPolar:
