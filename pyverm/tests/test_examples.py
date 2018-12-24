@@ -75,6 +75,7 @@ class TestExample3(unittest.TestCase):
         orientation = station.orientation
         new_point = station.survey(pyverm.ObservationPolar(
             reduced_horizontal_angle=375.00,
+
             reduced_distance=575.1234
         )
         )
