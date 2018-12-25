@@ -3,9 +3,9 @@ Release Notes
 
 PyVerm uses `Semantic Versioning <https://semver.org/>`_
 
-0.1.3 (??.??.????)
+0.1.3 (25.12.2018)
 ^^^^^^^^^^^^^^^^^^
-* [what has changed]
+* test deployment with travis CI
 
 0.1.2 (25.12.2018)
 ^^^^^^^^^^^^^^^^^^

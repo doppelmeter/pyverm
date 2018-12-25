@@ -23,13 +23,13 @@ import pyverm
 # -- Project information -----------------------------------------------------
 
 project = 'PyVerm'
-copyright = pyverm.__version__.__copyright__
-author = pyverm.__version__.__author__
+copyright = pyverm.__meta__.__copyright__
+author = pyverm.__meta__.__author__
 
 # The short X.Y version
-version = pyverm.__version__.__version__
+version = pyverm.__meta__.__version__
 # The full version, including alpha/beta/rc tags
-release = pyverm.__version__.__release__
+release = pyverm.__meta__.__release__
 
 
 # -- General configuration ---------------------------------------------------
