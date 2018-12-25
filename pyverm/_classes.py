@@ -209,18 +209,4 @@ class Orthogonal:
         pass
 
 
-class Transformation:
-    def __init__(self):
-        pass
 
-    def info(self):
-        """Return the transformation parameters as dict?
-
-        :return:
-        """
-
-    def to_destination(self):
-        pass
-
-    def to_source(self):
-        pass

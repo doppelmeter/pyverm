@@ -40,11 +40,11 @@ to use it as a component for software development.
 
 """
 
-__all__ = ["Point", "azimuth", "distance", "station", "station_abriss", "station_helmert", "ObservationPolar"]
+__all__ = ["Point", "azimuth", "distance", "station", "station_abriss", "station_helmert", "transformation_helmert", "ObservationPolar"]
 
 
 
-from .api import azimuth, distance, station, station_abriss, station_helmert
+from .api import azimuth, distance, station, station_abriss, station_helmert, transformation_helmert
 from ._classes import ObservationPolar, Point, Station
 from . import __version__
 from . import settings

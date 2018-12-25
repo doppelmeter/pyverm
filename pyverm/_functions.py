@@ -172,3 +172,4 @@ def free_station(observations):
 
     orientation = abriss(standpoint, observations)
     return standpoint, Decimal(orientation)
+
