@@ -48,6 +48,7 @@ User Guide
 
 .. toctree::
    :maxdepth: 2
+   :caption: User Guide
 
    user/get_started
    user/documentation
@@ -58,6 +59,7 @@ General Information's
 
 .. toctree::
    :maxdepth: 2
+   :caption: General Information's
 
    info/faq
    info/road-map
@@ -70,8 +72,10 @@ Developers Guide
 
 .. toctree::
    :maxdepth: 2
+   :caption: Developers Guide
 
    dev/development
+   dev/how-to-git
    dev/translations
    dev/todo
 
