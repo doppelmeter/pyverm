@@ -29,8 +29,8 @@ __all__ = ["distance", "azimuth"]
 
 from decimal import *
 import logging
-import math
 
+from . import _math as math
 from . import settings
 from ._classes import Point, ObservationPolar
 

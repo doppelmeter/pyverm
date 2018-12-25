@@ -24,11 +24,12 @@ API defines the interface you can use to interact with the PyVerm library.
 
 """
 
-import math
+#import math
 from decimal import *
 
 from . import _utils
 from . import settings
+from . import _math as math
 
 getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION
 

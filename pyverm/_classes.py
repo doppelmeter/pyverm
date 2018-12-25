@@ -26,11 +26,12 @@ _classes module defines all the classes
 
 from decimal import *
 import collections
-import math
+
 
 from . import _functions
 from . import _utils
 from . import settings
+from . import _math as math
 
 getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION
 

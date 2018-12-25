@@ -25,11 +25,12 @@ and classes.
 
 """
 
-import math
+
 from decimal import *
 
 from pyverm import _functions
 from . import settings
+from . import _math as math
 
 getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION
 
