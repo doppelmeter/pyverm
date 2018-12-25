@@ -22,8 +22,6 @@
 """
 Contains all the Package-Metadata
 
-test
-test
 """
 
 __title__ = "pyverm"
