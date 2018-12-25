@@ -21,14 +21,13 @@
 
 """
 Contains all the Package-Metadata
-c
 
 """
 
 __title__ = "pyverm"
 __description__ = 'Modul for geodetic and surveying calculations'
 __url__ = "https://pyverm.readthedocs.io/en/latest/"
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __release__ = __version__ + ""
 __author__ = 'Marius Huerzeler'
 __author_email__ = 'huerzeler.marius@gmail.com'

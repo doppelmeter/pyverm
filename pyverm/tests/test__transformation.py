@@ -19,33 +19,16 @@
 #                                                                      #
 ########################################################################
 
-"""
-PyVerm is a Python-Package for geodetic and surveying calculations. The main focus is
-on calculations for surveying in switzerland, but PyVerm should be as versatile as
-possible. In addition to its use in education and research, it should also be possible
-to use it as a component for software development.
+import pytest
+
+import decimal
+
+from .. import _transformation
 
 
-..  module:: pyverm
-
-..  autoclass:: ObservationPolar
-    :members:
-    :inherited-members:
-    :special-members: __init__
-
-..  autoclass:: Station
-    :members:
-    :inherited-members:
-
-
-"""
-
-__all__ = ["Point", "azimuth", "distance", "station", "station_abriss", "station_helmert", "transformation_helmert", "ObservationPolar"]
-
-
-
-from .api import azimuth, distance, station, station_abriss, station_helmert, transformation_helmert
-from ._classes import ObservationPolar, Point, Station
-from . import __version__
-from . import settings
-
+class Test_Transformation:
+    def test_transformation_helmert(self):
+        trans = _transformation.Transformation(((0, 0), (1, 1)), ((1, 1), (2, 2)), method="helmert")
+        info = trans.info()
+        var = trans.to_destination((10, 10))
+        assert var == pytest.approx((11, 11), abs=decimal.Decimal(1e-7))

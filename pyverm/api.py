@@ -23,7 +23,7 @@
 API defines the interface you can use to interact with the PyVerm library.
 
 """
-
+import pyverm._transformation
 from . import _functions
 from . import _classes
 
@@ -109,3 +109,18 @@ def station_helmert(observations):
     """
     standpoint, orientation = _functions.free_station(observations)
     return _classes.Station(standpoint, orientation)
+
+
+
+def transformation_helmert(sourcepoints, destinationpoints):
+    """Calculates the transformation and returns a :class:`Transformation <Transformation>` object.
+
+
+    :param sourcepoints: the source points for the transformation
+    :type sourcepoints: list or tuple with pyverm.Point
+    :param destinationpoints: the destination points for the transformation
+    :type destinationpoints: list or tuple with pyverm.Point
+    :return: :class:`Transformation <Transformation>` object
+    :rtype: pyverm.Station
+    """
+    return pyverm._transformation.Transformation(sourcepoints, destinationpoints, method="helmert")
