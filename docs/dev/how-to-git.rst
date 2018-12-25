@@ -56,7 +56,7 @@ Make a new Feature
 
   ``git push origin master``
 
-  ***and** merge release with development branch
+  **and** merge release with development branch
 
   ``git checkout development``
 
