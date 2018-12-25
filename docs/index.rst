@@ -1,8 +1,8 @@
 PyVerm
 ======
 
-What is PyVerm?
-^^^^^^^^^^^^^^^
+**What is PyVerm?**
+
 
 PyVerm is a Python-Package for geodetic and surveying calculations. The main focus
 is on calculations for surveying in switzerland, but PyVerm should be as versatile
@@ -12,21 +12,17 @@ possible to use it as a component for software development.
 PyVerm is currently in its first phase of development.
 
 
-How to install PyVerm?
-^^^^^^^^^^^^^^^^^^^^^^
 
-You can install PyVerm with pip.
+
+**How to install PyVerm?**
+
 
 .. code-block:: bash
 
+    # Python 3.5 and higher or PyPy3.5
     pip install pyverm
 
-**Requirements** Python 3.6 or higher
-
-How to use PyVerm?
-^^^^^^^^^^^^^^^^^^
-
-For more examples and information's you should visit the `documentation <https://pyverm.readthedocs.io/en/latest/index.html>`_.
+**How to use PyVerm?**
 
 .. code-block:: python
 
@@ -45,51 +41,45 @@ For more examples and information's you should visit the `documentation <https:/
     azimuth = pyverm.azimuth(standpoint, new_point)
 
 
-How to contribute?
-^^^^^^^^^^^^^^^^^^
 
-Bug Reports
------------
-If you find a bug, please open an bug report on `GitHub <https://github.com/doppelmeter/pyverm/issues/new/choose>`_.
 
-Ideas
------
-If you have a brilliant idea for a new feature, please open an feature request `GitHub <https://github.com/doppelmeter/pyverm/issues/new/choose>`_.
-
-Code
-----
-In the current development phase, I prefer to write the code myself. But for special things
-you can contact me via GitHub.
-
-License
-^^^^^^^
-
-PyVerm is licensed under the GNU General Public License version 3.
-
-Links
-^^^^^
-* **Documentation** `pyverm.readthedocs.io <https://pyverm.readthedocs.io/en/latest/index.html>`_
-* **Sourcecode** `github.com/doppelmeter/pyverm <https://github.com/doppelmeter/pyverm>`_
-* **PyPi** `pypi.org/project/pyverm <https://pypi.org/project/pyverm/>`_
-* **License** `GNU GPLv3 <https://www.gnu.org/licenses/gpl-3.0.en.html>`_
-
-Further
-^^^^^^^
+User Guide
+----------
 
 .. toctree::
    :maxdepth: 2
+   :caption: User Guide
 
-   get_started
-   documentation
-   history
+   user/get_started
+   user/documentation
 
-   
+
+General Information's
+---------------------
+
 .. toctree::
    :maxdepth: 2
-   :caption: Development
+   :caption: General Information's
 
-   development
-   translations
-   todo
+   info/faq
+   info/road-map
+   info/release-notes
+   info/license
+
+
+Developers Guide
+----------------
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Developers Guide
+
+   dev/development
+   dev/how-to-git
+   dev/translations
+   dev/todo
+
+
+
 
    
