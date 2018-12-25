@@ -1,13 +1,22 @@
 language: python
 dist: xenial
 python:
-  - "3.5"
-  - "3.6"
-  - "3.7"
-  - "3.8-dev"  # 3.7 development branch
-  - "pypy3.5"
+- '3.5'
+- '3.6'
+- '3.7'
+- 3.8-dev
+- pypy3.5
 install:
-  - pip install pytest
-# command to run tests
+- pip install pytest
 script:
-  - pytest
+- pytest
+deploy:
+  provider: pypi
+  user: huema-ch
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
+    python: 3.6
+  skip_existing: true
+  password:
+    secure: IAcRlVA1rmMbUc7OGXz/mFYADH7FgT33MDPPIKt5Q4FXnyJ/W3x3qR5HhWgaMo5RJaQ8vhJktHiIynwt2pJyHmBgtFniSF+i7fP4FdCIXr8LsAF3bJWPEFE2b+oK8z+PT3sokbsIvwnMma2aguZSQyqjpvyuiLBN/x5xQH5DI4SV+FizSyG7qQfe6++wyMtek0Tq8KTAEMNcNdUOwMJZDrS/fPDIUOkZAAKh83lQ1KNLXhM+/pemrqMwwtiQe1d/Yt9bFLZNwUXANHkyKzMm/YjS4QHbTi46srCKDRp04SYp4vilk8RVLBwkP8i3wwiDoHAbEmannjN7o5OfzWulAZMv7mSqSKVorH3cnW2FjCdvD9I5JTDiYxYPGhKvTCCSP/r8ebN+t2WdqmBbwgG/r2aUHJ8BH8SJQo/v3kW6TJITfZ9rFNDFLZMgVznnSdtbyJWOie9u5NlOorJRq7BrdW8MRdEMtBC2iwWAUhYDJzG+pn32wzJVwxpw7aowgyxMrJrJ792auxO0B1+Ho47c/5IJukdoP5tROAhq56f/IxM3KATgqei2lxVf7i93AzJ/9NvgszTM8f18uby6jdzjsXdM2/2lZrslBfCHzm1ASr+NcIAjCgVU42zJh8dHqpV+/h7bB8YY7+t7YqvfFER2cAP9czootu8GTUcVKTZwnzY=
