@@ -42,9 +42,9 @@ class Test_distance:
 
     def test_distance_returns_correct_value(self):
         var_1 =  _functions.distance((-30, -40), (30, 40))
-        assert var_1 == pytest.approx(decimal.Decimal(100), abs=1e-7)
+        assert var_1 == pytest.approx(decimal.Decimal(100), abs=decimal.Decimal(1e-7))
         var_2 = _functions.distance((600000, 200000), (2600000, 1200000))
-        assert var_2 == pytest.approx(decimal.Decimal(2236067.977499789696409173669), abs=1e-7)
+        assert var_2 == pytest.approx(decimal.Decimal(2236067.977499789696409173669), abs=decimal.Decimal(1e-7))
         var_3 = _functions.distance((0, 1), (0, 1200001))
         assert var_3 == decimal.Decimal(1200000)
 
@@ -73,7 +73,7 @@ class Test_azimuth:
         )
         for point, azimuth in test_values:
             var = _functions.azimuth((0,0),point)
-            assert var == pytest.approx(decimal.Decimal(azimuth), abs=1e-7)
+            assert var == pytest.approx(decimal.Decimal(azimuth), abs=decimal.Decimal(1e-7))
 
 class Test_cartesian:
     def test_cartesian_returns_correct_value(self):
@@ -87,8 +87,8 @@ class Test_cartesian:
         for point, azimuth in test_values:
             y, x = point
             var_y, var_x = _functions.cartesian(1, azimuth)
-            assert var_y == pytest.approx(decimal.Decimal(y), abs=1e-7)
-            assert var_x == pytest.approx(decimal.Decimal(x), abs=1e-7)
+            assert var_y == pytest.approx(decimal.Decimal(y), abs=decimal.Decimal(1e-7))
+            assert var_x == pytest.approx(decimal.Decimal(x), abs=decimal.Decimal(1e-7))
 
 class Test_polar:
     def test_cartesian_returns_correct_value(self):
@@ -101,8 +101,8 @@ class Test_polar:
         )
         for point, azimuth in test_values:
             var_dist, var_azimuth = _functions.polar(point)
-            assert var_dist == pytest.approx(decimal.Decimal(1), abs=1e-7)
-            assert var_azimuth == pytest.approx(decimal.Decimal(azimuth), abs=1e-7)
+            assert var_dist == pytest.approx(decimal.Decimal(1), abs=decimal.Decimal(1e-7))
+            assert var_azimuth == pytest.approx(decimal.Decimal(azimuth), abs=decimal.Decimal(1e-7))
 
 class Test_abriss:
     def test_abriss_returns_correct_value(self):
@@ -121,7 +121,7 @@ class Test_abriss:
                 reduced_distance=141.421356237)
         ]
         var = _functions.abriss((2600000,1200000), observations)
-        assert var == pytest.approx(decimal.Decimal(50), abs=1e-7)
+        assert var == pytest.approx(decimal.Decimal(50), abs=decimal.Decimal(1e-7))
 
 class Test_free_station:
     def test_abriss_returns_correct_value(self):
@@ -141,9 +141,9 @@ class Test_free_station:
         ]
         var_standpoint, var_ori = _functions.free_station( observations)
         var_y, var_x, z= var_standpoint
-        assert var_ori == pytest.approx(decimal.Decimal(50), abs=1e-7)
-        assert var_y == pytest.approx(decimal.Decimal(2600000), abs=1e-7)
-        assert var_x == pytest.approx(decimal.Decimal(1200000), abs=1e-7)
+        assert var_ori == pytest.approx(decimal.Decimal(50), abs=decimal.Decimal(1e-7))
+        assert var_y == pytest.approx(decimal.Decimal(2600000), abs=decimal.Decimal(1e-7))
+        assert var_x == pytest.approx(decimal.Decimal(1200000), abs=decimal.Decimal(1e-7))
 
 
 
