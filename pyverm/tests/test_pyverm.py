@@ -28,7 +28,7 @@ import pyverm
 
 class Test_pyverm_api:
     def test_version(self):
-        pyverm.__version__
+        pyverm.__meta__
 
     def test_entry_points(self):
 
