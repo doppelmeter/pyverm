@@ -27,7 +27,7 @@ Make a new Feature
   ``git push origin development``
 
 
-Make a new Feature
+Make a Release
 ------------------
 
 * check out release branch from development branch -> name = release-X.X.X
