@@ -21,8 +21,8 @@
 
 # This file loads the internal math and decimal module, which is a bit
 # edited to make the handling of decimal numbers better.
-#
-# if own_math is False we use the builtin math
+
+# if own_math is False, we use the builtin math
 own_math = True
 if own_math:
     from ._pymath import *
