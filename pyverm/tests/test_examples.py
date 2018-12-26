@@ -24,7 +24,8 @@ Test if the samples in the documentation ar working.
 
 """
 import unittest
-import decimal
+
+from .._math import Decimal, getcontext
 
 import pyverm
 

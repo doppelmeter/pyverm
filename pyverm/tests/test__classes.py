@@ -21,13 +21,13 @@
 
 import pytest
 import unittest
-import decimal
+from .._math import Decimal, getcontext
 
 import pyverm
 from pyverm import azimuth, distance, Point
 from pyverm import settings
 
-decimal.getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION  # decimal.set_precision
+getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION  # decimal.set_precision
 
 
 class TestPoint(unittest.TestCase):

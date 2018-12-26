@@ -33,6 +33,7 @@ import logging
 from . import _math as math
 from . import settings
 from ._classes import Point, ObservationPolar
+from ._math import Decimal, getcontext
 
 logger = logging.getLogger(__name__)
 getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION  # decimal.set_precision

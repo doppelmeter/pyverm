@@ -32,6 +32,7 @@ from . import _functions
 from . import _utils
 from . import settings
 from . import _math as math
+from ._math import Decimal, getcontext
 
 getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION
 

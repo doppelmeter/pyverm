@@ -20,9 +20,8 @@
 ########################################################################
 
 import unittest
-import decimal
 import math
-
+from .._math import Decimal, getcontext
 from pyverm._utils import input_decimal, input_point, input_angle, output_angle
 from pyverm._classes import Point
 
@@ -32,23 +31,23 @@ class TestInputDecimal(unittest.TestCase):
         self.assertIsNone(input_decimal(None), msg="test if None stays none")
 
     def test_input_decimal_from_decimal(self):
-        temp = decimal.Decimal("1.3145")
+        temp = Decimal("1.3145")
         self.assertIs(temp, input_decimal(temp), msg="test if decimal stays the same object")
         self.assertEqual(temp, input_decimal(temp), msg="test if value dosen't change")
 
     def test_input_decimal_from_float(self):
-        self.assertIsInstance(input_decimal(float(3.14196345)), decimal.Decimal,
+        self.assertIsInstance(input_decimal(float(3.14196345)), Decimal,
                               msg="test if it returns a decimal value")
-        self.assertAlmostEqual(decimal.Decimal("0.123456789"), input_decimal(float("0.123456789")),
+        self.assertAlmostEqual(Decimal("0.123456789"), input_decimal(float("0.123456789")),
                                msg="test if value stays the same")
 
     def test_input_decimal_from_integer(self):
-        self.assertIsInstance(input_decimal(int(3)), decimal.Decimal, msg="test if it returns a decimal value")
+        self.assertIsInstance(input_decimal(int(3)), Decimal, msg="test if it returns a decimal value")
         self.assertEqual(int("1000"), input_decimal(int("1000")), msg="test if value stays the same")
 
     def test_input_decimal_from_string(self):
-        self.assertIsInstance(input_decimal(str("3.145")), decimal.Decimal, msg="test if it returns a decimal value")
-        self.assertEqual(decimal.Decimal(str("1000")), input_decimal(str("1000")), msg="test if value stays the same")
+        self.assertIsInstance(input_decimal(str("3.145")), Decimal, msg="test if it returns a decimal value")
+        self.assertEqual(Decimal(str("1000")), input_decimal(str("1000")), msg="test if value stays the same")
         with self.assertRaises(TypeError, msg="Test if it raises an exception when called with text string"):
             input_decimal("Test")
 
@@ -93,32 +92,32 @@ class Test_input_angle():
         assert var is None
 
     def test_input_angle_from_decimal(self):
-        var = input_angle(decimal.Decimal(200))
-        assert var == pytest.approx(decimal.Decimal(math.pi), abs=decimal.Decimal(1e-7))
+        var = input_angle(Decimal(200))
+        assert var == pytest.approx(Decimal(math.pi), abs=Decimal(1e-7))
 
     def test_input_angle_from_int(self):
         var = input_angle(int(200))
-        assert var == pytest.approx(decimal.Decimal(math.pi), abs=decimal.Decimal(1e-7))
+        assert var == pytest.approx(Decimal(math.pi), abs=Decimal(1e-7))
 
     def test_input_angle_from_string(self):
         var = input_angle(str(200))
-        assert var == pytest.approx(decimal.Decimal(math.pi), abs=decimal.Decimal(1e-7))
+        assert var == pytest.approx(Decimal(math.pi), abs=Decimal(1e-7))
 
     def test_input_angle_from_float(self):
         var = input_angle(float(200.0))
-        assert var == pytest.approx(decimal.Decimal(math.pi), abs=decimal.Decimal(1e-7))
+        assert var == pytest.approx(Decimal(math.pi), abs=Decimal(1e-7))
 
     def test_input_angle_from_local_unit_grad(self):
         var = input_angle(200, unit="grad")
-        assert var == pytest.approx(decimal.Decimal(math.pi), abs=decimal.Decimal(1e-7))
+        assert var == pytest.approx(Decimal(math.pi), abs=Decimal(1e-7))
 
     def test_input_angle_from_local_unit_deg(self):
         var = input_angle(180, unit="deg")
-        assert var == pytest.approx(decimal.Decimal(math.pi), abs=decimal.Decimal(1e-7))
+        assert var == pytest.approx(Decimal(math.pi), abs=Decimal(1e-7))
 
     def test_input_angle_from_local_unit_rad(self):
         var = input_angle(math.pi, unit="rad")
-        assert var == pytest.approx(decimal.Decimal(math.pi), abs=decimal.Decimal(1e-7))
+        assert var == pytest.approx(Decimal(math.pi), abs=Decimal(1e-7))
 
 class Test_output_angle:
     def test_output_angle_from_none(self):
@@ -126,32 +125,32 @@ class Test_output_angle:
         assert var is None
 
     def test_output_angle_from_decimal(self):
-        var = output_angle(decimal.Decimal(math.pi))
-        assert var == pytest.approx(decimal.Decimal(200), abs=decimal.Decimal(1e-7))
+        var = output_angle(Decimal(math.pi))
+        assert var == pytest.approx(Decimal(200), abs=Decimal(1e-7))
 
     def test_output_angle_from_float(self):
         var = output_angle(float(math.pi))
-        assert var == pytest.approx(decimal.Decimal(200), abs=decimal.Decimal(1e-7))
+        assert var == pytest.approx(Decimal(200), abs=Decimal(1e-7))
 
     def test_output_angle_from_sting(self):
         var = output_angle(str(math.pi))
-        assert var == pytest.approx(decimal.Decimal(200), abs=decimal.Decimal(1e-7))
+        assert var == pytest.approx(Decimal(200), abs=Decimal(1e-7))
 
     def test_output_angle_from_local_unit_grad(self):
-        var = output_angle(decimal.Decimal(200), input_unit="grad")
-        assert var == pytest.approx(decimal.Decimal(200), abs=decimal.Decimal(1e-7))
+        var = output_angle(Decimal(200), input_unit="grad")
+        assert var == pytest.approx(Decimal(200), abs=Decimal(1e-7))
 
     def test_output_angle_to_local_unit_grad(self):
-        var = output_angle(decimal.Decimal(math.pi), unit="grad")
-        assert var == pytest.approx(decimal.Decimal(200), abs=decimal.Decimal(1e-7))
+        var = output_angle(Decimal(math.pi), unit="grad")
+        assert var == pytest.approx(Decimal(200), abs=Decimal(1e-7))
 
     def test_output_angle_to_local_unit_deg(self):
-        var = output_angle(decimal.Decimal(math.pi), unit="deg")
-        assert var == pytest.approx(decimal.Decimal(180), abs=decimal.Decimal(1e-7))
+        var = output_angle(Decimal(math.pi), unit="deg")
+        assert var == pytest.approx(Decimal(180), abs=Decimal(1e-7))
 
     def test_output_angle_to_local_unit_rad(self):
-        var = output_angle(decimal.Decimal(math.pi), unit="rad")
-        assert var == pytest.approx(decimal.Decimal(math.pi), abs=decimal.Decimal(1e-7))
+        var = output_angle(Decimal(math.pi), unit="rad")
+        assert var == pytest.approx(Decimal(math.pi), abs=Decimal(1e-7))
 
 
 
