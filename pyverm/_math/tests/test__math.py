@@ -21,17 +21,6 @@
 
 import pytest
 
-from decimal import *
-from decimal import Decimal as D
-
-import pytest as pt
-import math as m
-
-
-
-import pyverm._math.decimal_math as dm
-
-
 
 
 
