@@ -124,3 +124,47 @@ def transformation_helmert(sourcepoints, destinationpoints):
     :rtype: pyverm.Station
     """
     return pyverm._transformation.Transformation(sourcepoints, destinationpoints, method="helmert")
+
+def line(startpoint, endpoint):
+    """Return a line object
+
+    :param startpoint: the start point of the line
+    :type startpoint: pyverm.Point
+    :param endpoint: the end point of the line
+    :type endpoint: pyverm.Point
+    :return: :class:`Line <Line>` object
+    :rtype: pyverm.Line
+    """
+    return pyverm._classes.Line(startpoint, endpoint)
+
+
+def circle(center, radius):
+    """Return a line object
+
+    :param center: the center of the circle
+    :type center: pyverm.Point
+    :param radius: radius of the circle
+    :type radius: int or decimal
+    :return: :class:`Circle <Circle>` object
+    :rtype: pyverm.Circle
+    """
+    return pyverm._classes.Circle(center, radius)
+
+def intersect( object_a, object_b):
+    """To-Do
+
+    :param object_a:
+    :type object_a: pyverm.Circle or pyverm.Line
+    :param object_b:
+    :type object_b: pyverm.Circle or pyverm.Line
+    :return: tuple with all intersection points
+    """
+    raise NotImplemented
+
+def area(definition):
+    """To-Do
+
+    :param definition:
+    :return:
+    """
+    raise NotImplemented

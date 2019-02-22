@@ -24,7 +24,7 @@ import unittest
 import decimal
 
 import pyverm
-from pyverm import azimuth, distance, Point
+from pyverm import azimuth, distance, Point, Line, Circle
 from pyverm import settings
 
 decimal.getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION  # decimal.set_precision
@@ -49,3 +49,11 @@ class TestPoint(unittest.TestCase):
             self.point_1[2],
             2,
             'incorrect access of the z-value')
+
+class Test_Line:
+    def test_line_class(self):
+        line = Line([0,0,0],(1,1,1))
+
+class Test_Circle:
+    def test_circle_class(self):
+        circle = Circle([0,0,0],3.2)

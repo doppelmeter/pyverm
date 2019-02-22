@@ -208,5 +208,19 @@ class Orthogonal:
     def __init__(self, point_a, point_b, *, mesured_distande=None):
         pass
 
+class Line:
+    def __init__(self, startpoint, endpoint):
+        startpoint = _utils.input_point(startpoint)
+        endpoint = _utils.input_point(endpoint)
+        self.startpoint = startpoint
+        self.endpoint = endpoint
+
+class Circle:
+    def __init__(self, center, radius):
+        center = _utils.input_point(center)
+        radius = _utils.input_decimal(radius)
+        self.center = center
+        self.radius = radius
+
 
 
