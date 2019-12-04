@@ -47,11 +47,9 @@ def input_decimal(value):
     """
     if value is None:
         return None
-    elif isinstance(value, Decimal):
-        return value
     else:
         try:
-            return Decimal(value)
+            return float(value)
         except:
             raise TypeError
 
@@ -94,15 +92,13 @@ def input_angle(angle, *, unit=None, output_unit="rad"):
     """
 
     def grad_to_rad(x):
-        return x / Decimal(200) * Decimal(math.pi)
+        return x / 200 * math.pi
 
     def deg_to_rad(x):
-        return x / Decimal(180) * Decimal(math.pi)
+        return x / 180 * math.pi
 
     if angle is None:
         return None
-    elif not isinstance(angle, Decimal):
-        angle = Decimal(angle)
 
     if unit is None:
         if settings.DEFAULT_ANGLE_UNIT == "grad":
@@ -125,22 +121,23 @@ def input_angle(angle, *, unit=None, output_unit="rad"):
 
     # if for any reason the output should not be in rad
     if output_unit != "rad":
-        output = output_angle(output, unit=output_unit)
+        output = output_angle(rad, unit=output_unit)
+    else:
+        output=rad
 
-    return Decimal(rad)
+    return output
 
 
 def output_angle(angle, *, unit=None, input_unit="rad"):
     def rad_to_grad(x):
-        return (x / Decimal(math.pi)) * Decimal(200)
+        return (x / math.pi) * 200
 
     def rad_to_deg(x):
-        return (x / Decimal(math.pi)) * Decimal(180)
+        return (x / math.pi)* 180
 
     if angle is None:
         return None
-    elif not isinstance(angle, Decimal):
-        angle = Decimal(angle)
+
 
     # if for any reason the input should not be in rad
     if input_unit != "rad":
@@ -164,4 +161,4 @@ def output_angle(angle, *, unit=None, input_unit="rad"):
             output = angle
         else:
             raise NotImplemented
-    return Decimal(output)
+    return output

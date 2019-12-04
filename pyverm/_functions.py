@@ -45,10 +45,10 @@ def distance(point_1, point_2):
     point_1 = _utils.input_point(point_1)
     point_2 = _utils.input_point(point_2)
     # calculation
-    delta_y = Decimal(str(point_2[0] - point_1[0]))
-    delta_x = Decimal(str(point_2[1] - point_1[1]))
-    distance = ((delta_y ** 2) + (delta_x ** 2)) ** Decimal('0.5')
-    return Decimal(distance)
+    delta_y = point_2[0] - point_1[0]
+    delta_x = point_2[1] - point_1[1]
+    distance = ((delta_y ** 2) + (delta_x ** 2)) ** 0.5
+    return distance
 
 
 def azimuth(point_1, point_2):
@@ -66,10 +66,10 @@ def azimuth(point_1, point_2):
     # calculation
     delta_y = point_2[0] - point_1[0]
     delta_x = point_2[1] - point_1[1]
-    azimuth = Decimal(math.atan2(delta_y, delta_x))
+    azimuth = math.atan2(delta_y, delta_x)
     # considering that the azimuth is always positive
     if azimuth < 0:
-        azimuth += Decimal(math.pi * 2)
+        azimuth += math.pi * 2
     return _utils.output_angle(azimuth)
 
 
@@ -84,8 +84,8 @@ def cartesian(distance, azimuth):
     distance = _utils.input_decimal(distance)
     azimuth = _utils.input_angle(azimuth)
     # calculation
-    y = distance * Decimal(math.sin(azimuth))
-    x = distance * Decimal(math.cos(azimuth))
+    y = distance * math.sin(azimuth)
+    x = distance * math.cos(azimuth)
     return y, x
 
 
@@ -122,7 +122,7 @@ def abriss(standpoint, observations):
         ori = azi - observation.reduced_horizontal_angle
         temp += ori
     orientation = temp / len(observations)
-    return Decimal(orientation)
+    return orientation
 
 
 def free_station(observations):
@@ -142,8 +142,8 @@ def free_station(observations):
         y, x = cartesian(observation.reduced_distance, observation.reduced_horizontal_angle)
         temp_ys += y
         temp_xs += x
-        temp_Ys += Decimal(observation.reduced_targetpoint[0])
-        temp_Xs += Decimal(observation.reduced_targetpoint[1])
+        temp_Ys += observation.reduced_targetpoint[0]
+        temp_Xs += observation.reduced_targetpoint[1]
     n = len(observations)
     ys = temp_ys / n
     xs = temp_xs / n
@@ -170,5 +170,5 @@ def free_station(observations):
     standpoint = ((Ys - a * ys - o * xs), (Xs - a * xs + o * ys), 0)
 
     orientation = abriss(standpoint, observations)
-    return standpoint, Decimal(orientation)
+    return standpoint, orientation
 
