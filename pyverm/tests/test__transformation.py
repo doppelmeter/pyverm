@@ -31,4 +31,4 @@ class Test_Transformation:
         trans = _transformation.Transformation(((0, 0), (1, 1)), ((1, 1), (2, 2)), method="helmert")
         info = trans.info()
         var = trans.to_destination((10, 10))
-        assert var == pytest.approx((11, 11), abs=decimal.Decimal(1e-7))
+        assert var == pytest.approx((11, 11), abs=1e-7)
