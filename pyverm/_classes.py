@@ -65,8 +65,8 @@ class Station:
         """
         y, x = _functions.cartesian(observation.reduced_distance,
                                     observation.reduced_horizontal_angle + self.orientation)
-        y += Decimal(self.standpoint[0])
-        x += Decimal(self.standpoint[1])
+        y += self.standpoint[0]
+        x += self.standpoint[1]
         return Point(y, x, 0)
 
     def stakeout(self, point):
@@ -174,7 +174,7 @@ class ObservationPolar:
         if self._reduced_v is None:
             # average from to directions
             if self._raw_v_2 is not None and self._raw_v_1 is not None:
-                reduced = ((self._raw_v_1 - self._raw_v_2) + Decimal(math.pi * 2)) / Decimal(2)
+                reduced = ((self._raw_v_1 - self._raw_v_2) + math.pi * 2) / 2
             elif self._raw_v_1 is not None:
                 reduced = self._raw_v_1
             else:
@@ -197,7 +197,7 @@ class ObservationPolar:
 
     @reduced_distance.setter
     def reduced_distance(self, reduced_distance):
-        self._reduced_distance = Decimal(reduced_distance)
+        self._reduced_distance = reduced_distance
 
     def __repr__(self):
         return "<Polar Observation with Hz {:.5f} and Dist {:.5f}>".format(self.reduced_horizontal_angle, self.reduced_distance)
