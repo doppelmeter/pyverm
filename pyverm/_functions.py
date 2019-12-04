@@ -39,15 +39,14 @@ def distance(point_1, point_2):
 
     :param point_1: ``Point``-object or ``(y,x)``-tuple
     :param point_2: ``Point``-object or ``(y,x)``-tuple
-    :param report_on: boolean
     :return: distance as decimal
     """
     # input preprocessing
     point_1 = _utils.input_point(point_1)
     point_2 = _utils.input_point(point_2)
     # calculation
-    delta_y = point_2[0] - point_1[0]
-    delta_x = point_2[1] - point_1[1]
+    delta_y = Decimal(str(point_2[0] - point_1[0]))
+    delta_x = Decimal(str(point_2[1] - point_1[1]))
     distance = ((delta_y ** 2) + (delta_x ** 2)) ** Decimal('0.5')
     return Decimal(distance)
 
