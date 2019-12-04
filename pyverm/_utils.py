@@ -99,6 +99,11 @@ def input_angle(angle, *, unit=None, output_unit="rad"):
 
     if angle is None:
         return None
+    elif isinstance(angle, str):
+        angle = float(angle)
+    else:
+        pass
+
 
     if unit is None:
         if settings.DEFAULT_ANGLE_UNIT == "grad":
@@ -137,6 +142,10 @@ def output_angle(angle, *, unit=None, input_unit="rad"):
 
     if angle is None:
         return None
+    elif isinstance(angle, str):
+        angle = float(angle)
+    else:
+        pass
 
 
     # if for any reason the input should not be in rad
