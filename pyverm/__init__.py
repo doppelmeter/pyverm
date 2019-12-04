@@ -40,12 +40,12 @@ to use it as a component for software development.
 
 """
 
-__all__ = ["Point", "azimuth", "distance", "station", "station_abriss", "station_helmert", "transformation_helmert", "ObservationPolar"]
+__all__ = ["Point", "azimuth", "distance", "station", "station_abriss", "Line", "Circle", "station_helmert", "transformation_helmert", "ObservationPolar"]
 
 
 
-from .api import azimuth, distance, station, station_abriss, station_helmert, transformation_helmert
-from ._classes import ObservationPolar, Point, Station
+from .api import azimuth, distance, station, station_abriss, station_helmert, transformation_helmert, line, circle
+from ._classes import ObservationPolar, Point, Station, Line, Circle
 from . import __meta__
 from . import settings
 
