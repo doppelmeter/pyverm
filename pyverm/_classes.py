@@ -80,7 +80,12 @@ class Station:
         point = _utils.input_point(point)
         dist, azi = _functions.polar(point, origin=self.standpoint)
         hz = azi - self.orientation
-        observation = ObservationPolar(reduced_distance=dist, reduced_horizontal_angle=hz)
+        if point[2] is not None and self.standpoint[2] is not None:
+            delta_h = self.standpoint[2] - point[2]
+            zenith = _utils.output_angle(math.atan(delta_h/dist)+(math.pi/2))
+            observation = ObservationPolar(reduced_distance=dist, reduced_horizontal_angle=hz, reduced_zenith_angle=zenith)
+        else:
+            observation = ObservationPolar(reduced_distance=dist, reduced_horizontal_angle=hz)
         return observation
 
     def __repr__(self):

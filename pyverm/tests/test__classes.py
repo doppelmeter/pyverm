@@ -24,11 +24,18 @@ import unittest
 import decimal
 
 import pyverm
-from pyverm import azimuth, distance, Point, Line, Circle
+from pyverm import azimuth, distance, Point, Line, Circle, station
 from pyverm import settings
 
 decimal.getcontext().prec = settings.DEFAULT_DECIMAL_PRECISION  # decimal.set_precision
 
+class Test_Station:
+    def test_station_stakeout(self):
+        station_point = (0,0,0)
+        target_point = (10,0,10)
+        sta = station(station_point, 0)
+        obs = sta.stakeout(target_point)
+        assert obs.reduced_zenith_angle == pytest.approx(50, abs=1e-7)
 
 class TestPoint(unittest.TestCase):
     def setUp(self):
