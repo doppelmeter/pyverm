@@ -56,7 +56,8 @@ class geocom_connect:
                 try:
                     instrument = self.request("5004")[1]
                     serialnumber = self.request("5003")[1]
-                except:
+                except Exception as e:
+                    logger.error(e, exc_info=True)
                     self._reconnect()
                 else:
                     logger.info("\tConnected to Instrument %s (%s)", serialnumber, instrument)
