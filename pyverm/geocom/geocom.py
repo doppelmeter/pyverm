@@ -77,27 +77,25 @@ class geocom_connect:
 
         while True:
             counter = 0
-            while counter < 5:
+            while counter < 2:
                 counter += 1
                 try:
                     self.sock.sendall(asciistring.encode())
-                    data = self.sock.recv(512)[:-2]
+                    trid_is_the_same = False
+                    while not trid_is_the_same:
+                        data = self.sock.recv(512)[:-2]
+                        data_decoded = data.decode('utf-8')
+                        response = data_decoded.strip("%""''").split(":")
+                        trid_recv = response[0].split(",")[-1]
+                        trid_is_the_same = self.trid == int(trid_recv)
+                    logger.debug("\tSent: %s\tRecieved: %s", asciistring.strip(), data_decoded)
+                    val_list = response[-1].strip().split(",")
+                    val_list = list(map(_convert, val_list))
+                    return val_list
                 except socket.timeout:
                     logger.warning("\tRequest to %s (Port %s) failed \ttime out", str(self.tcp_ip), str(self.tcp_port))
-
                 except OSError as err:
                     logger.warning("\tRequest to %s (Port %s) failed \t%s", str(self.tcp_ip), str(self.tcp_port), err)
-
-                else:
-                    data_decoded = data.decode('utf-8')
-                    logger.debug("\tSent: %s\tRecieved: %s", asciistring.strip(), data_decoded)
-
-                    response = data_decoded.strip("%""''").split(":")
-                    trid_recv = response[0].split(",")[-1]
-                    if self.trid == int(trid_recv):
-                        val_list = response[-1].strip().split(",")
-                        val_list = list(map(_convert, val_list))
-                        return val_list
             self._reconnect()
 
     def close(self):
