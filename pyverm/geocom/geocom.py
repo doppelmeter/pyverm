@@ -22,7 +22,7 @@ class geocom_connect:
     def __init__(self, *, tcp_ip="192.168.254.3", tcp_port=1212):
         """Initialise connection"""
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.sock.settimeout(1)
+        self.sock.settimeout(5)
         self.trid = 0
         self.tcp_ip = str(tcp_ip)
         self.tcp_port = int(tcp_port)
@@ -32,7 +32,7 @@ class geocom_connect:
         """Make a new connection if the old fails"""
         self.close()
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.sock.settimeout(1)
+        self.sock.settimeout(5)
         self._connect()
 
     def _connect(self, *, retries=10):
