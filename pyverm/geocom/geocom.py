@@ -54,17 +54,17 @@ class geocom_connect:
             else:
                 logger.info("\tTesting connection to %s (Port %s)", str(self.tcp_ip), str(self.tcp_port))
                 try:
-                    instrument = self.request("5004")[1]
-                    serialnumber = self.request("5003")[1]
+                    instrument = self.request("5004", raise_exception=True)[1]
+                    serialnumber = self.request("5003", raise_exception=True)[1]
                 except Exception as e:
                     logger.error(e, exc_info=True)
-                    self._reconnect()
                 else:
                     logger.info("\tConnected to Instrument %s (%s)", serialnumber, instrument)
-                    return
+                    return True
+                    break
         self._reconnect()
 
-    def request(self, rpc, *parameterlist):
+    def request(self, rpc, *parameterlist, raise_exception=False):
         """Send a Request"""
         params = str(list(parameterlist)).strip("([ ])").replace(" ", "").replace("'", "")
 
@@ -83,21 +83,27 @@ class geocom_connect:
                 try:
                     self.sock.sendall(asciistring.encode())
                     trid_is_the_same = False
-                    while not trid_is_the_same:
+                    counter_2 = 0
+                    while not trid_is_the_same and counter_2 < 8:
                         data = self.sock.recv(512)[:-2]
                         data_decoded = data.decode('utf-8')
                         response = data_decoded.strip("%""''").split(":")
                         trid_recv = response[0].split(",")[-1]
                         trid_is_the_same = self.trid == int(trid_recv)
-                    logger.debug("\tSent: %s\tRecieved: %s", asciistring.strip(), data_decoded)
-                    val_list = response[-1].strip().split(",")
-                    val_list = list(map(_convert, val_list))
-                    return val_list
+                        counter_2 += 1
+                    if trid_is_the_same:
+                        logger.debug("\tSent: %s\tRecieved: %s", asciistring.strip(), data_decoded)
+                        val_list = response[-1].strip().split(",")
+                        val_list = list(map(_convert, val_list))
+                        return val_list
                 except socket.timeout:
                     logger.warning("\tRequest to %s (Port %s) failed \ttime out", str(self.tcp_ip), str(self.tcp_port))
                 except OSError as err:
                     logger.warning("\tRequest to %s (Port %s) failed \t%s", str(self.tcp_ip), str(self.tcp_port), err)
-            self._reconnect()
+            if raise_exception:
+                raise Exception
+            else:
+                self._reconnect()
 
     def close(self):
         self.sock.close()
