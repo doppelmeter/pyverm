@@ -5,6 +5,7 @@ import time
 logger = logging.getLogger(__name__)
 
 
+
 def _convert(x):
     """helper to convert variable types"""
     try:
@@ -76,7 +77,7 @@ class geocom_connect:
 
         while True:
             counter = 0
-            while counter < 2:
+            while counter < 5:
                 counter += 1
                 try:
                     self.sock.sendall(asciistring.encode())
@@ -92,9 +93,11 @@ class geocom_connect:
                     logger.debug("\tSent: %s\tRecieved: %s", asciistring.strip(), data_decoded)
 
                     response = data_decoded.strip("%""''").split(":")
-                    val_list = response[-1].strip().split(",")
-                    val_list = list(map(_convert, val_list))
-                    return val_list
+                    trid_recv = response[0].split(",")[-1]
+                    if self.trid == int(trid_recv):
+                        val_list = response[-1].strip().split(",")
+                        val_list = list(map(_convert, val_list))
+                        return val_list
             self._reconnect()
 
     def close(self):
