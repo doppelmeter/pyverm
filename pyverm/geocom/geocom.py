@@ -1,3 +1,29 @@
+##################################################################################
+# Only pyverm.geocom is under the MIT License
+#=================================================================================
+# MIT License
+#
+# Copyright (c) [2019] [Marius Hürzeler]
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+##################################################################################
+
 import logging
 import socket
 import time
@@ -20,7 +46,7 @@ def _convert(x):
 
 class geocom_connect:
     def __init__(self, *, tcp_ip="192.168.254.3", tcp_port=1212):
-        """Initialise connection"""
+        """Initialise Geocom-connection"""
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.settimeout(5)
         self.trid = 0
@@ -29,7 +55,6 @@ class geocom_connect:
         self._connect(retries=20)
 
     def _reconnect(self):
-        """Make a new connection if the old fails"""
         self.sock.shutdown(socket.SHUT_RDWR)
         time.sleep(0.1)
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -37,7 +62,6 @@ class geocom_connect:
         self._connect()
 
     def _connect(self, *, retries=10):
-        """Connect"""
         logger.info("\tConnecting to %s (Port %s)", str(self.tcp_ip), str(self.tcp_port))
         counter = 0
         while counter < retries:
@@ -66,7 +90,6 @@ class geocom_connect:
         self._reconnect()
 
     def request(self, rpc, *parameterlist, raise_exception=False):
-        """Send a Request"""
         params = str(list(parameterlist)).strip("([ ])").replace(" ", "").replace("'", "")
 
         rpc = str(rpc)
