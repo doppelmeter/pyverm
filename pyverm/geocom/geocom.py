@@ -30,7 +30,8 @@ class geocom_connect:
 
     def _reconnect(self):
         """Make a new connection if the old fails"""
-        self.close()
+        self.sock.shutdown(socket.SHUT_RDWR)
+        time.sleep(0.1)
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.settimeout(5)
         self._connect()
