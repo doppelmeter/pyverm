@@ -3,6 +3,10 @@ Release Notes
 
 PyVerm uses `Semantic Versioning <https://semver.org/>`_
 
+0.3.0 (12.12.2019)
+^^^^^^^^^^^^^^^^^^
+* add pyverm.geocom
+
 0.1.3 (25.12.2018)
 ^^^^^^^^^^^^^^^^^^
 * test deployment with travis CI
